@@ -4,10 +4,18 @@ import { setupVite, serveStatic, log } from "./vite";
 import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
 import { pool } from "./db";
+import { config } from "./config";
+import cors from "cors";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Setup CORS for cross-origin requests from Netlify frontend
+app.use(cors({
+  origin: config.cors.origin,
+  credentials: config.cors.credentials,
+}));
 
 // Setup session middleware with PostgreSQL store
 const PgSession = connectPgSimple(session);
@@ -19,12 +27,12 @@ app.use(
       tableName: "session",
       createTableIfMissing: true,
     }),
-    secret: process.env.SESSION_SECRET || "omflor-celestial-secret",
+    secret: config.session.secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
-      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-      secure: false, // Set to true in production with HTTPS
+      maxAge: config.session.cookie.maxAge,
+      secure: config.session.cookie.secure,
     },
   })
 );
@@ -86,10 +94,9 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = 5000;
+  // Use the port from config (which gets from environment or default)
+  // In production (Heroku), this will use the PORT env variable
+  const port = process.env.NODE_ENV === 'production' ? config.port : 5000;
   server.listen({
     port,
     host: "0.0.0.0",

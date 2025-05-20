@@ -12,7 +12,7 @@ export const config = {
   cors: {
     // Add your frontend URL when it's deployed to Netlify
     origin: process.env.NODE_ENV === 'production'
-      ? ['https://your-netlify-app-name.netlify.app'] // Replace with your Netlify domain
+      ? ['https://omflorwellness.com'] // Replace with your Netlify domain
       : ['http://localhost:3000'],
     credentials: true,
   },

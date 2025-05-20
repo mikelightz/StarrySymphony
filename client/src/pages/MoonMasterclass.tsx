@@ -241,7 +241,7 @@ export default function MoonMasterclass() {
             <div className="md:w-1/3">
               <div className="w-48 h-48 mx-auto rounded-full overflow-hidden">
                 <img 
-                  src="/images/new_2.jpg" 
+                  src="/images/new_3.jpg" 
                   alt="Sierra Flor" 
                   className="w-full h-full object-cover"
                 />

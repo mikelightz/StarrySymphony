@@ -7,7 +7,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
 const newsletterSchema = z.object({
-  email: z.string().email("Please enter a valid email address")
+  email: z.string().email("Please enter a valid email address"),
 });
 
 type NewsletterFormData = z.infer<typeof newsletterSchema>;
@@ -15,16 +15,21 @@ type NewsletterFormData = z.infer<typeof newsletterSchema>;
 export default function NewsletterForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<NewsletterFormData>({
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<NewsletterFormData>({
     resolver: zodResolver(newsletterSchema),
     defaultValues: {
       email: "",
-    }
+    },
   });
-  
+
   const subscribeNewsletter = useMutation({
-    mutationFn: (data: NewsletterFormData) => 
+    mutationFn: (data: NewsletterFormData) =>
       apiRequest("POST", "/api/newsletter/subscribe", data),
     onSuccess: () => {
       toast({
@@ -41,26 +46,34 @@ export default function NewsletterForm() {
         variant: "destructive",
       });
       setIsSubmitting(false);
-    }
+    },
   });
-  
+
   const onSubmit = (data: NewsletterFormData) => {
     setIsSubmitting(true);
     subscribeNewsletter.mutate(data);
   };
-  
+
   return (
-    <div className="bg-deepblue bg-opacity-50 rounded-lg p-6 max-w-md mx-auto md:mx-0">
-      <h3 className="font-playfair text-xl mb-4 text-center md:text-left">Stay Lunar-Aligned</h3>
+    <div className="bg-[#666137] bg-opacity-50 rounded-lg p-6 max-w-md mx-auto md:mx-0">
+      <h3 className="font-playfair text-xl mb-4 text-center md:text-left">
+        Stay Lunar-Aligned
+      </h3>
       <p className="text-gray-300 mb-4 text-center md:text-left">
-        Join our newsletter for lunar updates, embodiment practices, and special offers.
+        Join our newsletter for lunar updates, embodiment practices, and special
+        offers.
       </p>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-3">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col sm:flex-row gap-3"
+      >
         <div className="flex-grow">
-          <input 
-            type="email" 
-            placeholder="Your email address" 
-            className={`px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-gold w-full ${errors.email ? 'border-red-500' : ''}`}
+          <input
+            type="email"
+            placeholder="Your email address"
+            className={`px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-gold w-full ${
+              errors.email ? "border-red-500" : ""
+            }`}
             {...register("email")}
             aria-invalid={errors.email ? "true" : "false"}
           />
@@ -68,8 +81,8 @@ export default function NewsletterForm() {
             <p className="text-xs text-red-400 mt-1">{errors.email.message}</p>
           )}
         </div>
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className="bg-gold text-deepblue px-6 py-3 rounded-lg hover:bg-opacity-90 transition duration-300 whitespace-nowrap"
           disabled={isSubmitting}
         >

@@ -5,5 +5,5 @@
 # Handle SPA routing
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/client/index.html"
   status = 200

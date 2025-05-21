@@ -23,26 +23,19 @@ __export(schema_exports, {
   newsletterSubscriptions: () => newsletterSubscriptions,
   productSchema: () => productSchema,
   products: () => products,
-  users: () => users,
+  users: () => users
 });
-import {
-  pgTable,
-  text,
-  serial,
-  integer,
-  timestamp,
-  doublePrecision,
-} from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, timestamp, doublePrecision } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 var users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
-  password: text("password").notNull(),
+  password: text("password").notNull()
 });
 var insertUserSchema = createInsertSchema(users).pick({
   username: true,
-  password: true,
+  password: true
 });
 var products = pgTable("products", {
   id: serial("id").primaryKey(),
@@ -51,31 +44,31 @@ var products = pgTable("products", {
   originalPrice: doublePrecision("original_price"),
   type: text("type").notNull(),
   description: text("description").notNull(),
-  imageUrl: text("image_url").notNull(),
+  imageUrl: text("image_url").notNull()
 });
 var productSchema = createInsertSchema(products);
 var carts = pgTable("carts", {
   id: serial("id").primaryKey(),
   userId: integer("user_id"),
-  createdAt: timestamp("created_at").defaultNow(),
+  createdAt: timestamp("created_at").defaultNow()
 });
 var cartItems = pgTable("cart_items", {
   id: serial("id").primaryKey(),
   cartId: integer("cart_id").notNull(),
   productId: integer("product_id").notNull(),
-  quantity: integer("quantity").notNull().default(1),
+  quantity: integer("quantity").notNull().default(1)
 });
 var cartItemSchema = z.object({
   productId: z.number().int().positive(),
-  quantity: z.number().int().positive().default(1),
+  quantity: z.number().int().positive().default(1)
 });
 var newsletterSubscriptions = pgTable("newsletter_subscriptions", {
   id: serial("id").primaryKey(),
   email: text("email").notNull().unique(),
-  subscribedAt: timestamp("subscribed_at").defaultNow(),
+  subscribedAt: timestamp("subscribed_at").defaultNow()
 });
 var newsletterSchema = z.object({
-  email: z.string().email(),
+  email: z.string().email()
 });
 var contactMessages = pgTable("contact_messages", {
   id: serial("id").primaryKey(),
@@ -83,13 +76,13 @@ var contactMessages = pgTable("contact_messages", {
   email: text("email").notNull(),
   subject: text("subject").notNull(),
   message: text("message").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
+  createdAt: timestamp("created_at").defaultNow()
 });
 var contactSchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
   subject: z.string().min(1),
-  message: z.string().min(10),
+  message: z.string().min(10)
 });
 
 // server/storage.ts
@@ -115,10 +108,7 @@ var DatabaseStorage = class {
     return user || void 0;
   }
   async getUserByUsername(username) {
-    const [user] = await db
-      .select()
-      .from(users)
-      .where(eq(users.username, username));
+    const [user] = await db.select().from(users).where(eq(users.username, username));
     return user || void 0;
   }
   async createUser(insertUser) {
@@ -129,17 +119,11 @@ var DatabaseStorage = class {
     return db.select().from(products);
   }
   async getProductById(id) {
-    const [product] = await db
-      .select()
-      .from(products)
-      .where(eq(products.id, id));
+    const [product] = await db.select().from(products).where(eq(products.id, id));
     return product || void 0;
   }
   async createProduct(insertProduct) {
-    const [product] = await db
-      .insert(products)
-      .values(insertProduct)
-      .returning();
+    const [product] = await db.insert(products).values(insertProduct).returning();
     return product;
   }
   async getCart(cartId) {
@@ -147,22 +131,16 @@ var DatabaseStorage = class {
     if (!cart) {
       return { id: cartId, items: [], total: 0 };
     }
-    const items = await db
-      .select({
-        id: cartItems.id,
-        productId: cartItems.productId,
-        quantity: cartItems.quantity,
-      })
-      .from(cartItems)
-      .where(eq(cartItems.cartId, cartId));
+    const items = await db.select({
+      id: cartItems.id,
+      productId: cartItems.productId,
+      quantity: cartItems.quantity
+    }).from(cartItems).where(eq(cartItems.cartId, cartId));
     if (items.length === 0) {
       return { id: cartId, items: [], total: 0 };
     }
     const productIds = items.map((item) => item.productId);
-    const productDetails = await db
-      .select()
-      .from(products)
-      .where(inArray(products.id, productIds));
+    const productDetails = await db.select().from(products).where(inArray(products.id, productIds));
     const cartProducts = items.map((item) => {
       const product = productDetails.find((p) => p.id === item.productId);
       return {
@@ -171,99 +149,70 @@ var DatabaseStorage = class {
         productName: product?.name || "Unknown Product",
         price: product?.price || 0,
         quantity: item.quantity,
-        type: product?.type || "UNKNOWN",
+        type: product?.type || "UNKNOWN"
       };
     });
-    const total = cartProducts.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    );
+    const total = cartProducts.reduce((sum, item) => sum + item.price * item.quantity, 0);
     return {
       id: cartId,
       items: cartProducts,
-      total,
+      total
     };
   }
   async addToCart(cartId, productId, quantity = 1) {
-    const [product] = await db
-      .select()
-      .from(products)
-      .where(eq(products.id, productId));
+    const [product] = await db.select().from(products).where(eq(products.id, productId));
     if (!product) {
       throw new Error("Product not found");
     }
     let cart;
-    const [existingCart] = await db
-      .select()
-      .from(carts)
-      .where(eq(carts.id, cartId));
+    const [existingCart] = await db.select().from(carts).where(eq(carts.id, cartId));
     if (!existingCart) {
-      const [newCart] = await db
-        .insert(carts)
-        .values({ id: cartId })
-        .returning();
+      const [newCart] = await db.insert(carts).values({ id: cartId }).returning();
       cart = newCart;
     } else {
       cart = existingCart;
     }
-    const [existingItem] = await db
-      .select()
-      .from(cartItems)
-      .where(
-        and(eq(cartItems.cartId, cartId), eq(cartItems.productId, productId))
-      );
+    const [existingItem] = await db.select().from(cartItems).where(and(
+      eq(cartItems.cartId, cartId),
+      eq(cartItems.productId, productId)
+    ));
     if (existingItem) {
-      const [updatedItem] = await db
-        .update(cartItems)
-        .set({ quantity: existingItem.quantity + quantity })
-        .where(eq(cartItems.id, existingItem.id))
-        .returning();
+      const [updatedItem] = await db.update(cartItems).set({ quantity: existingItem.quantity + quantity }).where(eq(cartItems.id, existingItem.id)).returning();
       return updatedItem;
     } else {
-      const [newItem] = await db
-        .insert(cartItems)
-        .values({
-          cartId,
-          productId,
-          quantity,
-        })
-        .returning();
+      const [newItem] = await db.insert(cartItems).values({
+        cartId,
+        productId,
+        quantity
+      }).returning();
       return newItem;
     }
   }
   async removeFromCart(cartId, itemId) {
-    await db
-      .delete(cartItems)
-      .where(and(eq(cartItems.cartId, cartId), eq(cartItems.id, itemId)));
+    await db.delete(cartItems).where(and(
+      eq(cartItems.cartId, cartId),
+      eq(cartItems.id, itemId)
+    ));
   }
   async clearCart(cartId) {
     await db.delete(cartItems).where(eq(cartItems.cartId, cartId));
   }
   async getNewsletterSubscriptionByEmail(email) {
-    const [subscription] = await db
-      .select()
-      .from(newsletterSubscriptions)
-      .where(eq(newsletterSubscriptions.email, email));
+    const [subscription] = await db.select().from(newsletterSubscriptions).where(eq(newsletterSubscriptions.email, email));
     return subscription || void 0;
   }
   async createNewsletterSubscription(insertSubscription) {
-    const [subscription] = await db
-      .insert(newsletterSubscriptions)
-      .values({
-        ...insertSubscription,
-        subscribedAt: /* @__PURE__ */ new Date(),
-      })
-      .returning();
+    const [subscription] = await db.insert(newsletterSubscriptions).values({
+      ...insertSubscription,
+      subscribedAt: /* @__PURE__ */ new Date()
+    }).returning();
     return subscription;
   }
   async createContactMessage(insertMessage) {
-    const [message] = await db
-      .insert(contactMessages)
-      .values({
-        ...insertMessage,
-        createdAt: /* @__PURE__ */ new Date(),
-      })
-      .returning();
+    const [message] = await db.insert(contactMessages).values({
+      ...insertMessage,
+      createdAt: /* @__PURE__ */ new Date()
+    }).returning();
     return message;
   }
   async getAllContactMessages() {
@@ -309,14 +258,11 @@ async function registerRoutes(app2) {
   app2.post("/api/newsletter/subscribe", async (req, res) => {
     try {
       const subscriptionData = newsletterSchema.parse(req.body);
-      const existingSubscription =
-        await storage.getNewsletterSubscriptionByEmail(subscriptionData.email);
+      const existingSubscription = await storage.getNewsletterSubscriptionByEmail(subscriptionData.email);
       if (existingSubscription) {
         return res.status(400).json({ message: "Email already subscribed" });
       }
-      const subscription = await storage.createNewsletterSubscription(
-        subscriptionData
-      );
+      const subscription = await storage.createNewsletterSubscription(subscriptionData);
       res.status(201).json(subscription);
     } catch (error) {
       console.error("Error creating newsletter subscription:", error);
@@ -368,9 +314,7 @@ async function registerRoutes(app2) {
         res.status(201).json(cartItem);
       } catch (dbError) {
         console.error("Database error adding to cart:", dbError);
-        res
-          .status(400)
-          .json({ message: "Could not add to cart. Database error." });
+        res.status(400).json({ message: "Could not add to cart. Database error." });
       }
     } catch (error) {
       console.error("Error adding to cart:", error);
@@ -435,37 +379,38 @@ var vite_config_default = defineConfig({
   plugins: [
     react(),
     runtimeErrorOverlay(),
-    ...(process.env.NODE_ENV !== "production" && process.env.REPL_ID !== void 0
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer()
-          ),
-        ]
-      : []),
+    ...process.env.NODE_ENV !== "production" && process.env.REPL_ID !== void 0 ? [
+      await import("@replit/vite-plugin-cartographer").then(
+        (m) => m.cartographer()
+      )
+    ] : []
   ],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
       "@shared": path.resolve(import.meta.dirname, "shared"),
-      "@assets": path.resolve(import.meta.dirname, "attached_assets"),
-    },
+      "@assets": path.resolve(import.meta.dirname, "attached_assets")
+    }
   },
   root: path.resolve(import.meta.dirname, "client"),
+  // This means Vite's project root is <repo_root>/client
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
-    emptyOutDir: true,
-  },
+    outDir: "public",
+    // Changed: This will now be relative to the 'root'
+    // So, the output will be <repo_root>/client/public/
+    emptyOutDir: true
+  }
 });
 
 // server/vite.ts
 import { nanoid } from "nanoid";
 var viteLogger = createLogger();
 function log(message, source = "express") {
-  const formattedTime = /* @__PURE__ */ new Date().toLocaleTimeString("en-US", {
+  const formattedTime = (/* @__PURE__ */ new Date()).toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
     second: "2-digit",
-    hour12: true,
+    hour12: true
   });
   console.log(`${formattedTime} [${source}] ${message}`);
 }
@@ -473,7 +418,7 @@ async function setupVite(app2, server) {
   const serverOptions = {
     middlewareMode: true,
     hmr: { server },
-    allowedHosts: true,
+    allowedHosts: true
   };
   const vite = await createViteServer({
     ...vite_config_default,
@@ -483,10 +428,10 @@ async function setupVite(app2, server) {
       error: (msg, options) => {
         viteLogger.error(msg, options);
         process.exit(1);
-      },
+      }
     },
     server: serverOptions,
-    appType: "custom",
+    appType: "custom"
   });
   app2.use(vite.middlewares);
   app2.use("*", async (req, res, next) => {
@@ -511,18 +456,6 @@ async function setupVite(app2, server) {
     }
   });
 }
-function serveStatic(app2) {
-  const distPath = path2.resolve(import.meta.dirname, "public");
-  if (!fs.existsSync(distPath)) {
-    throw new Error(
-      `Could not find the build directory: ${distPath}, make sure to build the client first`
-    );
-  }
-  app2.use(express.static(distPath));
-  app2.use("*", (_req, res) => {
-    res.sendFile(path2.resolve(distPath, "index.html"));
-  });
-}
 
 // server/index.ts
 import session from "express-session";
@@ -534,16 +467,13 @@ var config = {
   port: process.env.PORT || 3e3,
   // Database configuration
   database: {
-    url: process.env.DATABASE_URL,
+    url: process.env.DATABASE_URL
   },
   // CORS configuration for production
   cors: {
     // Add your frontend URL when it's deployed to Netlify
-    origin:
-      process.env.NODE_ENV === "production"
-        ? ["https://omflorwell.netlify.app"]
-        : ["http://localhost:3000"],
-    credentials: true,
+    origin: process.env.NODE_ENV === "production" ? ["https://omflorwell.netlify.app"] : ["http://localhost:3000"],
+    credentials: true
   },
   // Session configuration
   session: {
@@ -551,9 +481,9 @@ var config = {
     cookie: {
       maxAge: 24 * 60 * 60 * 1e3,
       // 1 day
-      secure: process.env.NODE_ENV === "production",
-    },
-  },
+      secure: process.env.NODE_ENV === "production"
+    }
+  }
 };
 
 // server/index.ts
@@ -564,7 +494,7 @@ app.use(express2.urlencoded({ extended: false }));
 app.use(
   cors({
     origin: config.cors.origin,
-    credentials: config.cors.credentials,
+    credentials: config.cors.credentials
   })
 );
 var PgSession = connectPgSimple(session);
@@ -573,15 +503,15 @@ app.use(
     store: new PgSession({
       pool,
       tableName: "session",
-      createTableIfMissing: true,
+      createTableIfMissing: true
     }),
     secret: config.session.secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
       maxAge: config.session.cookie.maxAge,
-      secure: config.session.cookie.secure,
-    },
+      secure: config.session.cookie.secure
+    }
   })
 );
 app.use((req, res, next) => {
@@ -589,7 +519,7 @@ app.use((req, res, next) => {
   const path3 = req.path;
   let capturedJsonResponse = void 0;
   const originalResJson = res.json;
-  res.json = function (bodyJson, ...args) {
+  res.json = function(bodyJson, ...args) {
     capturedJsonResponse = bodyJson;
     return originalResJson.apply(res, [bodyJson, ...args]);
   };
@@ -618,15 +548,13 @@ app.use((req, res, next) => {
   });
   if (app.get("env") === "development") {
     await setupVite(app, server);
-  } else {
-    serveStatic(app);
   }
   const port = process.env.NODE_ENV === "production" ? config.port : 5e3;
   server.listen(
     {
       port,
       host: "0.0.0.0",
-      reusePort: true,
+      reusePort: true
     },
     () => {
       log(`serving on port ${port}`);

@@ -1,6 +1,6 @@
 [build]
   command = "npm run build"
-  publish = "client"
+  publish = "client/dist/public"
 
 # Handle SPA routing
 [[redirects]]

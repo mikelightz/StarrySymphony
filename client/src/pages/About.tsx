@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Sprout, Brain, Moon, HandHelping } from "lucide-react";
 import { fadeIn } from "@/lib/animations";
-import sierra1 from "@/client/public/images/new_1.jpg";
 
 export default function About() {
   return (
@@ -25,7 +24,7 @@ export default function About() {
           {/* Circular portrait image */}
           <div className="w-64 h-64 rounded-full overflow-hidden shadow-lg border-4 border-cream flex-shrink-0 mx-auto md:mx-0">
             <img
-              src="{sierra1}"
+              src="/images/new_1.jpg"
               alt="Founder portrait"
               className="w-full h-full object-cover"
             />

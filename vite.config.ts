@@ -23,9 +23,10 @@ export default defineConfig({
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
-  root: path.resolve(import.meta.dirname, "client"),
+  root: path.resolve(import.meta.dirname, "client"), // This means Vite's project root is <repo_root>/client
   build: {
-    outDir: path.resolve(import.meta.dirname, "public"),
+    outDir: "public", // Changed: This will now be relative to the 'root'
+    // So, the output will be <repo_root>/client/public/
     emptyOutDir: true,
   },
 });

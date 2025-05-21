@@ -12,14 +12,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Setup CORS for cross-origin requests from Netlify frontend
-app.use(cors({
-  origin: config.cors.origin,
-  credentials: config.cors.credentials,
-}));
+app.use(
+  cors({
+    origin: config.cors.origin,
+    credentials: config.cors.credentials,
+  })
+);
 
 // Setup session middleware with PostgreSQL store
 const PgSession = connectPgSimple(session);
-  
+
 app.use(
   session({
     store: new PgSession({
@@ -90,18 +92,19 @@ app.use((req, res, next) => {
   // doesn't interfere with the other routes
   if (app.get("env") === "development") {
     await setupVite(app, server);
-  } else {
-    serveStatic(app);
   }
 
   // Use the port from config (which gets from environment or default)
   // In production (Heroku), this will use the PORT env variable
-  const port = process.env.NODE_ENV === 'production' ? config.port : 5000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+  const port = process.env.NODE_ENV === "production" ? config.port : 5000;
+  server.listen(
+    {
+      port,
+      host: "0.0.0.0",
+      reusePort: true,
+    },
+    () => {
+      log(`serving on port ${port}`);
+    }
+  );
 })();

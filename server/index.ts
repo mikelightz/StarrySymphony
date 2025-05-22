@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+// import { setupVite, serveStatic, log } from "./vite"; // REMOVE THIS LINE
+import { log } from "./logger"; // IMPORT log FROM THE NEW LOCATION
 import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
 import { pool } from "./db";
@@ -52,9 +53,12 @@ app.use((req, res, next) => {
   let capturedJsonResponse: Record<string, any> | undefined = undefined;
 
   const originalResJson = res.json;
-  res.json = function (bodyJson, ...args) {
+  res.json = function (bodyJson: any, ...args: any[]) {
+    // Keep your wrapper signature
     capturedJsonResponse = bodyJson;
-    return originalResJson.apply(res, [bodyJson, ...args]);
+    // Call the original res.json, only passing the bodyJson it expects.
+    // The 'args' are not standard for res.json and should not be passed to the original.
+    return originalResJson.apply(res, [bodyJson]); // Corrected line
   };
 
   res.on("finish", () => {
@@ -68,11 +72,9 @@ app.use((req, res, next) => {
       if (logLine.length > 80) {
         logLine = logLine.slice(0, 79) + "…";
       }
-
-      log(logLine);
+      log(logLine); // Use the imported log function
     }
   });
-
   next();
 });
 
@@ -82,20 +84,29 @@ app.use((req, res, next) => {
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
-
     res.status(status).json({ message });
-    throw err;
+    // It's generally not recommended to throw an error after sending a response.
+    // Consider logging it instead or ensuring this is the final error handler.
+    // throw err;
+    log(
+      `Error: ${status} - ${message}${
+        err.stack ? `\nStack: ${err.stack}` : ""
+      }`,
+      "errorHandler"
+    );
   });
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
   if (app.get("env") === "development") {
-    await setupVite(app, server);
+    try {
+      const { setupVite } = await import("./vite"); // Dynamically import setupVite
+      await setupVite(app, server);
+    } catch (viteError) {
+      log(`Failed to setup Vite: ${viteError}`, "ViteSetup");
+      // Decide if you want to exit or continue without Vite HMR in dev
+    }
   }
+  // The 'else { serveStatic(app); }' block was already correctly removed for production.
 
-  // Use the port from config (which gets from environment or default)
-  // In production (Heroku), this will use the PORT env variable
   const port = process.env.NODE_ENV === "production" ? config.port : 5000;
   server.listen(
     {
@@ -104,7 +115,7 @@ app.use((req, res, next) => {
       reusePort: true,
     },
     () => {
-      log(`serving on port ${port}`);
+      log(`serving on port ${port}`); // Use the imported log function
     }
   );
 })();

@@ -80,7 +80,23 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  // ...
+  const server = await registerRoutes(app);
+
+  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+    const status = err.status || err.statusCode || 500;
+    const message = err.message || "Internal Server Error";
+    res.status(status).json({ message });
+    // It's generally not recommended to throw an error after sending a response.
+    // Consider logging it instead or ensuring this is the final error handler.
+    // throw err;
+    log(
+      `Error: ${status} - ${message}${
+        err.stack ? `\nStack: ${err.stack}` : ""
+      }`,
+      "errorHandler"
+    );
+  });
+
   if (app.get("env") === "development") {
     try {
       const { setupVite } = await import("./vite");
@@ -97,17 +113,6 @@ app.use((req, res, next) => {
       );
     }
   }
-
-  if (app.get("env") === "development") {
-    try {
-      const { setupVite } = await import("./vite"); // Dynamically import setupVite
-      await setupVite(app, server);
-    } catch (viteError) {
-      log(`Failed to setup Vite: ${viteError}`, "ViteSetup");
-      // Decide if you want to exit or continue without Vite HMR in dev
-    }
-  }
-  // The 'else { serveStatic(app); }' block was already correctly removed for production.
 
   const port = process.env.NODE_ENV === "production" ? config.port : 5000;
   server.listen(

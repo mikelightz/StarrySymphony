@@ -4,6 +4,9 @@ import fs from "fs";
 import path from "path";
 import { type Server } from "http";
 import { nanoid } from "nanoid";
+import { log } from "./logger";
+
+log("Testing deployment marker - v2 - Top of server/vite.ts");
 
 export async function setupVite(app: Express, server: Server) {
   // Dynamically import Vite and its config ONLY when setupVite is called

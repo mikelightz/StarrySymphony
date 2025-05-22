@@ -1,6 +1,5 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
-// import { setupVite, serveStatic, log } from "./vite"; // REMOVE THIS LINE
 import { log } from "./logger"; // IMPORT log FROM THE NEW LOCATION
 import session from "express-session";
 import connectPgSimple from "connect-pg-simple";

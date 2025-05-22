@@ -55,7 +55,7 @@ export default function NewsletterForm() {
   };
 
   return (
-    <div className="bg-[#666137] bg-opacity-50 rounded-lg p-6 max-w-md mx-auto md:mx-0">
+    <div className="bg-[#a24b27] bg-opacity-50 rounded-lg p-6 max-w-md mx-auto md:mx-0">
       <h3 className="font-playfair text-xl mb-4 text-center md:text-left">
         Stay Lunar-Aligned
       </h3>

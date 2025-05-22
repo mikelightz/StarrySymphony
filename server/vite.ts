@@ -6,7 +6,7 @@ import { type Server } from "http";
 import { nanoid } from "nanoid";
 import { log } from "./logger";
 
-// log("Testing deployment marker - v2 - Top of server/vite.ts"); // You can keep or remove this marker
+log("Testing deployment marker - v2 - Top of server/vite.ts"); // You can keep or remove this marker
 
 // Change setupVite to accept viteMainConfig as an argument
 export async function setupVite(

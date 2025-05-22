@@ -80,22 +80,23 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  const server = await registerRoutes(app);
+  // ...
+  if (app.get("env") === "development") {
+    try {
+      const { setupVite } = await import("./vite");
+      // Dynamically import your vite.config.ts (or .js if it gets compiled separately, but .ts should work with tsx in dev)
+      const viteConfigModule = await import("../vite.config.ts"); // Path to your root vite.config.ts
+      const viteMainConfig = viteConfigModule.default;
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-    res.status(status).json({ message });
-    // It's generally not recommended to throw an error after sending a response.
-    // Consider logging it instead or ensuring this is the final error handler.
-    // throw err;
-    log(
-      `Error: ${status} - ${message}${
-        err.stack ? `\nStack: ${err.stack}` : ""
-      }`,
-      "errorHandler"
-    );
-  });
+      await setupVite(app, server, viteMainConfig); // Pass the config object
+    } catch (viteError: any) {
+      // Catch any potential error
+      log(
+        `Failed to setup Vite: ${viteError.message || String(viteError)}`,
+        "ViteSetup"
+      );
+    }
+  }
 
   if (app.get("env") === "development") {
     try {

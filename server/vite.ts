@@ -6,29 +6,31 @@ import { type Server } from "http";
 import { nanoid } from "nanoid";
 import { log } from "./logger";
 
-log("Testing deployment marker - v2 - Top of server/vite.ts");
+// log("Testing deployment marker - v2 - Top of server/vite.ts"); // You can keep or remove this marker
 
-export async function setupVite(app: Express, server: Server) {
-  // Dynamically import Vite and its config ONLY when setupVite is called
+// Change setupVite to accept viteMainConfig as an argument
+export async function setupVite(
+  app: Express,
+  server: Server,
+  viteMainConfig: any
+) {
   const { createServer: createViteServer, createLogger } = await import("vite");
-  const { default: viteMainConfig } = await import("../vite.config.js");
+  // REMOVED: const { default: viteMainConfig } = await import("../vite.config.js");
 
   const viteLogger = createLogger();
-
   const serverOptions = {
     middlewareMode: true,
     hmr: { server },
-    allowedHosts: true as const, // Keep the 'as const' fix
+    allowedHosts: true as const,
   };
 
   const vite = await createViteServer({
-    ...viteMainConfig,
-    configFile: false,
+    ...viteMainConfig, // Use the passed-in viteMainConfig
+    configFile: false, // Important as you're passing the config object directly
     customLogger: {
       ...viteLogger,
       error: (msg, options) => {
         viteLogger.error(msg, options);
-        // process.exit(1); // Consider if you want server to exit on Vite error in dev
       },
     },
     server: serverOptions,
@@ -39,10 +41,12 @@ export async function setupVite(app: Express, server: Server) {
   app.use("*", async (req, res, next) => {
     const url = req.originalUrl;
     try {
-      // Path resolution for client/index.html needs to be correct relative to this file's location AFTER build
-      // If dist/server/vite.js is run, __dirname is dist/server
-      //const clientRoot = path.resolve(__dirname, "..", "..", "client"); // Adjust if esbuild structure is different
-      const clientTemplate = path.resolve(process.cwd(), "index.html");
+      // Path to your client's source index.html for Vite dev server
+      const clientTemplate = path.resolve(
+        process.cwd(),
+        "client",
+        "index.html"
+      );
 
       let template = await fs.promises.readFile(clientTemplate, "utf-8");
       template = template.replace(

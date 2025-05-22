@@ -1,7 +1,7 @@
-import { 
-  type User, 
-  type InsertUser, 
-  type Product, 
+import {
+  type User,
+  type InsertUser,
+  type Product,
   type InsertProduct,
   type NewsletterSubscription,
   type InsertNewsletterSubscription,
@@ -14,7 +14,7 @@ import {
   cartItems,
   carts,
   newsletterSubscriptions,
-  contactMessages
+  contactMessages,
 } from "@shared/schema";
 import { eq, and, inArray } from "drizzle-orm";
 import { db } from "./db";
@@ -32,14 +32,38 @@ export interface IStorage {
   createProduct(product: InsertProduct): Promise<Product>;
 
   // Cart operations
-  getCart(cartId: number): Promise<{ id: number, items: Array<{ id: number, productId: number, productName: string, price: number, quantity: number, type: string }>, total: number } | undefined>;
-  addToCart(cartId: number, productId: number, quantity?: number): Promise<CartItem>;
+  getCart(
+    cartId: number
+  ): Promise<
+    | {
+        id: number;
+        items: Array<{
+          id: number;
+          productId: number;
+          productName: string;
+          price: number;
+          quantity: number;
+          type: string;
+        }>;
+        total: number;
+      }
+    | undefined
+  >;
+  addToCart(
+    cartId: number,
+    productId: number,
+    quantity?: number
+  ): Promise<CartItem>;
   removeFromCart(cartId: number, itemId: number): Promise<void>;
   clearCart(cartId: number): Promise<void>;
 
   // Newsletter operations
-  getNewsletterSubscriptionByEmail(email: string): Promise<NewsletterSubscription | undefined>;
-  createNewsletterSubscription(subscription: InsertNewsletterSubscription): Promise<NewsletterSubscription>;
+  getNewsletterSubscriptionByEmail(
+    email: string
+  ): Promise<NewsletterSubscription | undefined>;
+  createNewsletterSubscription(
+    subscription: InsertNewsletterSubscription
+  ): Promise<NewsletterSubscription>;
 
   // Contact form operations
   createContactMessage(message: InsertContactMessage): Promise<ContactMessage>;
@@ -82,7 +106,7 @@ export class MemStorage implements IStorage {
 
   async getUserByUsername(username: string): Promise<User | undefined> {
     return Array.from(this.users.values()).find(
-      (user) => user.username === username,
+      (user) => user.username === username
     );
   }
 
@@ -110,14 +134,30 @@ export class MemStorage implements IStorage {
   }
 
   // Cart methods
-  async getCart(cartId: number): Promise<{ id: number, items: Array<{ id: number, productId: number, productName: string, price: number, quantity: number, type: string }>, total: number } | undefined> {
+  async getCart(
+    cartId: number
+  ): Promise<
+    | {
+        id: number;
+        items: Array<{
+          id: number;
+          productId: number;
+          productName: string;
+          price: number;
+          quantity: number;
+          type: string;
+        }>;
+        total: number;
+      }
+    | undefined
+  > {
     const cartItems = this.carts.get(cartId);
-    
+
     if (!cartItems || cartItems.size === 0) {
       return { id: cartId, items: [], total: 0 };
     }
-    
-    const items = Array.from(cartItems.values()).map(item => {
+
+    const items = Array.from(cartItems.values()).map((item) => {
       const product = this.products.get(item.productId);
       return {
         id: item.id,
@@ -125,35 +165,44 @@ export class MemStorage implements IStorage {
         productName: product?.name || "Unknown Product",
         price: product?.price || 0,
         quantity: item.quantity,
-        type: product?.type || "UNKNOWN"
+        type: product?.type || "UNKNOWN",
       };
     });
-    
-    const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    
+
+    const total = items.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
     return {
       id: cartId,
       items,
-      total
+      total,
     };
   }
 
-  async addToCart(cartId: number, productId: number, quantity: number = 1): Promise<CartItem> {
+  async addToCart(
+    cartId: number,
+    productId: number,
+    quantity: number = 1
+  ): Promise<CartItem> {
     if (!this.carts.has(cartId)) {
       this.carts.set(cartId, new Map());
     }
-    
+
     const cartItems = this.carts.get(cartId)!;
-    
+
     // Check if product exists
     const product = this.products.get(productId);
     if (!product) {
       throw new Error("Product not found");
     }
-    
+
     // Check if the item already exists in the cart
-    const existingItem = Array.from(cartItems.values()).find(item => item.productId === productId);
-    
+    const existingItem = Array.from(cartItems.values()).find(
+      (item) => item.productId === productId
+    );
+
     if (existingItem) {
       // Update quantity
       existingItem.quantity += quantity;
@@ -166,9 +215,9 @@ export class MemStorage implements IStorage {
         id,
         cartId,
         productId,
-        quantity
+        quantity,
       };
-      
+
       cartItems.set(id, cartItem);
       return cartItem;
     }
@@ -176,11 +225,11 @@ export class MemStorage implements IStorage {
 
   async removeFromCart(cartId: number, itemId: number): Promise<void> {
     const cartItems = this.carts.get(cartId);
-    
+
     if (!cartItems) {
       throw new Error("Cart not found");
     }
-    
+
     cartItems.delete(itemId);
   }
 
@@ -189,33 +238,39 @@ export class MemStorage implements IStorage {
   }
 
   // Newsletter methods
-  async getNewsletterSubscriptionByEmail(email: string): Promise<NewsletterSubscription | undefined> {
+  async getNewsletterSubscriptionByEmail(
+    email: string
+  ): Promise<NewsletterSubscription | undefined> {
     return Array.from(this.newsletterSubscriptions.values()).find(
       (subscription) => subscription.email === email
     );
   }
 
-  async createNewsletterSubscription(insertSubscription: InsertNewsletterSubscription): Promise<NewsletterSubscription> {
+  async createNewsletterSubscription(
+    insertSubscription: InsertNewsletterSubscription
+  ): Promise<NewsletterSubscription> {
     const id = this.currentNewsletterSubscriptionId++;
     const subscription: NewsletterSubscription = {
       ...insertSubscription,
       id,
-      subscribedAt: new Date().toISOString()
+      subscribedAt: new Date().toISOString(),
     };
-    
+
     this.newsletterSubscriptions.set(id, subscription);
     return subscription;
   }
 
   // Contact form methods
-  async createContactMessage(insertMessage: InsertContactMessage): Promise<ContactMessage> {
+  async createContactMessage(
+    insertMessage: InsertContactMessage
+  ): Promise<ContactMessage> {
     const id = this.currentContactMessageId++;
     const message: ContactMessage = {
       ...insertMessage,
       id,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
-    
+
     this.contactMessages.set(id, message);
     return message;
   }
@@ -229,36 +284,44 @@ export class MemStorage implements IStorage {
     const products: InsertProduct[] = [
       {
         name: "Somatic Moon Journal",
-        price: 27.00,
+        price: 27.0,
         type: "DIGITAL",
-        description: "Our beautifully designed digital journal that combines lunar wisdom with somatic awareness practices. Includes fillable PDF pages, moon phase calendars, and embodiment exercises.",
-        imageUrl: "https://images.unsplash.com/photo-1544967082-d9d25d867d66?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80"
+        description:
+          "Our beautifully designed digital journal that combines lunar wisdom with somatic awareness practices. Includes fillable PDF pages, moon phase calendars, and embodiment exercises.",
+        imageUrl:
+          "https://images.unsplash.com/photo-1544967082-d9d25d867d66?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
       },
       {
         name: "Somatic Moon Journal",
-        price: 45.00,
+        price: 45.0,
         type: "PRINT",
-        description: "A beautifully crafted physical journal printed on premium recycled paper. Features guidance for each moon phase, somatic check-ins, and plenty of space for reflection.",
-        imageUrl: "https://images.unsplash.com/photo-1577375729152-4c8b5fcda381?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80"
+        description:
+          "A beautifully crafted physical journal printed on premium recycled paper. Features guidance for each moon phase, somatic check-ins, and plenty of space for reflection.",
+        imageUrl:
+          "https://images.unsplash.com/photo-1577375729152-4c8b5fcda381?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
       },
       {
         name: "Moon Masterclass",
-        price: 197.00,
+        price: 197.0,
         type: "COURSE",
-        description: "A comprehensive online course to deepen your connection with lunar cycles. Includes 8 video modules, guided practices, and printable resources.",
-        imageUrl: "https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80"
+        description:
+          "A comprehensive online course to deepen your connection with lunar cycles. Includes 8 video modules, guided practices, and printable resources.",
+        imageUrl:
+          "https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
       },
       {
         name: "Lunar Self-Care Bundle",
-        price: 225.00,
-        originalPrice: 269.00,
+        price: 225.0,
+        originalPrice: 269.0,
         type: "BUNDLE",
-        description: "The complete lunar wellness package: Print journal, Moon Masterclass, and a 1:1 session to get personalized guidance for your journey.",
-        imageUrl: "https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80"
-      }
+        description:
+          "The complete lunar wellness package: Print journal, Moon Masterclass, and a 1:1 session to get personalized guidance for your journey.",
+        imageUrl:
+          "https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+      },
     ];
 
-    products.forEach(product => {
+    products.forEach((product) => {
       const id = this.currentProductId++;
       this.products.set(id, { ...product, id });
     });
@@ -273,15 +336,15 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.username, username));
+    const [user] = await db
+      .select()
+      .from(users)
+      .where(eq(users.username, username));
     return user || undefined;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const [user] = await db
-      .insert(users)
-      .values(insertUser)
-      .returning();
+    const [user] = await db.insert(users).values(insertUser).returning();
     return user;
   }
 
@@ -290,7 +353,10 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getProductById(id: number): Promise<Product | undefined> {
-    const [product] = await db.select().from(products).where(eq(products.id, id));
+    const [product] = await db
+      .select()
+      .from(products)
+      .where(eq(products.id, id));
     return product || undefined;
   }
 
@@ -302,71 +368,100 @@ export class DatabaseStorage implements IStorage {
     return product;
   }
 
-  async getCart(cartId: number): Promise<{ id: number, items: Array<{ id: number, productId: number, productName: string, price: number, quantity: number, type: string }>, total: number } | undefined> {
+  async getCart(
+    cartId: number
+  ): Promise<
+    | {
+        id: number;
+        items: Array<{
+          id: number;
+          productId: number;
+          productName: string;
+          price: number;
+          quantity: number;
+          type: string;
+        }>;
+        total: number;
+      }
+    | undefined
+  > {
     // Get cart details
     const [cart] = await db.select().from(carts).where(eq(carts.id, cartId));
-    
+
     if (!cart) {
       return { id: cartId, items: [], total: 0 };
     }
-    
+
     // Get all cart items
     const items = await db
       .select({
         id: cartItems.id,
         productId: cartItems.productId,
-        quantity: cartItems.quantity
+        quantity: cartItems.quantity,
       })
       .from(cartItems)
       .where(eq(cartItems.cartId, cartId));
-      
+
     if (items.length === 0) {
       return { id: cartId, items: [], total: 0 };
     }
-    
+
     // Get product details for each cart item
-    const productIds = items.map(item => item.productId);
-    
+    const productIds = items.map((item) => item.productId);
+
     const productDetails = await db
       .select()
       .from(products)
       .where(inArray(products.id, productIds));
-      
+
     // Map product details to cart items
-    const cartProducts = items.map(item => {
-      const product = productDetails.find(p => p.id === item.productId);
+    const cartProducts = items.map((item) => {
+      const product = productDetails.find((p) => p.id === item.productId);
       return {
         id: item.id,
         productId: item.productId,
         productName: product?.name || "Unknown Product",
         price: product?.price || 0,
         quantity: item.quantity,
-        type: product?.type || "UNKNOWN"
+        type: product?.type || "UNKNOWN",
       };
     });
-    
+
     // Calculate total
-    const total = cartProducts.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    
+    const total = cartProducts.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
     return {
       id: cartId,
       items: cartProducts,
-      total
+      total,
     };
   }
 
-  async addToCart(cartId: number, productId: number, quantity: number = 1): Promise<CartItem> {
+  async addToCart(
+    cartId: number,
+    productId: number,
+    quantity: number = 1
+  ): Promise<CartItem> {
     // Check if product exists
-    const [product] = await db.select().from(products).where(eq(products.id, productId));
-    
+    const [product] = await db
+      .select()
+      .from(products)
+      .where(eq(products.id, productId));
+
     if (!product) {
       throw new Error("Product not found");
     }
-    
+
     // Check if cart exists
     let cart;
-    const [existingCart] = await db.select().from(carts).where(eq(carts.id, cartId));
-    
+    const [existingCart] = await db
+      .select()
+      .from(carts)
+      .where(eq(carts.id, cartId));
+
     if (!existingCart) {
       // Create new cart
       const [newCart] = await db
@@ -377,16 +472,15 @@ export class DatabaseStorage implements IStorage {
     } else {
       cart = existingCart;
     }
-    
+
     // Check if item already exists in cart
     const [existingItem] = await db
       .select()
       .from(cartItems)
-      .where(and(
-        eq(cartItems.cartId, cartId),
-        eq(cartItems.productId, productId)
-      ));
-      
+      .where(
+        and(eq(cartItems.cartId, cartId), eq(cartItems.productId, productId))
+      );
+
     if (existingItem) {
       // Update quantity
       const [updatedItem] = await db
@@ -402,7 +496,7 @@ export class DatabaseStorage implements IStorage {
         .values({
           cartId: cartId,
           productId: productId,
-          quantity: quantity
+          quantity: quantity,
         })
         .returning();
       return newItem;
@@ -412,19 +506,16 @@ export class DatabaseStorage implements IStorage {
   async removeFromCart(cartId: number, itemId: number): Promise<void> {
     await db
       .delete(cartItems)
-      .where(and(
-        eq(cartItems.cartId, cartId),
-        eq(cartItems.id, itemId)
-      ));
+      .where(and(eq(cartItems.cartId, cartId), eq(cartItems.id, itemId)));
   }
 
   async clearCart(cartId: number): Promise<void> {
-    await db
-      .delete(cartItems)
-      .where(eq(cartItems.cartId, cartId));
+    await db.delete(cartItems).where(eq(cartItems.cartId, cartId));
   }
 
-  async getNewsletterSubscriptionByEmail(email: string): Promise<NewsletterSubscription | undefined> {
+  async getNewsletterSubscriptionByEmail(
+    email: string
+  ): Promise<NewsletterSubscription | undefined> {
     const [subscription] = await db
       .select()
       .from(newsletterSubscriptions)
@@ -432,23 +523,27 @@ export class DatabaseStorage implements IStorage {
     return subscription || undefined;
   }
 
-  async createNewsletterSubscription(insertSubscription: InsertNewsletterSubscription): Promise<NewsletterSubscription> {
+  async createNewsletterSubscription(
+    insertSubscription: InsertNewsletterSubscription
+  ): Promise<NewsletterSubscription> {
     const [subscription] = await db
       .insert(newsletterSubscriptions)
       .values({
         ...insertSubscription,
-        subscribedAt: new Date()
+        subscribedAt: new Date(),
       })
       .returning();
     return subscription;
   }
 
-  async createContactMessage(insertMessage: InsertContactMessage): Promise<ContactMessage> {
+  async createContactMessage(
+    insertMessage: InsertContactMessage
+  ): Promise<ContactMessage> {
     const [message] = await db
       .insert(contactMessages)
       .values({
         ...insertMessage,
-        createdAt: new Date()
+        createdAt: new Date(),
       })
       .returning();
     return message;

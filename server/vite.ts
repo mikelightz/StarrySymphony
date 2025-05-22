@@ -2,32 +2,35 @@
 import { type Express } from "express";
 import fs from "fs";
 import path from "path";
-// REMOVE: import { createServer as createViteServer, createLogger } from "vite";
-// REMOVE: import viteConfig from "../vite.config";
+// REMOVE static imports of vite and viteConfig from the top level:
+// import { createServer as createViteServer, createLogger } from "vite";
+// import viteConfig from "../vite.config";
 import { type Server } from "http";
 import { nanoid } from "nanoid";
 
 export async function setupVite(app: Express, server: Server) {
-  // Dynamically import Vite and its config only when setupVite is called
+  // Dynamically import Vite and its config ONLY when setupVite is called
   const { createServer: createViteServer, createLogger } = await import("vite");
-  const { default: viteMainConfig } = await import("../vite.config.js"); // or .ts if your setup handles it at runtime
+  // Assuming vite.config.ts is compiled to .js or your runtime can handle .ts
+  // Adjust the path if esbuild places it differently relative to the bundled server/vite.ts
+  const { default: viteMainConfig } = await import("../vite.config.js");
 
   const viteLogger = createLogger();
 
   const serverOptions = {
     middlewareMode: true,
     hmr: { server },
-    allowedHosts: true as const,
+    allowedHosts: true as const, // Keep the 'as const' fix
   };
 
   const vite = await createViteServer({
-    ...viteMainConfig, // Use the dynamically imported config
+    ...viteMainConfig,
     configFile: false,
     customLogger: {
       ...viteLogger,
       error: (msg, options) => {
         viteLogger.error(msg, options);
-        process.exit(1);
+        // process.exit(1); // Consider if you want server to exit on Vite error in dev
       },
     },
     server: serverOptions,
@@ -38,15 +41,10 @@ export async function setupVite(app: Express, server: Server) {
   app.use("*", async (req, res, next) => {
     const url = req.originalUrl;
     try {
-      const clientTemplate = path.resolve(
-        // Assuming import.meta.url is available or derive path differently if not in ESM context after build
-        // For simplicity, ensure paths are correct or make them absolute if needed
-        __dirname, // If using CJS context after esbuild, or adjust path resolution
-        "..", // from dist/server/vite.js to root
-        "..", // from root to client for vite.config.ts location
-        "client",
-        "index.html"
-      );
+      // Path resolution for client/index.html needs to be correct relative to this file's location AFTER build
+      // If dist/server/vite.js is run, __dirname is dist/server
+      const clientRoot = path.resolve(__dirname, "..", "..", "client"); // Adjust if esbuild structure is different
+      const clientTemplate = path.resolve(clientRoot, "index.html");
 
       let template = await fs.promises.readFile(clientTemplate, "utf-8");
       template = template.replace(

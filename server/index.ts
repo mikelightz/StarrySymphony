@@ -97,16 +97,13 @@ app.use((req, res, next) => {
     );
   });
 
-  if (app.get("env") === "development") {
+  if (process.env.NODE_ENV === "development") {
     try {
       const { setupVite } = await import("./vite");
-      // Dynamically import your vite.config.ts (or .js if it gets compiled separately, but .ts should work with tsx in dev)
-      const viteConfigModule = await import("../vite.config.ts"); // Path to your root vite.config.ts
+      const viteConfigModule = await import("../vite.config.ts");
       const viteMainConfig = viteConfigModule.default;
-
-      await setupVite(app, server, viteMainConfig); // Pass the config object
+      await setupVite(app, server, viteMainConfig);
     } catch (viteError: any) {
-      // Catch any potential error
       log(
         `Failed to setup Vite: ${viteError.message || String(viteError)}`,
         "ViteSetup"

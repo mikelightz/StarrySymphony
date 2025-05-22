@@ -8,6 +8,8 @@ import { pool } from "./db";
 import { config } from "./config";
 import cors from "cors";
 
+log("Testing deployment marker - v2 - Top of server/index.ts");
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

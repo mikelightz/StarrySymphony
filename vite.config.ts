@@ -25,8 +25,8 @@ export default defineConfig({
   },
   root: path.resolve(import.meta.dirname, "client"), // This means Vite's project root is <repo_root>/client
   build: {
-    outDir: "public", // Changed: This will now be relative to the 'root'
-    // So, the output will be <repo_root>/client/public/
+    outDir: "dist", // Changed: This will now be relative to the 'root'
+    // So, the output will be <repo_root>/client/dist/
     emptyOutDir: true,
   },
 });

@@ -30,7 +30,7 @@ export default function NewsletterForm() {
 
   const subscribeNewsletter = useMutation({
     mutationFn: (data: NewsletterFormData) =>
-      apiRequest("POST", "/api/newsletter/subscribe", data),
+      apiRequest("POST", "/newsletter/subscribe", data),
     onSuccess: () => {
       toast({
         title: "Success!",

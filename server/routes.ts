@@ -130,7 +130,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Using a small integer to avoid PostgreSQL integer overflow
       const cartId = req.session?.cartId || Math.floor(Math.random() * 10000);
       if (!req.session?.cartId) {
-        req.session.cartId = cartId;
+        // Explicitly save the session after modifying it
+        req.session.save((err) => {
+          if (err) {
+            // Log the error, but don't send a response here as one might already be sent
+            // or will be sent by the main error handler.
+            // Depending on the application's error handling strategy,
+            // you might want to throw the error or call next(err).
+            console.error("Error saving session:", err);
+          }
+        });
       }
 
       console.log("Cart ID:", cartId);

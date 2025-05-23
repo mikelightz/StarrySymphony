@@ -1,33 +1,40 @@
 import { defineConfig } from "drizzle-kit";
 
-if (!process.env.DATABASE_URL) {
+let originalUrl = process.env.DATABASE_URL;
+
+if (!originalUrl) {
   throw new Error("DATABASE_URL, ensure the database is provisioned");
 }
 
-let dbUrl = process.env.DATABASE_URL;
-// For Heroku, append ?sslmode=require if not present, and rely on default CA handling
-// or the fact that rejectUnauthorized:false is often needed.
-// This specific error 'UNABLE_TO_GET_ISSUER_CERT_LOCALLY' often means it IS trying SSL,
-// but cannot verify the cert. The runtime app uses rejectUnauthorized: false.
-// We can try to achieve a similar effect for drizzle-kit's connection.
-// One way is to see if '?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory'
-// works for node-pg, or more commonly '?sslmode=no-verify' if supported,
-// or ensure '?sslmode=require' is there.
+let effectiveUrl = originalUrl;
+// Check for common Heroku/AWS host patterns for Postgres
+if (
+  originalUrl.includes("compute.amazonaws.com") ||
+  originalUrl.includes("herokudns.com") ||
+  originalUrl.includes("postgres.heroku.com")
+) {
+  if (!originalUrl.includes("sslmode")) {
+    effectiveUrl = `${originalUrl}?sslmode=require`;
+  } else if (originalUrl.includes("sslmode=disable")) {
+    // If it explicitly says disable, try to override it.
+    effectiveUrl = originalUrl.replace("sslmode=disable", "sslmode=require");
+  }
+  // If sslmode is already set to require or verify-full, leave it.
+}
 
-// Let's try ensuring sslmode=require as a starting point.
-// It is often implicit with Heroku DATABASE_URLs.
-// The problem is likely that drizzle-kit's pg instance isn't using rejectUnauthorized: false.
-
-// Since we can't easily pass pool options to drizzle-kit's internal pg instance
-// via drizzle.config.ts other than the URL, the diagnostic NODE_TLS_REJECT_UNAUTHORIZED=0
-// is the most direct way to test if this is purely a cert validation issue.
+console.log(
+  `Drizzle Kit will use effective DATABASE_URL for connection: ${effectiveUrl.replace(
+    /:[^:]+@/,
+    ":[REDACTED]@"
+  )}`
+); // Log the URL (redact password)
 
 export default defineConfig({
   dialect: "postgresql",
   schema: "./shared/schema.ts",
   out: "./drizzle",
   dbCredentials: {
-    url: dbUrl, // Use the original URL first, then try NODE_TLS_REJECT_UNAUTHORIZED
+    url: effectiveUrl,
   },
   verbose: true,
   strict: true,

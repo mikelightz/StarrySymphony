@@ -126,42 +126,48 @@ export async function registerRoutes(app: Express): Promise<Server> {
         delete req.session.cartId;
       }
 
-      // Generate a cart ID if one doesn't exist in the session
-      // Using a small integer to avoid PostgreSQL integer overflow
-      const cartId = req.session?.cartId || Math.floor(Math.random() * 10000);
-      if (!req.session?.cartId) {
-        // Explicitly save the session after modifying it
-        req.session.save((err) => {
-          if (err) {
-            // Log the error, but don't send a response here as one might already be sent
-            // or will be sent by the main error handler.
-            // Depending on the application's error handling strategy,
-            // you might want to throw the error or call next(err).
-            console.error("Error saving session:", err);
-          }
-        });
+      let currentCartId = req.session?.cartId;
+      let isNewCart = false;
+
+      if (!currentCartId) {
+        currentCartId = Math.floor(Math.random() * 10000);
+        req.session.cartId = currentCartId; // Assign the new cartId to the session
+        isNewCart = true;
       }
 
-      console.log("Cart ID:", cartId);
+      console.log("Cart ID:", currentCartId);
 
       // Get product to add to cart
       const product = await storage.getProductById(productId);
       if (!product) {
-        return res.status(404).json({ message: "Product not found" });
+        return res.status(404).json({ message: "Product not found" }); // [cite: 110]
       }
 
       try {
-        const cartItem = await storage.addToCart(cartId, productId);
-        res.status(201).json(cartItem);
+        const cartItem = await storage.addToCart(currentCartId, productId); // [cite: 111]
+
+        if (isNewCart) {
+          // If it's a new cart, explicitly save the session now that cartId is set.
+          req.session.save((err) => {
+            if (err) {
+              console.error("Error saving session for new cart:", err);
+              // Potentially handle this error, though the item is in DB
+            }
+            res.status(201).json(cartItem); // [cite: 112]
+          });
+        } else {
+          // For existing carts, the session middleware will handle saving on modification.
+          res.status(201).json(cartItem); // [cite: 112]
+        }
       } catch (dbError) {
-        console.error("Database error adding to cart:", dbError);
+        console.error("Database error adding to cart:", dbError); // [cite: 112]
         res
           .status(400)
-          .json({ message: "Could not add to cart. Database error." });
+          .json({ message: "Could not add to cart. Database error." }); // [cite: 113]
       }
     } catch (error) {
-      console.error("Error adding to cart:", error);
-      res.status(400).json({ message: "Invalid cart data" });
+      console.error("Error adding to cart:", error); // [cite: 114]
+      res.status(400).json({ message: "Invalid cart data" }); // [cite: 115]
     }
   });
 

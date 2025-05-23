@@ -1,9 +1,10 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
-import { log } from "./logger"; // IMPORT log FROM THE NEW LOCATION
+import { log } from "./logger";
 import session from "express-session";
-import connectPgSimple from "connect-pg-simple";
-import { pool } from "./db";
+// import connectPgSimple from "connect-pg-simple"; // ----> COMMENT OUT
+// import { pool } from "./db"; // ----> COMMENT OUT
+import MemoryStore from "memorystore"; // ----> ADD THIS
 import { config } from "./config";
 import "dotenv/config";
 import cors from "cors";
@@ -22,19 +23,23 @@ app.use(
   })
 );
 
-// Setup session middleware with PostgreSQL store
-const PgSession = connectPgSimple(session);
+// const PgSession = connectPgSimple(session); // ----> COMMENT OUT
+const MemStore = MemoryStore(session); // ----> ADD THIS
 
 app.use(
   session({
-    store: new PgSession({
-      pool,
-      tableName: "session",
-      createTableIfMissing: true,
+    // store: new PgSession({ // ----> COMMENT OUT THIS BLOCK
+    //   pool,
+    //   tableName: "session",
+    //   createTableIfMissing: true,
+    // }),
+    store: new MemStore({
+      // ----> ADD THIS BLOCK
+      checkPeriod: 86400000, // prune expired entries every 24h
     }),
     secret: config.session.secret,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: false, // Keep this false
     cookie: {
       maxAge: config.session.cookie.maxAge,
       secure: config.session.cookie.secure,

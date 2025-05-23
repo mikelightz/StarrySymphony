@@ -18,7 +18,7 @@ export default function Cart() {
   }
 
   const { data: cart, isLoading } = useQuery<CartData>({
-    queryKey: ["cart"],
+    queryKey: ["/cart"],
     // Return an empty cart as fallback if there's an error
     refetchOnWindowFocus: false,
     refetchOnMount: true,
@@ -32,7 +32,7 @@ export default function Cart() {
         title: "Item removed",
         description: "Item has been removed from your cart.",
       });
-      queryClient.invalidateQueries({ queryKey: ["cart"] });
+      queryClient.invalidateQueries({ queryKey: ["/cart"] });
     },
     onError: (error) => {
       toast({

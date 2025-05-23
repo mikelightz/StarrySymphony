@@ -21,7 +21,7 @@ export default function Shop() {
         title: "Added to cart",
         description: "Product has been added to your cart.",
       });
-      queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
+      queryClient.invalidateQueries({ queryKey: ["/cart"] });
     },
     onError: (error) => {
       toast({

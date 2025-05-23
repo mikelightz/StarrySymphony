@@ -82,6 +82,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Shopping cart
   app.get("/api/cart", async (req, res) => {
+    res.setHeader(
+      "Cache-Control",
+      "no-store, no-cache, must-revalidate, private"
+    );
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+
     try {
       // Clear invalid cart IDs from previous sessions
       if (req.session.cartId && typeof req.session.cartId !== "number") {
@@ -199,23 +206,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error removing from cart:", error);
       res.status(500).json({ message: "Server error" });
-    }
-  });
-
-  app.get("/api/cart", async (req, res) => {
-    try {
-      const cartId = req.session?.cartId;
-
-      if (!cartId) {
-        // If no cart ID exists, return an empty cart
-        return res.json({ id: 0, items: [], total: 0 });
-      }
-
-      const cart = await storage.getCart(cartId);
-      res.json(cart || { id: cartId, items: [], total: 0 });
-    } catch (error) {
-      console.error("Error getting cart:", error);
-      res.status(500).json({ message: "Failed to get cart" });
     }
   });
 

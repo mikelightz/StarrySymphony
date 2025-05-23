@@ -18,6 +18,7 @@ import {
 } from "@shared/schema";
 import { eq, and, inArray } from "drizzle-orm";
 import { db } from "./db";
+import "dotenv/config";
 
 // Interface for storage operations
 export interface IStorage {
@@ -32,9 +33,7 @@ export interface IStorage {
   createProduct(product: InsertProduct): Promise<Product>;
 
   // Cart operations
-  getCart(
-    cartId: number
-  ): Promise<
+  getCart(cartId: number): Promise<
     | {
         id: number;
         items: Array<{
@@ -134,9 +133,7 @@ export class MemStorage implements IStorage {
   }
 
   // Cart methods
-  async getCart(
-    cartId: number
-  ): Promise<
+  async getCart(cartId: number): Promise<
     | {
         id: number;
         items: Array<{
@@ -368,9 +365,7 @@ export class DatabaseStorage implements IStorage {
     return product;
   }
 
-  async getCart(
-    cartId: number
-  ): Promise<
+  async getCart(cartId: number): Promise<
     | {
         id: number;
         items: Array<{

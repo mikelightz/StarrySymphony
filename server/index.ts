@@ -5,6 +5,7 @@ import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
 import { pool } from "./db";
 import { config } from "./config";
+import "dotenv/config";
 import cors from "cors";
 
 log("Testing deployment marker - v2 - Top of server/index.ts");

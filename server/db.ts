@@ -2,6 +2,7 @@
 import { Pool } from "pg"; // Use the standard 'pg' library
 import { drizzle } from "drizzle-orm/node-postgres"; // Use the node-postgres Drizzle adapter
 import * as schema from "@shared/schema";
+import "dotenv/config";
 
 if (!process.env.DATABASE_URL) {
   throw new Error(

@@ -1,4 +1,5 @@
-// Server configuration
+import "dotenv/config";
+
 export const config = {
   // Use PORT provided by Heroku or default to 3000
   port: process.env.PORT || 3000,
@@ -20,7 +21,7 @@ export const config = {
 
   // Session configuration
   session: {
-    secret: process.env.SESSION_SECRET || "dev-secret-key",
+    secret: process.env.SESSION_SECRET,
     cookie: {
       maxAge: 24 * 60 * 60 * 1000, // 1 day
       secure: process.env.NODE_ENV === "production",

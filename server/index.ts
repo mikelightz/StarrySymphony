@@ -38,7 +38,7 @@ app.use(
     cookie: {
       maxAge: config.session.cookie.maxAge,
       secure: config.session.cookie.secure,
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      sameSite: "none",
     },
   })
 );

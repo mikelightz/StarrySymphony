@@ -29,4 +29,17 @@ export default defineConfig({
     // So, the output will be <repo_root>/client/dist/
     emptyOutDir: true,
   },
+  server: {
+    // <--- ADD THIS SECTION
+    proxy: {
+      // Proxy API requests to your local backend server
+      "/api": {
+        target: "http://localhost:5000", // Assuming your local backend runs on port 5000
+        changeOrigin: true,
+        // If your backend API paths already include /api, you might not need a rewrite.
+        // If your backend actual paths are e.g. /cart/add (without /api), then:
+        // rewrite: (path) => path.replace(/^\/api/, '')
+      },
+    },
+  },
 });

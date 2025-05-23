@@ -25,6 +25,7 @@ app.use(
 // Setup session middleware with PostgreSQL store
 const PgSession = connectPgSimple(session);
 
+app.set("trust proxy", 1);
 app.use(
   session({
     store: new PgSession({

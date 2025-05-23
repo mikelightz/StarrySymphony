@@ -2,8 +2,8 @@
   command = "npm run build"
   publish = "client/dist"
 
-# Handle SPA routing
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/api/*"
+  to = "https://omflorwellness-258260bf2ecd.herokuapp.com/api/:splat"
   status = 200
+  force = true 

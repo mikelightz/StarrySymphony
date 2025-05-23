@@ -128,45 +128,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { productId } = cartItemSchema.parse(req.body);
 
-      // Clear invalid cart IDs from previous sessions
       if (req.session.cartId && typeof req.session.cartId !== "number") {
+        console.log("Deleting invalid session.cartId:", req.session.cartId);
         delete req.session.cartId;
       }
 
-      let currentCartId = req.session?.cartId; // Use a new variable to hold the cartId for the current operation
+      let currentCartId = req.session?.cartId;
       let isNewSessionCart = false;
 
       if (!currentCartId) {
         currentCartId = Math.floor(Math.random() * 10000);
-        req.session.cartId = currentCartId; // <<< CRITICAL: Assign the new cartId to the session object
+        req.session.cartId = currentCartId; // Assign to session
         isNewSessionCart = true;
+        console.log(
+          `New cartId ${currentCartId} assigned to req.session.cartId`
+        );
+      } else {
+        console.log(
+          `Existing cartId ${currentCartId} found in req.session.cartId`
+        );
       }
 
-      console.log("Cart ID for operation:", currentCartId); // This will be the cartId used.
+      // Log the entire session object just before potential save
+      console.log(
+        "req.session BEFORE save attempt:",
+        JSON.stringify(req.session)
+      );
+      console.log("Cart ID for operation:", currentCartId);
 
       const product = await storage.getProductById(productId);
       if (!product) {
-        return res.status(404).json({ message: "Product not found" }); // [cite: 111]
+        return res.status(404).json({ message: "Product not found" });
       }
 
       try {
-        const cartItem = await storage.addToCart(currentCartId, productId); // [cite: 112]
+        const cartItem = await storage.addToCart(currentCartId, productId);
 
         if (isNewSessionCart) {
-          // If it's a new cart, explicitly save the session *after* cartId has been set on req.session
+          console.log(
+            "Attempting to save NEW session:",
+            JSON.stringify(req.session)
+          );
           req.session.save((err) => {
             if (err) {
               console.error("Error saving new session:", err);
-              // Decide if you want to send error here, but item is in DB
-              // For now, we'll let the original response go through
+            } else {
+              // Log the session object AGAIN from within the callback to see if it still has cartId
+              console.log(
+                "NEW session saved successfully. req.session in save callback:",
+                JSON.stringify(req.session)
+              );
             }
-            res.status(201).json(cartItem); // [cite: 113]
+            res.status(201).json(cartItem);
           });
         } else {
-          // For existing, modified sessions, express-session usually auto-saves.
-          // If you still face issues, you could add an explicit save here too,
-          // or ensure resave:true (though generally not recommended unless necessary).
-          res.status(201).json(cartItem); // [cite: 113]
+          // For existing sessions, the middleware usually auto-saves if modified.
+          // Let's log it too to see its state before response.
+          console.log(
+            "EXISTING session (modified with item). req.session before response:",
+            JSON.stringify(req.session)
+          );
+          res.status(201).json(cartItem);
         }
       } catch (dbError) {
         console.error("Database error adding to cart:", dbError); // [cite: 113]

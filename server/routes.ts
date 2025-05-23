@@ -133,48 +133,57 @@ export async function registerRoutes(app: Express): Promise<Server> {
         delete req.session.cartId;
       }
 
-      let currentCartId = req.session?.cartId;
-      let isNewCart = false;
+      let currentCartId = req.session?.cartId; // Use a new variable to hold the cartId for the current operation
+      let isNewSessionCart = false;
 
       if (!currentCartId) {
         currentCartId = Math.floor(Math.random() * 10000);
-        req.session.cartId = currentCartId; // Assign the new cartId to the session
-        isNewCart = true;
+        req.session.cartId = currentCartId; // <<< CRITICAL: Assign the new cartId to the session object
+        isNewSessionCart = true;
       }
 
-      console.log("Cart ID:", currentCartId);
+      console.log("Cart ID for operation:", currentCartId); // This will be the cartId used.
 
-      // Get product to add to cart
       const product = await storage.getProductById(productId);
       if (!product) {
-        return res.status(404).json({ message: "Product not found" }); // [cite: 110]
+        return res.status(404).json({ message: "Product not found" }); // [cite: 111]
       }
 
       try {
-        const cartItem = await storage.addToCart(currentCartId, productId); // [cite: 111]
+        const cartItem = await storage.addToCart(currentCartId, productId); // [cite: 112]
 
-        if (isNewCart) {
-          // If it's a new cart, explicitly save the session now that cartId is set.
+        if (isNewSessionCart) {
+          // If it's a new cart, explicitly save the session *after* cartId has been set on req.session
           req.session.save((err) => {
             if (err) {
-              console.error("Error saving session for new cart:", err);
-              // Potentially handle this error, though the item is in DB
+              console.error("Error saving new session:", err);
+              // Decide if you want to send error here, but item is in DB
+              // For now, we'll let the original response go through
             }
-            res.status(201).json(cartItem); // [cite: 112]
+            res.status(201).json(cartItem); // [cite: 113]
           });
         } else {
-          // For existing carts, the session middleware will handle saving on modification.
-          res.status(201).json(cartItem); // [cite: 112]
+          // For existing, modified sessions, express-session usually auto-saves.
+          // If you still face issues, you could add an explicit save here too,
+          // or ensure resave:true (though generally not recommended unless necessary).
+          res.status(201).json(cartItem); // [cite: 113]
         }
       } catch (dbError) {
-        console.error("Database error adding to cart:", dbError); // [cite: 112]
+        console.error("Database error adding to cart:", dbError); // [cite: 113]
         res
           .status(400)
-          .json({ message: "Could not add to cart. Database error." }); // [cite: 113]
+          .json({ message: "Could not add to cart. Database error." }); // [cite: 114]
       }
     } catch (error) {
-      console.error("Error adding to cart:", error); // [cite: 114]
-      res.status(400).json({ message: "Invalid cart data" }); // [cite: 115]
+      console.error("Error adding to cart:", error); // [cite: 115]
+      // Check if error is from Zod parsing
+      if (error.errors) {
+        // Zod errors have an 'errors' property
+        return res
+          .status(400)
+          .json({ message: "Invalid product data", details: error.errors });
+      }
+      res.status(400).json({ message: "Invalid cart data" }); // [cite: 116]
     }
   });
 

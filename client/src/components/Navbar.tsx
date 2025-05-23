@@ -18,7 +18,7 @@ export default function Navbar() {
   }
 
   const { data: cart } = useQuery<CartData>({
-    queryKey: ["/cart"],
+    queryKey: ["cart"],
     // Disable the automatic error when the cart is not found
     // It's normal to not have a cart in the beginning
     refetchOnWindowFocus: true,

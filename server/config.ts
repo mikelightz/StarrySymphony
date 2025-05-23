@@ -14,7 +14,11 @@ export const config = {
     // Add your frontend URL when it's deployed to Netlify
     origin:
       process.env.NODE_ENV === "production"
-        ? ["https://omflorwell.netlify.app"] // Replace with your Netlify domain
+        ? [
+            "https://omflorwell.netlify.app",
+            "https://www.omflorwellness.com",
+            "https://omflorwellness.com",
+          ] // Replace with your Netlify domain
         : ["http://localhost:3000"],
     credentials: true,
   },

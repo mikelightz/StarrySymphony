@@ -9,15 +9,30 @@ import {
   MapPin,
   Sparkles,
 } from "lucide-react";
-
-// --- NEW IMPORTS FOR AUTOCOMPLETE ---
 import GooglePlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-google-places-autocomplete";
 
-// DELETED: We have removed the static import for astrology-js from here.
+// The static import for astrology-js that caused build errors has been removed.
 
+// --- Animation Variants ---
+// We define these directly in the file to prevent production build errors from external imports.
+const fadeIn = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const slideUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (custom: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: custom * 0.1 },
+  }),
+};
+
+// --- Interfaces and Static Data ---
 interface ChartResults {
   name: string;
   sun: string;
@@ -25,6 +40,7 @@ interface ChartResults {
   rising: string;
   moonInterpretation: string;
 }
+
 const moonSignInterpretations = {
   Aries:
     "Your emotional world is fiery and passionate. You process feelings quickly and need independence in your emotional expression.",
@@ -50,6 +66,7 @@ const moonSignInterpretations = {
   Pisces:
     "Your emotional world is vast and intuitive. You feel the collective emotions and find healing through compassion.",
 };
+
 const getZodiacSign = (degree: number): string => {
   const signs = [
     "Aries",
@@ -69,6 +86,7 @@ const getZodiacSign = (degree: number): string => {
   return signs[signIndex];
 };
 
+// --- The Final Component ---
 export default function NatalChart() {
   const [formData, setFormData] = useState({
     name: "",
@@ -98,13 +116,14 @@ export default function NatalChart() {
     }
 
     try {
-      // --- FINAL FIX: DYNAMICALLY IMPORT ASTROLOGY-JS ---
-      // This loads the library only when the function is called.
+      // Dynamically import astrology-js only when needed
       const astrology = await import("astrology-js");
 
-      const results = await geocodeByAddress(location.label);
-      const { lat, lng } = await getLatLng(results[0]);
+      // Get coordinates from the Google Places selection
+      const geoResults = await geocodeByAddress(location.label);
+      const { lat, lng } = await getLatLng(geoResults[0]);
 
+      // Parse date and time
       const [year, month, day] = formData.birthDate.split("-").map(Number);
       const [hour, minute] = formData.birthTime.split(":").map(Number);
 
@@ -118,7 +137,7 @@ export default function NatalChart() {
         longitude: lng,
       };
 
-      // Now 'astrology' is defined and we can use it.
+      // Perform the calculation
       const chart = new astrology.Natal(config);
       const sunPosition = chart.get("sun").position.longitude;
       const moonPosition = chart.get("moon").position.longitude;
@@ -159,17 +178,98 @@ export default function NatalChart() {
     setFormData({ name: "", birthDate: "", birthTime: "" });
   };
 
-  // The entire return (...) JSX section remains the same as your file.
   return (
     <div className="min-h-screen bg-cream py-20">
       <div className="container-custom max-w-4xl">
+        {/* Hero Section */}
+        <motion.div
+          className="text-center mb-16"
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+        >
+          <div className="flex justify-center mb-6">
+            <div className="p-4 rounded-full bg-gold/10">
+              <Sparkles className="h-12 w-12 text-gold" />
+            </div>
+          </div>
+          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-deepblue mb-6">
+            Unlock Your Cosmic Blueprint
+          </h1>
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            Enter your birth details below to generate your personalized natal
+            chart—your sacred map of soul, psyche, and soma...
+          </p>
+        </motion.div>
+
         {showForm ? (
           <>
+            {/* Why It Matters Section */}
+            <motion.div
+              className="mb-16 text-center"
+              initial="hidden"
+              animate="visible"
+              variants={slideUp}
+            >
+              <h2 className="font-playfair text-3xl text-deepblue mb-6">
+                You are more than your Sun sign.
+              </h2>
+              <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
+                Your natal chart is a unique celestial imprint of the exact
+                moment you took your first breath. It reveals the cosmic
+                influences that shape your personality, emotions, and life path.
+              </p>
+            </motion.div>
+
+            {/* What You'll Receive Section */}
+            <motion.div
+              className="mb-16"
+              initial="hidden"
+              animate="visible"
+              variants={slideUp}
+              custom={0.2}
+            >
+              <h2 className="font-playfair text-3xl text-deepblue text-center mb-8">
+                What You'll Receive
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="bg-white rounded-lg p-6 shadow-md text-center">
+                  <Sun className="h-8 w-8 text-terracotta mx-auto mb-4" />
+                  <h3 className="font-semibold text-deepblue mb-2">
+                    A Full Natal Chart
+                  </h3>
+                  <p className="text-gray-600">
+                    Your complete cosmic blueprint
+                  </p>
+                </div>
+                <div className="bg-white rounded-lg p-6 shadow-md text-center">
+                  <Moon className="h-8 w-8 text-olive mx-auto mb-4" />
+                  <h3 className="font-semibold text-deepblue mb-2">
+                    Your Big Three
+                  </h3>
+                  <p className="text-gray-600">
+                    Sun, Moon, and Rising explained
+                  </p>
+                </div>
+                <div className="bg-white rounded-lg p-6 shadow-md text-center">
+                  <Star className="h-8 w-8 text-gold mx-auto mb-4" />
+                  <h3 className="font-semibold text-deepblue mb-2">
+                    Bonus Content
+                  </h3>
+                  <p className="text-gray-600">
+                    Moon sign rituals & journal prompts
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Form Section */}
             <motion.div
               className="bg-white rounded-lg shadow-lg p-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              initial="hidden"
+              animate="visible"
+              variants={slideUp}
+              custom={0.4}
             >
               <h2 className="font-playfair text-3xl text-deepblue text-center mb-8">
                 Begin Below:
@@ -240,7 +340,7 @@ export default function NatalChart() {
                     Birth Location
                   </label>
                   <GooglePlacesAutocomplete
-                    apiKey={import.meta.env.VITE_Maps_API_KEY} // Note: I corrected a typo from your file here.
+                    apiKey={import.meta.env.VITE_Maps_API_KEY}
                     selectProps={{
                       value: location,
                       onChange: setLocation,
@@ -278,7 +378,76 @@ export default function NatalChart() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            {/* The results display will now render correctly */}
+            <div className="text-center mb-8">
+              <div className="flex justify-center mb-4">
+                <div className="p-4 rounded-full bg-gold/10">
+                  <Star className="h-12 w-12 text-gold" />
+                </div>
+              </div>
+              <h2 className="font-playfair text-3xl text-deepblue mb-4">
+                Hello {results?.name}, here is your cosmic blueprint:
+              </h2>
+            </div>
+            <div className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="text-center p-6 bg-terracotta/10 rounded-lg">
+                  <Sun className="h-8 w-8 text-terracotta mx-auto mb-3" />
+                  <h3 className="font-semibold text-deepblue mb-2">Sun Sign</h3>
+                  <p className="text-2xl font-playfair text-terracotta">
+                    {results?.sun}
+                  </p>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Your core identity
+                  </p>
+                </div>
+                <div className="text-center p-6 bg-olive/10 rounded-lg">
+                  <Moon className="h-8 w-8 text-olive mx-auto mb-3" />
+                  <h3 className="font-semibold text-deepblue mb-2">
+                    Moon Sign
+                  </h3>
+                  <p className="text-2xl font-playfair text-olive">
+                    {results?.moon}
+                  </p>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Your emotional nature
+                  </p>
+                </div>
+                <div className="text-center p-6 bg-gold/10 rounded-lg">
+                  <Sparkles className="h-8 w-8 text-gold mx-auto mb-3" />
+                  <h3 className="font-semibold text-deepblue mb-2">
+                    Rising Sign
+                  </h3>
+                  <p className="text-2xl font-playfair text-gold">
+                    {results?.rising}
+                  </p>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Your outer personality
+                  </p>
+                </div>
+              </div>
+              <div className="bg-olive/5 rounded-lg p-6">
+                <h3 className="font-semibold text-deepblue mb-3">
+                  Your Moon Sign Insights:
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  {results?.moonInterpretation}
+                </p>
+              </div>
+              <div className="text-center">
+                <a
+                  href="/moon-masterclass"
+                  className="inline-block bg-terracotta text-white py-3 px-6 rounded-lg font-semibold hover:bg-terracotta/90 transition duration-300 mr-4"
+                >
+                  Get Your Moon Sign Rituals & Prompts
+                </a>
+                <button
+                  onClick={resetForm}
+                  className="inline-block bg-gray-300 text-deepblue py-3 px-6 rounded-lg font-semibold hover:bg-gray-400 transition duration-300"
+                >
+                  Calculate Another Chart
+                </button>
+              </div>
+            </div>
           </motion.div>
         )}
       </div>

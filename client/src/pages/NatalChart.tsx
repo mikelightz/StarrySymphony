@@ -13,7 +13,7 @@ import GooglePlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-google-places-autocomplete";
-import { Horoscope } from "circular-natal-horoscope-js";
+// import { Horoscope } from 'circular-natal-horoscope-js';
 
 // --- Animation Variants ---
 const fadeIn = {

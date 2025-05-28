@@ -17,7 +17,7 @@ import GooglePlacesAutocomplete, {
   getLatLng,
 } from "react-google-places-autocomplete";
 
-import * as astrology from "astrology-js";
+//import * as astrology from "astrology-js";
 
 // ... (The ChartResults interface, moonSignInterpretations object, and getZodiacSign function remain exactly the same)
 interface ChartResults {

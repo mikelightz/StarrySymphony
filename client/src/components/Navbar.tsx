@@ -74,9 +74,9 @@ export default function Navbar() {
             <NavLink href="/offerings" active={isActive("/offerings")}>
               Offerings
             </NavLink>
-            <NavLink href="/natal-chart" active={isActive("/natal-chart")}>
+            {/* <NavLink href="/natal-chart" active={isActive("/natal-chart")}>
               Natal Chart
-            </NavLink>
+            </NavLink> */}
             <NavLink href="/shop" active={isActive("/shop")}>
               Shop
             </NavLink>
@@ -142,13 +142,13 @@ export default function Navbar() {
                 >
                   Offerings
                 </MobileNavLink>
-                <MobileNavLink
+                {/* <MobileNavLink
                   href="/natal-chart"
                   active={isActive("/natal-chart")}
                   onClick={closeMenu}
                 >
                   Natal Chart
-                </MobileNavLink>
+                </MobileNavLink> */}
                 <MobileNavLink
                   href="/shop"
                   active={isActive("/shop")}

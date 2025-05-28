@@ -9,7 +9,7 @@ import Shop from "@/pages/Shop";
 import Cart from "@/pages/Cart";
 import MoonMasterclass from "@/pages/MoonMasterclass";
 import Contact from "@/pages/Contact";
-import NatalChart from "@/pages/NatalChart";
+import NatalChart from "./pages/NatalChart";
 import NotFound from "@/pages/not-found";
 
 function App() {

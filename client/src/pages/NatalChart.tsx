@@ -172,7 +172,7 @@ export default function NatalChart() {
               className="mb-16 text-center"
               initial="hidden"
               animate="visible"
-              variants={slideUp}
+              //variants={slideUp}
             >
               <h2 className="font-playfair text-3xl text-deepblue mb-6">
                 You are more than your Sun sign.
@@ -187,7 +187,7 @@ export default function NatalChart() {
               className="mb-16"
               initial="hidden"
               animate="visible"
-              variants={slideUp}
+              //variants={slideUp}
               custom={0.2}
             >
               {/* ...What You'll Receive Grid... */}
@@ -198,7 +198,7 @@ export default function NatalChart() {
               className="bg-white rounded-lg shadow-lg p-8"
               initial="hidden"
               animate="visible"
-              variants={slideUp}
+              //variants={slideUp}
               custom={0.4}
             >
               <h2 className="font-playfair text-3xl text-deepblue text-center mb-8">

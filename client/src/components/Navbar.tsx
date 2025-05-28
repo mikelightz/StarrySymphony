@@ -18,7 +18,7 @@ export default function Navbar() {
   }
 
   const { data: cart } = useQuery<CartData>({
-    queryKey: ["/cart"],
+    queryKey: ["/api/cart"],
     // Disable the automatic error when the cart is not found
     // It's normal to not have a cart in the beginning
     refetchOnWindowFocus: true,
@@ -73,6 +73,9 @@ export default function Navbar() {
             </NavLink>
             <NavLink href="/offerings" active={isActive("/offerings")}>
               Offerings
+            </NavLink>
+            <NavLink href="/natal-chart" active={isActive("/natal-chart")}>
+              Natal Chart
             </NavLink>
             <NavLink href="/shop" active={isActive("/shop")}>
               Shop
@@ -138,6 +141,13 @@ export default function Navbar() {
                   onClick={closeMenu}
                 >
                   Offerings
+                </MobileNavLink>
+                <MobileNavLink
+                  href="/natal-chart"
+                  active={isActive("/natal-chart")}
+                  onClick={closeMenu}
+                >
+                  Natal Chart
                 </MobileNavLink>
                 <MobileNavLink
                   href="/shop"

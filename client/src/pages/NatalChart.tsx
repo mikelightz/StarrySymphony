@@ -110,17 +110,21 @@ export default function NatalChart() {
     }
 
     try {
-      // --- CORRECTED IMPORT ACCESS ---
+      // --- CORRECTED IMPORT ACCESS AGAIN ---
       const horoscopeModule = await import("horoscope");
-      const Horoscope = horoscopeModule.default; // Get the default export
+
+      // Now we target the 'Horoscope' property on the 'default' object
+      const Horoscope = horoscopeModule.default.Horoscope;
 
       if (!Horoscope || typeof Horoscope !== "function") {
         console.error(
-          "Horoscope constructor (default export) not found or not a function:",
-          horoscopeModule
+          "Horoscope constructor not found on module.default.Horoscope:",
+          horoscopeModule,
+          "Default export:",
+          horoscopeModule.default
         );
         throw new Error(
-          "Astrology library loaded incorrectly. Constructor not found on default export."
+          "Astrology library loaded incorrectly. Constructor not found on module.default.Horoscope."
         );
       }
       // --- END OF CORRECTED IMPORT ACCESS ---

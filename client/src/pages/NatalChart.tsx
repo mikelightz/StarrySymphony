@@ -110,8 +110,21 @@ export default function NatalChart() {
     }
 
     try {
-      // Static import should be at the top of your file:
-      // import { Horoscope } from 'circular-natal-horoscope-js';
+      const natalChartModule = await import("circular-natal-horoscope-js");
+      console.log("Natal Chart Module Loaded:", natalChartModule);
+
+      // Determine the correct constructor based on the logged module structure
+      // It's likely natalChartModule.default OR natalChartModule.Horoscope
+      const ConstructorToUse =
+        natalChartModule.Horoscope || natalChartModule.default;
+
+      if (!ConstructorToUse || typeof ConstructorToUse !== "function") {
+        console.error(
+          "Constructor not found on .Horoscope or .default",
+          ConstructorToUse
+        );
+        throw new Error("Astrology library constructor could not be found.");
+      }
 
       const geoResults = await geocodeByAddress(location.label);
       const { lat, lng } = await getLatLng(geoResults[0]);
@@ -128,6 +141,7 @@ export default function NatalChart() {
       const timezoneOffsetHours =
         new Date(year, month - 1, day).getTimezoneOffset() / -60;
 
+      // The settings object matches the library's documentation for its main constructor
       const settings = {
         year: year,
         month: month,
@@ -138,31 +152,22 @@ export default function NatalChart() {
         longitude: lng,
         timezone: timezoneOffsetHours,
       };
+      console.log("Using settings:", settings);
 
-      const horoscope = new Horoscope(settings);
+      const horoscope = new ConstructorToUse(settings);
+      console.log("Horoscope object created:", horoscope);
 
-      // --- CORRECTED DATA ACCESS based on Horoscope.js source ---
-      const celestialBodies = horoscope.CelestialBodies;
-
-      // Accessing planet data
-      const sunData = celestialBodies.sun;
-      const moonData = celestialBodies.moon;
-
-      // Accessing Ascendant (House 1 Cusp)
-      // The ascendant is typically the cusp of the 1st house.
-      // The library stores houses in an array or object, usually 1-indexed.
-      // Let's assume it's in horoscope.Ascendant or horoscope.houses.cusps[0] or similar
-      // Looking at the Horoscope.js, it seems to be directly on the horoscope object
-      const ascendantData = horoscope.Ascendant;
+      // Accessing data based on documentation and common patterns.
+      // This might need adjustment after we confirm the horoscope object structure.
+      const sunData = horoscope.sun || horoscope.CelestialBodies?.sun;
+      const moonData = horoscope.moon || horoscope.CelestialBodies?.moon;
+      const ascendantData = horoscope.ascendant || horoscope.Ascendant;
 
       if (!sunData || !moonData || !ascendantData) {
-        console.error("Raw Celestial Data:", {
-          sunData,
-          moonData,
-          ascendantData,
-          allBodies: celestialBodies,
-          allHouses: horoscope.Houses,
-        });
+        console.error(
+          "Failed to get planetary data. Horoscope object:",
+          horoscope
+        );
         throw new Error(
           "Could not calculate all required chart points (Sun, Moon, or Ascendant)."
         );

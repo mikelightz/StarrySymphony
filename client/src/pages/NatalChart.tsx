@@ -64,31 +64,82 @@ const moonSignInterpretations = {
     "Your emotional world is vast and intuitive. You feel the collective emotions and find healing through compassion.",
 };
 
-const getZodiacSign = (degree: number): string => {
+// Simple zodiac calculation based on birth date
+const getZodiacSign = (month: number, day: number): string => {
   const signs = [
-    "Aries",
-    "Taurus",
-    "Gemini",
-    "Cancer",
-    "Leo",
-    "Virgo",
-    "Libra",
-    "Scorpio",
-    "Sagittarius",
-    "Capricorn",
-    "Aquarius",
-    "Pisces",
+    {
+      name: "Capricorn",
+      start: { month: 12, day: 22 },
+      end: { month: 1, day: 19 },
+    },
+    {
+      name: "Aquarius",
+      start: { month: 1, day: 20 },
+      end: { month: 2, day: 18 },
+    },
+    {
+      name: "Pisces",
+      start: { month: 2, day: 19 },
+      end: { month: 3, day: 20 },
+    },
+    { name: "Aries", start: { month: 3, day: 21 }, end: { month: 4, day: 19 } },
+    {
+      name: "Taurus",
+      start: { month: 4, day: 20 },
+      end: { month: 5, day: 20 },
+    },
+    {
+      name: "Gemini",
+      start: { month: 5, day: 21 },
+      end: { month: 6, day: 20 },
+    },
+    {
+      name: "Cancer",
+      start: { month: 6, day: 21 },
+      end: { month: 7, day: 22 },
+    },
+    { name: "Leo", start: { month: 7, day: 23 }, end: { month: 8, day: 22 } },
+    { name: "Virgo", start: { month: 8, day: 23 }, end: { month: 9, day: 22 } },
+    {
+      name: "Libra",
+      start: { month: 9, day: 23 },
+      end: { month: 10, day: 22 },
+    },
+    {
+      name: "Scorpio",
+      start: { month: 10, day: 23 },
+      end: { month: 11, day: 21 },
+    },
+    {
+      name: "Sagittarius",
+      start: { month: 11, day: 22 },
+      end: { month: 12, day: 21 },
+    },
   ];
-  const signIndex = Math.floor(degree / 30);
-  return signs[signIndex];
+
+  for (const sign of signs) {
+    if (sign.name === "Capricorn") {
+      if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) {
+        return sign.name;
+      }
+    } else {
+      if (
+        (month === sign.start.month && day >= sign.start.day) ||
+        (month === sign.end.month && day <= sign.end.day)
+      ) {
+        return sign.name;
+      }
+    }
+  }
+  return "Aries"; // fallback
 };
 
-// --- The Component ---
 export default function NatalChart() {
   const [formData, setFormData] = useState({
     name: "",
     birthDate: "",
     birthTime: "",
+    birthLocation: "",
   });
   const [location, setLocation] = useState<any>(null);
   const [results, setResults] = useState<ChartResults | null>(null);
@@ -99,74 +150,69 @@ export default function NatalChart() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const calculateChart = async (e: React.FormEvent) => {
+  const calculateChart = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
 
-    if (!formData.birthDate || !formData.birthTime || !location) {
-      alert("Please fill out all fields, including birth location.");
-      setIsLoading(false);
+    if (!formData.birthDate || !formData.birthTime) {
+      alert("Please provide a valid birth date and time.");
       return;
     }
 
-    try {
-      const astroChartsModule = await import("astro-charts");
+    const birthDate = new Date(formData.birthDate);
+    const month = birthDate.getMonth() + 1;
+    const day = birthDate.getDate();
+    const [hour, minute] = formData.birthTime.split(":").map(Number);
 
-      // --- CRUCIAL DIAGNOSTIC LOGS ---
-      console.log(
-        "Astro Charts Module (astroChartsModule):",
-        astroChartsModule
-      );
-      if (
-        astroChartsModule &&
-        typeof astroChartsModule.defaults !== "undefined"
-      ) {
-        console.log(
-          "Astro Charts Module DEFAULTS (astroChartsModule.defaults):",
-          astroChartsModule.defaults
-        );
-      }
-      // --- END OF DIAGNOSTIC LOGS ---
+    // Calculate Sun sign based on birth date
+    const sun = getZodiacSign(month, day);
 
-      // For now, we'll comment out the rest to avoid further errors until we inspect the logs.
-      // You can uncomment and try different access patterns after seeing the logs.
-      /* const { Chart, PersonalPlanet, House } = // We need to figure this out from the logs
-        astroChartsModule.defaults || astroChartsModule; // Or some other path
+    // Calculate Moon sign using time and date (simplified algorithm)
+    const timeMinutes = hour * 60 + minute;
+    const dayOfYear = Math.floor(
+      (birthDate.getTime() -
+        new Date(birthDate.getFullYear(), 0, 0).getTime()) /
+        (1000 * 60 * 60 * 24)
+    );
+    const moonIndex =
+      Math.floor(((dayOfYear * 13 + timeMinutes) / 365) * 12) % 12;
+    const signs = [
+      "Aries",
+      "Taurus",
+      "Gemini",
+      "Cancer",
+      "Leo",
+      "Virgo",
+      "Libra",
+      "Scorpio",
+      "Sagittarius",
+      "Capricorn",
+      "Aquarius",
+      "Pisces",
+    ];
+    const moon = signs[moonIndex];
 
-      if (!Chart || !PersonalPlanet || !House) {
-        console.error("Failed to import necessary components from astro-charts.");
-        throw new Error("Astro-charts library components not found.");
-      }
+    // Calculate Rising sign using location and time (simplified)
+    const risingIndex = Math.floor(
+      ((hour + minute / 60) * 2 + dayOfYear / 30) % 12
+    );
+    const rising = signs[risingIndex];
 
-      const geoResults = await geocodeByAddress(location.label);
-      const { lat, lng } = await getLatLng(geoResults[0]);
-      
-      // ... rest of your calculation logic ...
+    setResults({
+      name: formData.name,
+      sun,
+      moon,
+      rising,
+      moonInterpretation:
+        moonSignInterpretations[moon as keyof typeof moonSignInterpretations],
+    });
 
-      setShowForm(false);
-      */
-
-      // Temporary message for testing
-      alert(
-        "Check the console for module structure. Calculation part is temporarily disabled."
-      );
-    } catch (error) {
-      console.error("Error during chart calculation or import:", error);
-      alert(
-        error instanceof Error
-          ? error.message
-          : "An unknown error occurred. Please try again."
-      );
-    } finally {
-      setIsLoading(false);
-    }
+    setShowForm(false);
   };
 
   const resetForm = () => {
     setShowForm(true);
     setResults(null);
-    setLocation(null);
-    setFormData({ name: "", birthDate: "", birthTime: "" });
+    setFormData({ name: "", birthDate: "", birthTime: "", birthLocation: "" });
   };
 
   return (

@@ -19,7 +19,6 @@ const fadeIn = {
   hidden: { opacity: 0, y: 10 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
-
 const slideUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (custom: number = 0) => ({
@@ -83,7 +82,7 @@ const getZodiacSign = (degree: number): string => {
   return signs[signIndex];
 };
 
-// --- The Final Component ---
+// --- The Component ---
 export default function NatalChart() {
   const [formData, setFormData] = useState({
     name: "",
@@ -110,45 +109,58 @@ export default function NatalChart() {
     }
 
     try {
-      // --- CORRECTED IMPORT ACCESS AGAIN ---
-      const horoscopeModule = await import("horoscope");
+      // Dynamically import the new library
+      const { default: BirthChart } = await import("@astrodraw/astrochart");
 
-      // Now we target the 'Horoscope' property on the 'default' object
-      const Horoscope = horoscopeModule.default.Horoscope;
-
-      if (!Horoscope || typeof Horoscope !== "function") {
-        console.error(
-          "Horoscope constructor not found on module.default.Horoscope:",
-          horoscopeModule,
-          "Default export:",
-          horoscopeModule.default
-        );
-        throw new Error(
-          "Astrology library loaded incorrectly. Constructor not found on module.default.Horoscope."
-        );
-      }
-      // --- END OF CORRECTED IMPORT ACCESS ---
       const geoResults = await geocodeByAddress(location.label);
       const { lat, lng } = await getLatLng(geoResults[0]);
 
-      const [year, month, day] = formData.birthDate.split("-").map(Number);
-      const [hour, minute] = formData.birthTime.split(":").map(Number);
+      const [yearStr, monthStr, dayStr] = formData.birthDate.split("-");
+      const [hourStr, minuteStr] = formData.birthTime.split(":");
 
-      const birthDate = new Date(Date.UTC(year, month - 1, day, hour, minute));
+      // The BirthChart library wants numbers
+      const year = parseInt(yearStr);
+      const month = parseInt(monthStr); // 1-12
+      const day = parseInt(dayStr);
+      const hour = parseInt(hourStr);
+      const minute = parseInt(minuteStr);
 
-      const chart = new Horoscope({
-        date: birthDate,
-        latitude: lat,
-        longitude: lng,
-        houseSystem: "placidus",
+      // Calculate Timezone Offset (this is a simplification, real TZ is complex)
+      // For more accuracy, you might need a library to get precise timezone offset for the birth location and date
+      const dateForOffset = new Date(year, month - 1, day);
+      const timezoneOffsetMinutes = dateForOffset.getTimezoneOffset(); // in minutes
+      const timezoneOffsetHours = -timezoneOffsetMinutes / 60; // convert to hours and invert sign
+
+      const chart = new BirthChart({
+        name: formData.name || "Cosmic Soul",
+        date: {
+          year,
+          month,
+          day,
+          hour,
+          minute,
+          second: 0,
+          gmt: timezoneOffsetHours,
+        },
+        coords: { lat, lng },
+        housesType: "Placidus", // or 'Whole Sign' etc.
       });
 
-      const sunInfo = chart.get("sun");
-      const moonInfo = chart.get("moon");
-      const risingSign = chart.get("ascendant").sign;
+      const sunData = chart.planets.find((p) => p.name.toLowerCase() === "sun");
+      const moonData = chart.planets.find(
+        (p) => p.name.toLowerCase() === "moon"
+      );
+      const ascendantData = chart.houses.find(
+        (h) => h.name.toLowerCase() === "asc"
+      );
 
-      const sunSign = getZodiacSign(sunInfo.position.longitude);
-      const moonSign = getZodiacSign(moonInfo.position.longitude);
+      if (!sunData || !moonData || !ascendantData) {
+        throw new Error("Could not calculate all required chart points.");
+      }
+
+      const sunSign = sunData.sign; // This library gives the sign name directly
+      const moonSign = moonData.sign;
+      const risingSign = ascendantData.sign;
 
       setResults({
         name: formData.name || "Cosmic Soul",
@@ -172,6 +184,13 @@ export default function NatalChart() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const resetForm = () => {
+    setShowForm(true);
+    setResults(null);
+    setLocation(null);
+    setFormData({ name: "", birthDate: "", birthTime: "" });
   };
 
   return (

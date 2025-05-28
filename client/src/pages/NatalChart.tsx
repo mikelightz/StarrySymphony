@@ -110,87 +110,48 @@ export default function NatalChart() {
     }
 
     try {
-      const natalChartModule = await import("circular-natal-horoscope-js");
-      console.log("Natal Chart Module Loaded:", natalChartModule);
+      const astroChartsModule = await import("astro-charts");
 
-      // Determine the correct constructor based on the logged module structure
-      // It's likely natalChartModule.default OR natalChartModule.Horoscope
-      const ConstructorToUse =
-        natalChartModule.Horoscope || natalChartModule.default;
-
-      if (!ConstructorToUse || typeof ConstructorToUse !== "function") {
-        console.error(
-          "Constructor not found on .Horoscope or .default",
-          ConstructorToUse
+      // --- CRUCIAL DIAGNOSTIC LOGS ---
+      console.log(
+        "Astro Charts Module (astroChartsModule):",
+        astroChartsModule
+      );
+      if (
+        astroChartsModule &&
+        typeof astroChartsModule.defaults !== "undefined"
+      ) {
+        console.log(
+          "Astro Charts Module DEFAULTS (astroChartsModule.defaults):",
+          astroChartsModule.defaults
         );
-        throw new Error("Astrology library constructor could not be found.");
+      }
+      // --- END OF DIAGNOSTIC LOGS ---
+
+      // For now, we'll comment out the rest to avoid further errors until we inspect the logs.
+      // You can uncomment and try different access patterns after seeing the logs.
+      /* const { Chart, PersonalPlanet, House } = // We need to figure this out from the logs
+        astroChartsModule.defaults || astroChartsModule; // Or some other path
+
+      if (!Chart || !PersonalPlanet || !House) {
+        console.error("Failed to import necessary components from astro-charts.");
+        throw new Error("Astro-charts library components not found.");
       }
 
       const geoResults = await geocodeByAddress(location.label);
       const { lat, lng } = await getLatLng(geoResults[0]);
-
-      const [yearStr, monthStr, dayStr] = formData.birthDate.split("-");
-      const [hourStr, minuteStr] = formData.birthTime.split(":");
-
-      const year = parseInt(yearStr);
-      const month = parseInt(monthStr);
-      const day = parseInt(dayStr);
-      const hour = parseInt(hourStr);
-      const minute = parseInt(minuteStr);
-
-      const timezoneOffsetHours =
-        new Date(year, month - 1, day).getTimezoneOffset() / -60;
-
-      // The settings object matches the library's documentation for its main constructor
-      const settings = {
-        year: year,
-        month: month,
-        day: day,
-        hour: hour,
-        minute: minute,
-        latitude: lat,
-        longitude: lng,
-        timezone: timezoneOffsetHours,
-      };
-      console.log("Using settings:", settings);
-
-      const horoscope = new ConstructorToUse(settings);
-      console.log("Horoscope object created:", horoscope);
-
-      // Accessing data based on documentation and common patterns.
-      // This might need adjustment after we confirm the horoscope object structure.
-      const sunData = horoscope.sun || horoscope.CelestialBodies?.sun;
-      const moonData = horoscope.moon || horoscope.CelestialBodies?.moon;
-      const ascendantData = horoscope.ascendant || horoscope.Ascendant;
-
-      if (!sunData || !moonData || !ascendantData) {
-        console.error(
-          "Failed to get planetary data. Horoscope object:",
-          horoscope
-        );
-        throw new Error(
-          "Could not calculate all required chart points (Sun, Moon, or Ascendant)."
-        );
-      }
-
-      const sunSign = sunData.Sign.label;
-      const moonSign = moonData.Sign.label;
-      const risingSign = ascendantData.Sign.label;
-
-      setResults({
-        name: formData.name || "Cosmic Soul",
-        sun: sunSign,
-        moon: moonSign,
-        rising: risingSign,
-        moonInterpretation:
-          moonSignInterpretations[
-            moonSign as keyof typeof moonSignInterpretations
-          ],
-      });
+      
+      // ... rest of your calculation logic ...
 
       setShowForm(false);
+      */
+
+      // Temporary message for testing
+      alert(
+        "Check the console for module structure. Calculation part is temporarily disabled."
+      );
     } catch (error) {
-      console.error("Error during chart calculation:", error);
+      console.error("Error during chart calculation or import:", error);
       alert(
         error instanceof Error
           ? error.message

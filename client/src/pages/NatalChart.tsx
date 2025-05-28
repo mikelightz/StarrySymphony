@@ -213,6 +213,7 @@ export default function NatalChart() {
     setShowForm(true);
     setResults(null);
     setFormData({ name: "", birthDate: "", birthTime: "", birthLocation: "" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (

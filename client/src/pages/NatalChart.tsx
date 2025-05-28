@@ -111,7 +111,7 @@ export default function NatalChart() {
 
     try {
       const horoscopeModule = await import("horoscope");
-      const Horoscope = horoscopeModule.default;
+      const Horoscope = horoscopeModule.Horoscope;
 
       const geoResults = await geocodeByAddress(location.label);
       const { lat, lng } = await getLatLng(geoResults[0]);

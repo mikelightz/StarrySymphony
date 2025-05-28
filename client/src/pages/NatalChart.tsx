@@ -99,31 +99,38 @@ export default function NatalChart() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // --- UPDATED CALCULATION LOGIC WITH NEW LIBRARY ---
   const calculateChart = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsLoading(true);
+    e.preventDefault();
+    setIsLoading(true);
 
-  // We are wrapping this in a simple try/catch for now
-  try {
-    // THE ONLY GOAL is to see what this line produces
-    const horoscopeModule = await import('horoscope');
-    console.log("INSPECT THIS OBJECT:", horoscopeModule);
+    if (!formData.birthDate || !formData.birthTime || !location) {
+      alert("Please fill out all fields, including birth location.");
+      setIsLoading(false);
+      return;
+    }
 
-    // We are intentionally not running the rest of the code
-    // to avoid the error and just see the log.
-    alert("Test complete. Please check the browser's developer console for the 'INSPECT THIS OBJECT' log.");
+    try {
+      const horoscopeModule = await import("horoscope");
+      const Horoscope = horoscopeModule.default;
 
-  } catch (error) {
-    console.error("Import failed:", error);
-    alert("The horoscope library failed to even import. This is a critical issue.");
-  } finally {
-    setIsLoading(false);
-  }
-};
+      const geoResults = await geocodeByAddress(location.label);
+      const { lat, lng } = await getLatLng(geoResults[0]);
+
+      const [year, month, day] = formData.birthDate.split("-").map(Number);
+      const [hour, minute] = formData.birthTime.split(":").map(Number);
+
+      const birthDate = new Date(Date.UTC(year, month - 1, day, hour, minute));
+
+      const chart = new Horoscope({
+        date: birthDate,
+        latitude: lat,
+        longitude: lng,
+        houseSystem: "placidus",
+      });
+
       const sunInfo = chart.get("sun");
       const moonInfo = chart.get("moon");
-      const risingSign = chart.get("ascendant").sign; // This library gives the rising sign directly
+      const risingSign = chart.get("ascendant").sign;
 
       const sunSign = getZodiacSign(sunInfo.position.longitude);
       const moonSign = getZodiacSign(moonInfo.position.longitude);
@@ -150,13 +157,6 @@ export default function NatalChart() {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const resetForm = () => {
-    setShowForm(true);
-    setResults(null);
-    setLocation(null);
-    setFormData({ name: "", birthDate: "", birthTime: "" });
   };
 
   return (

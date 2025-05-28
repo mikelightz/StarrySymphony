@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Star,
@@ -212,9 +212,18 @@ export default function NatalChart() {
   const resetForm = () => {
     setShowForm(true);
     setResults(null);
+    setLocation(null);
     setFormData({ name: "", birthDate: "", birthTime: "", birthLocation: "" });
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  useEffect(() => {
+    if (!showForm && results) {
+      // Scroll to top when results are shown
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" }); // Or scroll to results section if it's not at top
+      }, 0);
+    }
+  }, [showForm, results]);
 
   return (
     <div className="min-h-screen bg-cream py-20">

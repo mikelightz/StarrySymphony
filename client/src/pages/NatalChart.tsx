@@ -110,7 +110,27 @@ export default function NatalChart() {
 
     try {
       // Dynamically import the new library
-      const { default: BirthChart } = await import("@astrodraw/astrochart");
+      const natalChart = await import("circular-natal-horoscope-js");
+
+      // Check what's actually imported
+      console.log("Imported circular-natal-horoscope-js module:", natalChart);
+
+      // The library's main function might be the default export, or a named export.
+      // If the library exports its main class/function as 'Horoscope' or 'CircularNatalHoroscope' directly on the module object
+      const HoroscopeGenerator =
+        natalChart.Horoscope ||
+        natalChart.CircularNatalHoroscope ||
+        natalChart.default;
+
+      if (!HoroscopeGenerator || typeof HoroscopeGenerator !== "function") {
+        console.error(
+          "HoroscopeGenerator constructor/function not found on module or its default:",
+          HoroscopeGenerator
+        );
+        throw new Error(
+          "Astrology library loaded incorrectly. Main export is not a function/constructor."
+        );
+      }
 
       const geoResults = await geocodeByAddress(location.label);
       const { lat, lng } = await getLatLng(geoResults[0]);
@@ -118,49 +138,44 @@ export default function NatalChart() {
       const [yearStr, monthStr, dayStr] = formData.birthDate.split("-");
       const [hourStr, minuteStr] = formData.birthTime.split(":");
 
-      // The BirthChart library wants numbers
       const year = parseInt(yearStr);
-      const month = parseInt(monthStr); // 1-12
+      const month = parseInt(monthStr); // 1-12 for this library
       const day = parseInt(dayStr);
       const hour = parseInt(hourStr);
       const minute = parseInt(minuteStr);
 
-      // Calculate Timezone Offset (this is a simplification, real TZ is complex)
-      // For more accuracy, you might need a library to get precise timezone offset for the birth location and date
-      const dateForOffset = new Date(year, month - 1, day);
-      const timezoneOffsetMinutes = dateForOffset.getTimezoneOffset(); // in minutes
-      const timezoneOffsetHours = -timezoneOffsetMinutes / 60; // convert to hours and invert sign
+      // Get Timezone offset in hours from UTC
+      // (e.g., -4 for EDT, -5 for EST). User's browser will provide local offset.
+      const timezoneOffsetHours =
+        new Date(year, month - 1, day).getTimezoneOffset() / -60;
 
-      const chart = new BirthChart({
-        name: formData.name || "Cosmic Soul",
-        date: {
-          year,
-          month,
-          day,
-          hour,
-          minute,
-          second: 0,
-          gmt: timezoneOffsetHours,
-        },
-        coords: { lat, lng },
-        housesType: "Placidus", // or 'Whole Sign' etc.
-      });
+      const settings = {
+        year: year,
+        month: month, // Library expects 1-12
+        day: day,
+        hour: hour,
+        minute: minute,
+        latitude: lat,
+        longitude: lng,
+        timezone: timezoneOffsetHours,
+      };
 
-      const sunData = chart.planets.find((p) => p.name.toLowerCase() === "sun");
-      const moonData = chart.planets.find(
-        (p) => p.name.toLowerCase() === "moon"
-      );
-      const ascendantData = chart.houses.find(
-        (h) => h.name.toLowerCase() === "asc"
-      );
+      const horoscope = new CircularNatalHoroscope(settings);
+      // The library calculates positions and stores them in horoscope.CelestialBodies
+
+      const sunData = horoscope.sun; // Accessing Sun data
+      const moonData = horoscope.moon; // Accessing Moon data
+      const ascendantData = horoscope.ascendant; // Accessing Ascendant data
 
       if (!sunData || !moonData || !ascendantData) {
-        throw new Error("Could not calculate all required chart points.");
+        throw new Error(
+          "Could not calculate all required chart points (Sun, Moon, or Ascendant)."
+        );
       }
 
-      const sunSign = sunData.sign; // This library gives the sign name directly
-      const moonSign = moonData.sign;
-      const risingSign = ascendantData.sign;
+      const sunSign = sunData.Sign.label; // e.g., "Aries"
+      const moonSign = moonData.Sign.label;
+      const risingSign = ascendantData.Sign.label;
 
       setResults({
         name: formData.name || "Cosmic Soul",

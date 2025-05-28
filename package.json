@@ -13,7 +13,6 @@
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
-    "@astrodraw/astrochart": "^3.0.2",
     "@hookform/resolvers": "^3.10.0",
     "@jridgewell/trace-mapping": "^0.3.25",
     "@neondatabase/serverless": "^0.10.4",
@@ -47,6 +46,7 @@
     "@sendgrid/mail": "^8.1.5",
     "@tanstack/react-query": "^5.60.5",
     "@types/cors": "^2.8.18",
+    "circular-natal-horoscope-js": "^1.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",

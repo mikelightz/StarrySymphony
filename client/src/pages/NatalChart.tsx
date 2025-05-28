@@ -14,10 +14,7 @@ import GooglePlacesAutocomplete, {
   getLatLng,
 } from "react-google-places-autocomplete";
 
-// The static import for astrology-js that caused build errors has been removed.
-
 // --- Animation Variants ---
-// We define these directly in the file to prevent production build errors from external imports.
 const fadeIn = {
   hidden: { opacity: 0, y: 10 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -99,12 +96,10 @@ export default function NatalChart() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // --- UPDATED CALCULATION LOGIC WITH NEW LIBRARY ---
   const calculateChart = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -116,36 +111,29 @@ export default function NatalChart() {
     }
 
     try {
-      // Dynamically import astrology-js only when needed
-      const astrology = await import("astrology-js");
-
-      // Get coordinates from the Google Places selection
+      const horoscope = await import("horoscope");
       const geoResults = await geocodeByAddress(location.label);
       const { lat, lng } = await getLatLng(geoResults[0]);
 
-      // Parse date and time
       const [year, month, day] = formData.birthDate.split("-").map(Number);
       const [hour, minute] = formData.birthTime.split(":").map(Number);
 
-      const config = {
-        year,
-        month,
-        day,
-        hour,
-        minute,
+      // The new library uses a slightly different format for the date
+      const birthDate = new Date(Date.UTC(year, month - 1, day, hour, minute));
+
+      const chart = new horoscope.Horoscope({
+        date: birthDate,
         latitude: lat,
         longitude: lng,
-      };
+        houseSystem: "placidus",
+      });
 
-      // Perform the calculation
-      const chart = new astrology.Natal(config);
-      const sunPosition = chart.get("sun").position.longitude;
-      const moonPosition = chart.get("moon").position.longitude;
-      const ascendantPosition = chart.get("ascendant").position.longitude;
+      const sunInfo = chart.get("sun");
+      const moonInfo = chart.get("moon");
+      const risingSign = chart.get("ascendant").sign; // This library gives the rising sign directly
 
-      const sunSign = getZodiacSign(sunPosition);
-      const moonSign = getZodiacSign(moonPosition);
-      const risingSign = getZodiacSign(ascendantPosition);
+      const sunSign = getZodiacSign(sunInfo.position.longitude);
+      const moonSign = getZodiacSign(moonInfo.position.longitude);
 
       setResults({
         name: formData.name || "Cosmic Soul",

@@ -110,9 +110,20 @@ export default function NatalChart() {
     }
 
     try {
+      // --- MODIFIED IMPORT ACCESS ---
       const horoscopeModule = await import("horoscope");
-      const Horoscope = horoscopeModule.Horoscope;
 
+      // Check if Horoscope is directly on the module, or try default if that fails
+      const Horoscope = horoscopeModule.Horoscope || horoscopeModule.default;
+
+      if (!Horoscope || typeof Horoscope !== "function") {
+        console.error(
+          "Horoscope constructor not found in module:",
+          horoscopeModule
+        );
+        throw new Error("Astrology library loaded incorrectly.");
+      }
+      // --- END OF MODIFIED IMPORT ACCESS ---
       const geoResults = await geocodeByAddress(location.label);
       const { lat, lng } = await getLatLng(geoResults[0]);
 

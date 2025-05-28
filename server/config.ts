@@ -18,7 +18,7 @@ export const config = {
             "https://omflorwell.netlify.app",
             "https://www.omflorwellness.com",
             "https://omflorwellness.com",
-          ] // Replace with your Netlify domain
+          ]
         : ["http://localhost:3000"],
     credentials: true,
   },

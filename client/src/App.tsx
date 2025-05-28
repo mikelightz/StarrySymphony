@@ -25,7 +25,6 @@ function App() {
           <Route path="/cart" component={Cart} />
           <Route path="/moon-masterclass" component={MoonMasterclass} />
           <Route path="/contact" component={Contact} />
-          <Route path="/natal-chart" component={NatalChart} />
           <Route component={NotFound} />
         </Switch>
       </Layout>

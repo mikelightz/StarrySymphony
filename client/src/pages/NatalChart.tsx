@@ -111,17 +111,21 @@ export default function NatalChart() {
     }
 
     try {
-      const horoscope = await import("horoscope");
+      // FIX #1: Get the entire module first
+      const horoscopeModule = await import("horoscope");
+      // FIX #2: Extract the Horoscope class from the 'default' property
+      const Horoscope = horoscopeModule.default;
+
       const geoResults = await geocodeByAddress(location.label);
       const { lat, lng } = await getLatLng(geoResults[0]);
 
       const [year, month, day] = formData.birthDate.split("-").map(Number);
       const [hour, minute] = formData.birthTime.split(":").map(Number);
 
-      // The new library uses a slightly different format for the date
       const birthDate = new Date(Date.UTC(year, month - 1, day, hour, minute));
 
-      const chart = new horoscope.Horoscope({
+      // Use the extracted 'Horoscope' class directly
+      const chart = new Horoscope({
         date: birthDate,
         latitude: lat,
         longitude: lng,

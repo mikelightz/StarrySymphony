@@ -13,6 +13,7 @@ import GooglePlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-google-places-autocomplete";
+import { Horoscope } from "circular-natal-horoscope-js";
 
 // --- Animation Variants ---
 const fadeIn = {
@@ -109,28 +110,8 @@ export default function NatalChart() {
     }
 
     try {
-      // Dynamically import the new library
-      const natalChart = await import("circular-natal-horoscope-js");
-
-      // Check what's actually imported
-      console.log("Imported circular-natal-horoscope-js module:", natalChart);
-
-      // The library's main function might be the default export, or a named export.
-      // If the library exports its main class/function as 'Horoscope' or 'CircularNatalHoroscope' directly on the module object
-      const HoroscopeGenerator =
-        natalChart.Horoscope ||
-        natalChart.CircularNatalHoroscope ||
-        natalChart.default;
-
-      if (!HoroscopeGenerator || typeof HoroscopeGenerator !== "function") {
-        console.error(
-          "HoroscopeGenerator constructor/function not found on module or its default:",
-          HoroscopeGenerator
-        );
-        throw new Error(
-          "Astrology library loaded incorrectly. Main export is not a function/constructor."
-        );
-      }
+      // Static import should be at the top of your file:
+      // import { Horoscope } from 'circular-natal-horoscope-js';
 
       const geoResults = await geocodeByAddress(location.label);
       const { lat, lng } = await getLatLng(geoResults[0]);
@@ -139,19 +120,17 @@ export default function NatalChart() {
       const [hourStr, minuteStr] = formData.birthTime.split(":");
 
       const year = parseInt(yearStr);
-      const month = parseInt(monthStr); // 1-12 for this library
+      const month = parseInt(monthStr);
       const day = parseInt(dayStr);
       const hour = parseInt(hourStr);
       const minute = parseInt(minuteStr);
 
-      // Get Timezone offset in hours from UTC
-      // (e.g., -4 for EDT, -5 for EST). User's browser will provide local offset.
       const timezoneOffsetHours =
         new Date(year, month - 1, day).getTimezoneOffset() / -60;
 
       const settings = {
         year: year,
-        month: month, // Library expects 1-12
+        month: month,
         day: day,
         hour: hour,
         minute: minute,
@@ -160,20 +139,36 @@ export default function NatalChart() {
         timezone: timezoneOffsetHours,
       };
 
-      const horoscope = new CircularNatalHoroscope(settings);
-      // The library calculates positions and stores them in horoscope.CelestialBodies
+      const horoscope = new Horoscope(settings);
 
-      const sunData = horoscope.sun; // Accessing Sun data
-      const moonData = horoscope.moon; // Accessing Moon data
-      const ascendantData = horoscope.ascendant; // Accessing Ascendant data
+      // --- CORRECTED DATA ACCESS based on Horoscope.js source ---
+      const celestialBodies = horoscope.CelestialBodies;
+
+      // Accessing planet data
+      const sunData = celestialBodies.sun;
+      const moonData = celestialBodies.moon;
+
+      // Accessing Ascendant (House 1 Cusp)
+      // The ascendant is typically the cusp of the 1st house.
+      // The library stores houses in an array or object, usually 1-indexed.
+      // Let's assume it's in horoscope.Ascendant or horoscope.houses.cusps[0] or similar
+      // Looking at the Horoscope.js, it seems to be directly on the horoscope object
+      const ascendantData = horoscope.Ascendant;
 
       if (!sunData || !moonData || !ascendantData) {
+        console.error("Raw Celestial Data:", {
+          sunData,
+          moonData,
+          ascendantData,
+          allBodies: celestialBodies,
+          allHouses: horoscope.Houses,
+        });
         throw new Error(
           "Could not calculate all required chart points (Sun, Moon, or Ascendant)."
         );
       }
 
-      const sunSign = sunData.Sign.label; // e.g., "Aries"
+      const sunSign = sunData.Sign.label;
       const moonSign = moonData.Sign.label;
       const risingSign = ascendantData.Sign.label;
 

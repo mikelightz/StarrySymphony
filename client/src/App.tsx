@@ -9,7 +9,7 @@ import Shop from "@/pages/Shop";
 import Cart from "@/pages/Cart";
 import MoonMasterclass from "@/pages/MoonMasterclass";
 import Contact from "@/pages/Contact";
-//import NatalChart from "@/pages/NatalChart";
+import NatalChart from "@/pages/NatalChart";
 import NotFound from "@/pages/not-found";
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
           <Route path="/shop" component={Shop} />
           <Route path="/cart" component={Cart} />
           <Route path="/moon-masterclass" component={MoonMasterclass} />
+          <Route path="/natal-chart" component={NatalChart} />
           <Route path="/contact" component={Contact} />
           <Route component={NotFound} />
         </Switch>

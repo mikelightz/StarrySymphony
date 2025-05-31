@@ -102,18 +102,22 @@ export default function Offerings() {
                     Session Options:
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <button
+                    <a
+                      href="https://calendly.com/omflorwellness/30min?month=2025-05"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 transition duration-300"
-                      onClick={() => handleAddToCart(3)}
                     >
                       Single Session ($120)
-                    </button>
-                    <button
+                    </a>
+                    <a
+                      href="https://calendly.com/omflorwellness/30min?month=2025-05"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="bg-olive text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 transition duration-300"
-                      onClick={() => handleAddToCart(4)}
                     >
                       Package of 4 ($425)
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>

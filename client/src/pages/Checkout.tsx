@@ -83,7 +83,7 @@ export default function Checkout() {
   const [clientSecret, setClientSecret] = useState("");
 
   const { data: cart } = useQuery<Cart>({
-    queryKey: ["/api/cart"],
+    queryKey: ["/cart"],
     enabled: true,
   });
 
@@ -92,7 +92,7 @@ export default function Checkout() {
       // Calculate total amount in cents
       const totalAmount = cart.total * 100;
 
-      apiRequest("POST", "/api/create-payment-intent", {
+      apiRequest("POST", "/create-payment-intent", {
         amount: totalAmount,
         cartId: cart.id,
       })

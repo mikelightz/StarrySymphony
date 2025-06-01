@@ -111,7 +111,7 @@ export default function Offerings() {
                       Single Session ($120)
                     </a>
                     <a
-                      href="https://calendly.com/omflorwellness/30min?month=2025-05"
+                      href="https://calendly.com/omflorwellness/new-meeting"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-olive text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 transition duration-300"

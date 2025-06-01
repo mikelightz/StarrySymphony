@@ -26,7 +26,7 @@ export default function Home() {
         </video>
 
         {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-40 z-5"></div>
+        {/* <div className="absolute inset-0 bg-black bg-opacity-40 z-5"></div> */}
 
         <div className="container-custom text-center relative z-10">
           <motion.h1

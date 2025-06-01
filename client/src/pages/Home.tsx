@@ -30,12 +30,12 @@ export default function Home() {
 
         <div className="container-custom text-center relative z-10">
           <motion.h1
-            className="font-playfair text-4xl md:text-6xl font-bold text-cream mb-4 text-shadow"
+            className="font-prata text-4xl md:text-6xl font-bold text-cream mb-4 text-shadow"
             initial="hidden"
             animate="visible"
             variants={fadeIn}
           >
-            OmFlor Wellness
+            OMFLOR WELLNESS
           </motion.h1>
           <motion.p
             className="text-cream text-xl md:text-2xl font-light mb-8 text-shadow max-w-2xl mx-auto"

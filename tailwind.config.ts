@@ -8,6 +8,7 @@ export default {
       fontFamily: {
         playfair: ["Playfair Display", "serif"],
         lato: ["Lato", "sans-serif"],
+        prata: ["Prata", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

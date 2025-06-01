@@ -104,9 +104,11 @@ export default function Cart() {
               </div>
 
               <div className="mt-8 space-y-4">
-                <button className="w-full bg-olive hover:bg-opacity-90 text-white py-3 px-6 rounded-lg transition duration-300">
-                  Proceed to Checkout
-                </button>
+                <Link href="/checkout">
+                  <a className="w-full bg-olive hover:bg-opacity-90 text-white py-3 px-6 rounded-lg transition duration-300 block text-center">
+                    Proceed to Checkout
+                  </a>
+                </Link>
                 <Link href="/shop">
                   <a className="block w-full text-center py-3 px-6 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition duration-300">
                     Continue Shopping

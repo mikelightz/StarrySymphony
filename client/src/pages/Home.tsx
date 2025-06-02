@@ -10,9 +10,9 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <div className="moon-phases-bg h-screen flex items-center justify-center relative"></div>
-      {/* <div className="h-screen flex items-center justify-center relative overflow-hidden">
-        *Video Background*
+      {/* <div className="moon-phases-bg h-screen flex items-center justify-center relative"></div> */}
+      <div className="h-screen flex items-center justify-center relative overflow-hidden">
+        {/* Video Background */}
         <video
           autoPlay
           loop
@@ -21,44 +21,45 @@ export default function Home() {
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="/videos/bg-glow.mp4" type="video/mp4" />
-          {/* Fallback background for browsers that don't support video
+          <source src="/videos/bg-cover.mp4" type="video/mp4" />
+          {/* Fallback background for browsers that don't support video */}
           <div className="absolute inset-0 moon-phases-bg"></div>
         </video>
 
-        *Dark overlay for better text readability*
-        <div className="absolute inset-0 bg-black bg-opacity-40 z-5"></div> */}
+        {/* Dark overlay for better text readability */}
+        {/* <div className="absolute inset-0 bg-black bg-opacity-40 z-5"></div> */}
 
-      <div className="container-custom text-center relative z-10">
-        <motion.h1
-          className="font-prata text-4xl md:text-6xl font-bold text-cream mb-4 text-shadow"
-          initial="hidden"
-          animate="visible"
-          variants={fadeIn}
-        >
-          OMFLOR WELLNESS
-        </motion.h1>
-        <motion.p
-          className="text-cream text-xl md:text-2xl font-light mb-8 text-shadow max-w-2xl mx-auto"
-          initial="hidden"
-          animate="visible"
-          variants={slideUp}
-        >
-          Your Roadmap Home to Wholeness—Mind, Body and Spirit
-        </motion.p>
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={slideUp}
-          custom={0.3}
-        >
-          <button
-            className="bg-terracotta text-cream px-8 py-3 rounded-full inline-block hover:bg-opacity-80 transition duration-300 font-medium"
-            onClick={() => navigate("/lunar-guide")}
+        <div className="container-custom text-center relative z-10">
+          <motion.h1
+            className="font-prata text-4xl md:text-6xl font-bold text-cream mb-4 text-shadow"
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
           >
-            Download your free Lunar Self-Care Guide
-          </button>
-        </motion.div>
+            OMFLOR WELLNESS
+          </motion.h1>
+          <motion.p
+            className="text-cream text-xl md:text-2xl font-light mb-8 text-shadow max-w-2xl mx-auto"
+            initial="hidden"
+            animate="visible"
+            variants={slideUp}
+          >
+            Your Roadmap Home to Wholeness—Mind, Body and Spirit
+          </motion.p>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={slideUp}
+            custom={0.3}
+          >
+            <button
+              className="bg-terracotta text-cream px-8 py-3 rounded-full inline-block hover:bg-opacity-80 transition duration-300 font-medium"
+              onClick={() => navigate("/lunar-guide")}
+            >
+              Download your free Lunar Self-Care Guide
+            </button>
+          </motion.div>
+        </div>
       </div>
 
       {/* Mission Section */}

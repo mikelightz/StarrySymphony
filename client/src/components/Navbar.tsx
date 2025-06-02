@@ -59,7 +59,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           <Link
             href="/"
-            className="text-terracotta font-prata text-xl md:text-3xl font-bold"
+            className="text-terracotta font-prata text-xl md:text-2xl font-bold"
           >
             OMFLOR WELLNESS
           </Link>

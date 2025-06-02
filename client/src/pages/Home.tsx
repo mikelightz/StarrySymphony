@@ -20,7 +20,7 @@ export default function Home() {
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="/videos/comp 1.mp4" type="video/mp4" />
+          <source src="/videos/bg-glow.mp4" type="video/mp4" />
           {/* Fallback background for browsers that don't support video */}
           <div className="absolute inset-0 moon-phases-bg"></div>
         </video>

@@ -26,7 +26,7 @@ export default function Home() {
           <div className="absolute inset-0 moon-phases-bg"></div>
         </video>
 
-        {/* Dark overlay for better text readability */}
+        {/* Dark overlay for text */}
         {/* <div className="absolute inset-0 bg-black bg-opacity-40 z-5"></div> */}
 
         <div className="container-custom text-center relative z-10">

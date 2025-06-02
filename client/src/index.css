@@ -121,7 +121,7 @@
 
   .moon-phases-bg {
     @apply relative;
-    background-image: url("/images/forest-moon.png");
+    background-image: url("/images/bg-cover.png");
     background-size: cover;
     background-position: center bottom;
   }

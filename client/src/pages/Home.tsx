@@ -54,9 +54,15 @@ export default function Home() {
           >
             <button
               className="bg-terracotta text-cream px-8 py-3 rounded-full inline-block hover:bg-opacity-80 transition duration-300 font-medium"
-              onClick={() => navigate("/lunar-guide")}
+              onClick={() => {
+                window.open(
+                  "https://payhip.com/b/isUBL",
+                  "_blank",
+                  "noopener,noreferrer"
+                );
+              }}
             >
-              Download your free Lunar Self-Care Guide
+              Download your free AstroSomatics Mini Guide
             </button>
           </motion.div>
         </div>

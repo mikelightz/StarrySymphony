@@ -8,11 +8,9 @@ import { Product } from "@/types";
 
 export default function Shop() {
   const { toast } = useToast();
-
   const { data: products, isLoading } = useQuery({
     queryKey: ["/products"],
   });
-
   const addToCartMutation = useMutation({
     mutationFn: (productId: number) =>
       apiRequest("POST", "/cart/add", { productId }),
@@ -33,6 +31,7 @@ export default function Shop() {
     },
   });
 
+  // Keep handleAddToCart for regular products
   const handleAddToCart = (productId: number) => {
     addToCartMutation.mutate(productId);
   };
@@ -115,13 +114,54 @@ export default function Shop() {
                   }}
                   onAddToCart={handleAddToCart}
                 />
+
+                {/* MODIFIED AstroSomatics Guidebook Card */}
+                <ProductCard
+                  product={{
+                    id: 5,
+                    name: "AstroSomatics Guidebook",
+                    price: 33.0,
+                    type: "DIGITAL",
+                    description: "",
+                    imageUrl:
+                      "https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+                  }}
+                  // Pass a custom handler for this specific product
+                  onAddToCart={() => {
+                    window.open(
+                      "https://payhip.com/b/bPHMX",
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
+                  }}
+                  isExternalLink={true} // New prop to indicate external link behavior
+                />
+
+                <ProductCard
+                  product={{
+                    id: 6,
+                    name: "Astro Self Study Journal",
+                    price: 44.0,
+                    type: "PRINT",
+                    description: "",
+                    imageUrl:
+                      "https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+                  }}
+                  onAddToCart={handleAddToCart}
+                />
               </>
             ) : (
+              // This part handles products fetched from the API.
+              // If the AstroSomatics Guidebook also comes from the API,
+              // you'd need logic within ProductCard itself to handle its external link.
               products.map((product: Product) => (
                 <ProductCard
                   key={product.id}
                   product={product}
                   onAddToCart={handleAddToCart}
+                  // If product.id 5 comes from API, you'd need similar conditional logic here:
+                  // isExternalLink={product.id === 5}
+                  // onAddToCart={product.id === 5 ? () => window.open("https://payhip.com/b/bPHMX", "_blank", "noopener,noreferrer") : handleAddToCart}
                 />
               ))
             )}
@@ -134,12 +174,16 @@ export default function Shop() {
 
 interface ProductCardProps {
   product: Product;
-  onAddToCart: (productId: number) => void;
+  onAddToCart: (productId: number) => void; // This will now accept any function, not just one taking productId
+  isExternalLink?: boolean; // New optional prop
 }
 
-function ProductCard({ product, onAddToCart }: ProductCardProps) {
+function ProductCard({
+  product,
+  onAddToCart,
+  isExternalLink,
+}: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-
   return (
     <motion.div
       className="bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300"
@@ -214,9 +258,19 @@ function ProductCard({ product, onAddToCart }: ProductCardProps) {
           </a>
           <button
             className="bg-olive hover:bg-opacity-90 text-white px-6 py-3 rounded-lg transition duration-300"
-            onClick={() => onAddToCart(product.id)}
+            // Conditional onClick handler based on isExternalLink prop
+            onClick={() => {
+              if (isExternalLink) {
+                // If it's an external link, onAddToCart is already the direct function
+                onAddToCart();
+              } else {
+                // Otherwise, it's a regular internal product, pass the ID
+                onAddToCart(product.id);
+              }
+            }}
           >
-            Add to Cart
+            {isExternalLink ? "Buy Now" : "Add to Cart"}{" "}
+            {/* Change button text */}
           </button>
         </div>
       </div>

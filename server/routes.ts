@@ -54,6 +54,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.put("/api/products/:id/visibility", async (req, res) => {
+    try {
+      const productId = parseInt(req.params.id);
+      const { isVisible } = req.body; // Expecting { isVisible: boolean }
+
+      if (typeof isVisible !== "boolean") {
+        return res
+          .status(400)
+          .json({
+            message: "Invalid 'isVisible' value. Must be true or false.",
+          });
+      }
+
+      const [updatedProduct] = await db
+        .update(products)
+        .set({ isVisible: isVisible })
+        .where(eq(products.id, productId))
+        .returning();
+
+      if (!updatedProduct) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+
+      res.json({
+        message: `Product ${productId} visibility updated to ${isVisible}`,
+        product: updatedProduct,
+      });
+    } catch (error) {
+      console.error("Error updating product visibility:", error);
+      res.status(500).json({ message: "Failed to update product visibility" });
+    }
+  });
+
   // Contact form submissions
   app.post("/api/contact", async (req, res) => {
     try {

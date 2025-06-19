@@ -346,7 +346,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getAllProducts(): Promise<Product[]> {
-    return db.select().from(products);
+    return db.select().from(products).where(eq(products.isVisible, true));
   }
 
   async getProductById(id: number): Promise<Product | undefined> {

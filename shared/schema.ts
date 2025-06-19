@@ -1,4 +1,12 @@
-import { pgTable, text, serial, integer, boolean, timestamp, doublePrecision } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  text,
+  serial,
+  integer,
+  boolean,
+  timestamp,
+  doublePrecision,
+} from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -26,6 +34,7 @@ export const products = pgTable("products", {
   type: text("type").notNull(),
   description: text("description").notNull(),
   imageUrl: text("image_url").notNull(),
+  isVisible: boolean("is_visible").default(true).notNull(),
 });
 
 export const productSchema = createInsertSchema(products);
@@ -67,7 +76,8 @@ export const newsletterSchema = z.object({
 });
 
 export type InsertNewsletterSubscription = z.infer<typeof newsletterSchema>;
-export type NewsletterSubscription = typeof newsletterSubscriptions.$inferSelect;
+export type NewsletterSubscription =
+  typeof newsletterSubscriptions.$inferSelect;
 
 // Contact form schema
 export const contactMessages = pgTable("contact_messages", {

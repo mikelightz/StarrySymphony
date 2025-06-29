@@ -4,7 +4,7 @@ import * as schema from "../shared/schema"; // <-- Move this import to the top
 
 // ... potentially other imports ...
 
-const pool = new Pool({
+export const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false,

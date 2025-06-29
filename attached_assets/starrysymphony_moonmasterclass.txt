@@ -1,0 +1,62 @@
+Create an HTML and CSS structure for a landing page for an online course called "Moon Masterclass."
+
+The page should have the following sections:
+
+1.  **Hero Section:**
+    * Headline: "Unlock Your Inner Wisdom with the Moon Masterclass"
+    * Subheadline: "Journey through the lunar cycles for profound self-discovery, emotional balance, and embodied living."
+    * A placeholder for an inspiring image (e.g., moon, stars, serene landscape).
+
+2.  **The Promise Section:**
+    * Headline: "Are You Ready to Align with Nature's Rhythm?"
+    * Paragraph explaining the common desire for connection, balance, and self-understanding that the masterclass addresses.
+    * Paragraph introducing the Moon Masterclass as the pathway to achieving this.
+
+3.  **Detailed Course Content Section:**
+    * Headline: "What You'll Discover in the Masterclass:"
+    * Create sub-sections for each of the 5 main inclusions mentioned previously (8 video modules, somatic practices, journaling, tracking tools, bonus seasonal guides).
+    * For each sub-section:
+        * A descriptive title (e.g., "Video Modules: Journey Through Each Moon Phase").
+        * A short paragraph (2-3 sentences) elaborating on what that component entails and its benefits. For the 8 video modules, list placeholder titles for at least 3-4 modules (e.g., "Module 1: The Magic of the New Moon - Setting Intentions", "Module 2: Waxing Moon Wisdom - Building Momentum").
+
+4.  **Who Is This For? Section:**
+    * Headline: "Is This Masterclass For You?"
+    * A bulleted list with 4-5 points describing the ideal student (e.g., "If you're seeking deeper self-awareness...").
+
+5.  **About the Instructor Section:**
+    * Headline: "Meet Your Guide, Sierra Flor"
+    * Placeholder for an instructor image.
+    * Paragraph for a brief bio, highlighting passion for lunar cycles and relevant experience.
+
+6.  **Transformation & Benefits Section:**
+    * Headline: "What You'll Gain:"
+    * A bulleted list with 5-6 key benefits and transformative outcomes. (e.g., "A 	profound understanding of how lunar energies influence your life."
+	"Practical tools to navigate emotional ebbs and flows with grace."
+	"The ability to create personalized rituals that support your intentions."
+	"A deeper connection to your intuition and inner wisdom."
+	"A sense of empowerment and embodied living.")
+
+7.  **Testimonials Section (Optional Placeholder):**
+    * Headline: "What Our Students Say"
+    * Placeholders for 2-3 testimonials, each with a name and a short quote.
+
+8.  **Enrollment Section (Call to Action):**
+    * Headline: "Ready to Begin Your Lunar Journey?"
+    * Text stating the investment: "Investment: $197"
+    * A prominent button with the text: "Enroll in the Moon Masterclass Now"
+
+9.  **FAQ Section (Optional Placeholder):**
+    * Headline: "Frequently Asked Questions"
+    * Placeholders for 3-4 question-answer pairs. (e.g., "How long will I have access 	to the course materials?"
+	"Is this course suitable for beginners?"
+	"What technology do I need?"
+	"What if I can't attend live sessions (if applicable)?"
+	"Is there a refund policy?"
+
+**Styling Notes (for CSS):**
+* Use a calming and mystical color palette (e.g., deep blues, purples, silver, soft gold).
+* Choose elegant and readable fonts.
+* Ensure the layout is responsive and looks good on different screen sizes.
+* The overall vibe should be professional, inviting, and aligned with a wellness theme.
+
+Generate the HTML file and a separate CSS file. Include comments in the HTML to indicate where specific content or images should be placed.

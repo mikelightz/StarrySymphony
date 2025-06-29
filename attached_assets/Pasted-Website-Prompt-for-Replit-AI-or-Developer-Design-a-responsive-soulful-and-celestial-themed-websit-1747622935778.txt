@@ -1,0 +1,56 @@
+Website Prompt for Replit AI or Developer:
+Design a responsive, soulful, and celestial-themed website for a brand called “OmFlor Wellness.”
+The aesthetic should reflect earthy tones with celestial touches—think terracotta, olive green, soft neutrals, and golden accents. The vibe is warm, grounded, intuitive, and emotionally intelligent.
+The site should include the following pages and features:
+Homepage:
+    •    Hero section with brand name and tagline: “Come home to yourself—mind, body, and moon.”
+    •    Background with soft celestial illustration (moon phases, stars, constellations)
+    •    Intro paragraph about the mission (embodiment, lunar wellness, psychosomatic guidance)
+    •    Call to action: “Download your free Lunar Self-Care Guide”
+About Page:
+    •    Short bio: founder is a Psychosomatic Wellness Counselor blending astrology, embodiment, and emotional healing
+    •    Include a circular portrait image placeholder
+Offerings Page:
+    •    Sections for:
+    ◦    1:1 Sessions (somatic moon work, astrological embodiment)
+    ◦    Moon Masterclass
+    ◦    The Somatic Moon Journal
+Shop Page:
+    •    Feature the Somatic Moon Journal (digital + print version)
+    •    Each product should include title, price, short description, and an "Add to Cart" button
+Contact Page:
+    •    Simple form: Name, Email, Message
+    •    Add Instagram and email icons
+Footer:
+    •    Soft celestial line graphic
+    •    Email opt-in: “Stay lunar-aligned—join the newsletter”
+    •    Social links
+Use elegant serif fonts like Playfair Display for headings, and a clean sans-serif like Lato or Open Sans for body text. Prioritize mobile responsiveness, gentle animations (like fade-ins), and intuitive navigation.
+Website Prompt for Replit AI or Developer:
+Design a responsive, soulful, and celestial-themed website for a brand called "The Soulful Sanctuary."
+The aesthetic should reflect earthy tones with celestial touches—think terracotta, olive green, soft neutrals, and golden accents. The vibe is warm, grounded, intuitive, and emotionally intelligent.
+The site should include the following pages and features:
+Homepage:
+    •    Hero section with brand name and tagline: “Come home to yourself—mind, body, and moon.”
+    •    Background with soft celestial illustration (moon phases, stars, constellations)
+    •    Intro paragraph about the mission (embodiment, lunar wellness, psychosomatic guidance)
+    •    Call to action: “Download your free Lunar Self-Care Guide”
+About Page:
+    •    Short bio: founder is a Psychosomatic Wellness Counselor blending astrology, embodiment, and emotional healing
+    •    Include a circular portrait image placeholder
+Offerings Page:
+    •    Sections for:
+    ◦    1:1 Sessions (somatic moon work, astrological embodiment)
+    ◦    Moon Masterclass
+    ◦    The Somatic Moon Journal
+Shop Page:
+    •    Feature the Somatic Moon Journal (digital + print version)
+    •    Each product should include title, price, short description, and an "Add to Cart" button
+Contact Page:
+    •    Simple form: Name, Email, Message
+    •    Add Instagram and email icons
+Footer:
+    •    Soft celestial line graphic
+    •    Email opt-in: “Stay lunar-aligned—join the newsletter”
+    •    Social links
+Use elegant serif fonts like Playfair Display for headings, and a clean sans-serif like Lato or Open Sans for body text. Prioritize mobile responsiveness, gentle animations (like fade-ins), and intuitive navigation.

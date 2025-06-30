@@ -89,7 +89,7 @@ export default function Shop() {
       type: "DIGITAL",
       description: "",
       imageUrl:
-        "https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+        "https://omflor-wellness.s3.us-east-1.amazonaws.com/IMG_0007.jpg",
     },
     {
       id: 6,
@@ -98,7 +98,7 @@ export default function Shop() {
       type: "PRINT",
       description: "",
       imageUrl:
-        "https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+        "https://omflor-wellness.s3.us-east-1.amazonaws.com/IMG_7444_1.jpg",
     },
   ].filter((product) => !productsToHide.includes(product.id)); // Filter hardcoded products
 

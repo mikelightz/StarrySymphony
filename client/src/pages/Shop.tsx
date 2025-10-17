@@ -140,6 +140,21 @@ export default function Shop() {
                     }
                     isExternalLink={product.id === 5}
                   />
+                    <ProductCard
+                    key={product.id}
+                    product={product}
+                    onAddToCart={
+                      product.id === 6
+                        ? () =>
+                            window.open(
+                              "https://www.amazon.com/dp/B0FWN7MK3V/?_encoding=UTF8&ref_=navm_hdr_signin",
+                              "_blank",
+                              "noopener,noreferrer"
+                            )
+                        : handleAddToCart
+                    }
+                    isExternalLink={product.id === 6}
+                  />
                 ))}
               </>
             ) : (

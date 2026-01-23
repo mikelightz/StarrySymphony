@@ -125,8 +125,8 @@ export default function Offerings() {
           </div>
         </motion.div>
 
-        {/* Moon Masterclass */}
-        <motion.div
+        {/* Moon Masterclass 
+        * <motion.div
           className="mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -176,7 +176,7 @@ export default function Offerings() {
                 </div>
               </div>
 
-              {/* A celestial image related to moon phases */}
+               * A celestial image related to moon phases *
               <div className="md:w-1/3 order-1 md:order-2 rounded-lg overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1532767153582-b1a0e5145009?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80"
@@ -187,8 +187,9 @@ export default function Offerings() {
             </div>
           </div>
         </motion.div>
+      
 
-        {/* The Somatic Moon Journal */}
+        * The Somatic Moon Journal *
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -197,7 +198,7 @@ export default function Offerings() {
         >
           <div className="bg-white p-8 rounded-xl shadow-md">
             <div className="flex flex-col md:flex-row gap-8">
-              {/* An image of a journal with celestial elements */}
+              * An image of a journal with celestial elements *
               <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80"
@@ -247,6 +248,7 @@ export default function Offerings() {
             </div>
           </div>
         </motion.div>
+        */}
       </div>
     </div>
   );

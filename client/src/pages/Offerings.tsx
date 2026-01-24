@@ -71,18 +71,20 @@ export default function Offerings() {
                 <p className="text-gray-700 mb-4">
                   These private sessions are a sanctuary for coming back into
                   relationship with your body, your emotions, and the grander
-                  rhythms guiding your life. Blending somatic awareness,
-                  astrology, and emotional integration, our work together
-                  supports you in understanding not just what is happening in
-                  your life, but how it is alive in your body. Each session is
-                  intuitive, personalized, and paced to meet your nervous system
-                  with care.
+                  rhythms guiding your life.
+                </p>
+                <p>
+                  Blending somatic awareness, astrology, and emotional
+                  integration, our work together supports you in understanding
+                  not just what is happening in your life, but how it is alive
+                  in your body. Each session is intuitive, personalized, and
+                  paced to meet your nervous system with care.
                 </p>
 
                 <div className="mb-6 mt-8">
-                  <h3 className="font-medium text-deepblue mb-2">
+                  <h2 className="font-semibold text-deepblue mb-2">
                     In our sessions, we may explore:
-                  </h3>
+                  </h2>
 
                   <ReadMore collapsedHeight="h-0">
                     <ul className="list-disc pl-5 text-gray-700 space-y-2">
@@ -106,12 +108,12 @@ export default function Offerings() {
                         practices to help you stay connected and supported
                         between sessions.
                       </li>
-                      <p className="text-gray-700 mb-4">
-                        These sessions are ideal if you’re seeking deeper
-                        self-trust, emotional clarity, and a more embodied
-                        relationship with your life path.
-                      </p>
                     </ul>
+                    <p className="text-gray-700 mb-4">
+                      These sessions are ideal if you’re seeking deeper
+                      self-trust, emotional clarity, and a more embodied
+                      relationship with your life path.
+                    </p>
                   </ReadMore>
                 </div>
 

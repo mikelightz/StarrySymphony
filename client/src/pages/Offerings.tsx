@@ -44,7 +44,7 @@ export default function Offerings() {
                 <img
                   src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80"
                   alt="One-on-one counseling session"
-                  className="w-full h-auto"
+                  className="w-full h-800"
                 />
               </div>
 
@@ -143,7 +143,7 @@ export default function Offerings() {
                 <img
                   src="https://images.unsplash.com/photo-1599631438215-75bc2640feb8?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="black and blue butterfly in close up"
-                  className="w-full h-auto"
+                  className="w-full h-800"
                 />
               </div>
               <div className="md:w-2/3">
@@ -255,7 +255,7 @@ export default function Offerings() {
                 <img
                   src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="sunlight passing through green leaf tree"
-                  className="w-full h-auto"
+                  className="w-full h-800"
                 />
               </div>
               <div className="md:w-2/3">

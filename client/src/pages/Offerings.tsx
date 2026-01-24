@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import ReadMore from "@/components/ReadMore";
+import BookingCalendar from "@/components/BookingCalendar";
 
 export default function Offerings() {
   const { toast } = useToast();
@@ -121,7 +122,8 @@ export default function Offerings() {
                   <p className="text-lg font-medium text-deepblue mb-2">
                     Session Options:
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  {/* OLD BUTTONS (Commented out) */}
+                  {/* <div className="flex flex-col sm:flex-row gap-4">
                     <a
                       href="https://calendly.com/omflorwellness/30min?month=2025-05"
                       target="_blank"
@@ -138,7 +140,9 @@ export default function Offerings() {
                     >
                       Package of 4 ($425)
                     </a>
-                  </div>
+                  </div> */}
+                  {/* NEW CALENDAR */}
+                  <BookingCalendar />
                 </div>
               </div>
             </div>

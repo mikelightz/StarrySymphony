@@ -96,9 +96,9 @@ export default function Offerings() {
                 </p>
 
                 <div className="mb-6 mt-8">
-                  <h2 className="font-semibold text-deepblue mb-2">
+                  <h3 className="font-medium text-deepblue mb-2">
                     In our sessions, we may explore:
-                  </h2>
+                  </h3>
 
                   <ReadMore collapsedHeight="0px">
                     <ul className="list-disc pl-5 text-gray-700 space-y-2">
@@ -185,6 +185,8 @@ export default function Offerings() {
                   <h3 className="font-medium text-deepblue mb-2">
                     Within this immersion, we may explore:
                   </h3>
+
+                  <ReadMore collapsedHeight="0px">
                   <ul className="list-disc pl-5 text-gray-700 space-y-2">
                     <li>
                       Somatic Repatterning & Nervous System Reset: Guided
@@ -226,12 +228,8 @@ export default function Offerings() {
                     A rebirth guided by both the stars and your own deep
                     knowing.{" "}
                   </p>
+                  </ReadMore>
                 </div>
-
-                <div className="mt-6">
-                  <p className="text-lg font-medium text-deepblue mb-2">
-                    Purchase Options:
-                  </p>
 
                   {/* Button connecting to Stripe */}
                   <a

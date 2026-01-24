@@ -141,8 +141,8 @@ export default function Offerings() {
               {/* An image showing a coaching or counseling session */}
               <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
-                  src="https://unsplash.com/photos/blue-and-black-butterfly-in-close-up-photography-IBhsB71R97k"
-                  alt="blue butterfly flying"
+                  src="https://images.unsplash.com/photo-1599631438215-75bc2640feb8?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="black and blue butterfly in close up"
                   className="w-full h-auto"
                 />
               </div>
@@ -253,8 +253,8 @@ export default function Offerings() {
               {/* An image showing a coaching or counseling session */}
               <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
-                  src="https://unsplash.com/photos/sun-light-passing-through-green-leafed-tree-EwKXn5CapA4"
-                  alt="One-on-one counseling session"
+                  src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="sunlight passing through green leaf tree"
                   className="w-full h-auto"
                 />
               </div>

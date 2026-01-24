@@ -260,19 +260,19 @@ export default function Offerings() {
               </div>
               <div className="md:w-2/3">
                 <h2 className="font-playfair text-2xl mb-4 text-terracotta">
-                  The Visionaries’ Homecoming: A 3-Month Signature Container
+                  The Visionaries’ Homecoming: A 12 Week Container
                 </h2>
                 <p className="text-gray-700 mb-4">
-                  The Homecoming Journey is a three-month immersion for
-                  creatives, entrepreneurs, and change-makers who feel the pull
-                  toward their next level of expression, impact, and alignment.
+                  The Homecoming Journey is a 12 week immersion for creatives,
+                  entrepreneurs, and change-makers who feel the pull toward
+                  their next level of expression, impact, and alignment.
                 </p>
                 <p>
-                  This container is designed as a season of elevation. Three
-                  intentional months devoted to aligning your body, your vision,
-                  and your real-world stategy so that what you create, lead, and
-                  offer is no longer at odds with your nervous system, energy,
-                  or soul blueprint.
+                  This container is designed as a season of elevation. Twelve
+                  intentional weeks devoted to aligning your body, your vision,
+                  and your real-world strategy so that what you create, lead,
+                  and offer is no longer at odds with your nervous system,
+                  energy, or soul blueprint.
                 </p>
                 <p>
                   Rather than hustling toward success or bypassing the body in

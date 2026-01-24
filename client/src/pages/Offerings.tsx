@@ -100,7 +100,7 @@ export default function Offerings() {
                     In our sessions, we may explore:
                   </h3>
 
-                  <ReadMore collapsedHeight="32px">
+                  <ReadMore collapsedHeight="16px">
                     <ul className="list-disc pl-5 text-gray-700 space-y-2">
                       <li>
                         <b>Somatic Moon Work:</b> Working with the lunar cycle
@@ -193,7 +193,7 @@ export default function Offerings() {
                     Within this immersion, we may explore:
                   </h3>
 
-                  <ReadMore collapsedHeight="32px">
+                  <ReadMore collapsedHeight="16px">
                     <ul className="list-disc pl-5 text-gray-700 space-y-2">
                       <li>
                         <b>Somatic Repatterning & Nervous System Reset:</b>{" "}
@@ -297,7 +297,7 @@ export default function Offerings() {
                     Within this journey, we may explore:
                   </h3>
 
-                  <ReadMore collapsedHeight="32px">
+                  <ReadMore collapsedHeight="16px">
                     <ul className="list-disc pl-5 text-gray-700 space-y-2">
                       <li>
                         <b>Somatic Leadership & Capacity Building</b>

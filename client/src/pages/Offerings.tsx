@@ -103,24 +103,35 @@ export default function Offerings() {
                   <ReadMore collapsedHeight="16px">
                     <ul className="list-disc pl-5 text-gray-700 space-y-2">
                       <li>
-                        <b>Somatic Moon Work:</b> Working with the lunar cycle
-                        as a mirror for your inner rhythms, helping you attune
-                        to your body’s changing needs and emotional tides.
+                        <b>Somatic Moon Work</b>
+                        <p>
+                          Working with the lunar cycle as a mirror for your
+                          inner rhythms, helping you attune to your body’s
+                          changing needs and emotional tides.
+                        </p>
                       </li>
                       <li>
-                        <b>Astrological Embodiment:</b> Translating planetary
-                        movements and natal placements into lived, physical, and
-                        emotional experience, so insight becomes integration.
+                        <b>Astrological Embodiment</b>
+                        <p>
+                          Translating planetary movements and natal placements
+                          into lived, physical, and emotional experience, so
+                          insight becomes integration.
+                        </p>
                       </li>
                       <li>
-                        <b>Emotional Integration:</b> Gently processing stored
-                        patterns, stress, and emotional residue through
-                        body-centered awareness rather than force or analysis.
+                        <b>Emotional Integration</b>
+                        <p>
+                          Gently processing stored patterns, stress, and
+                          emotional residue through body-centered awareness
+                          rather than force or analysis.
+                        </p>
                       </li>
                       <li>
-                        <b>Custom Supportive Practices:</b> Simple, personalized
-                        practices to help you stay connected and supported
-                        between sessions.
+                        <b>Custom Supportive Practices</b>
+                        <p>
+                          Simple, personalized practices to help you stay
+                          connected and supported between sessions.
+                        </p>
                       </li>
                     </ul>
                     <p className="text-gray-700 mt-4 mb-4">
@@ -196,30 +207,38 @@ export default function Offerings() {
                   <ReadMore collapsedHeight="16px">
                     <ul className="list-disc pl-5 text-gray-700 space-y-2">
                       <li>
-                        <b>Somatic Repatterning & Nervous System Reset:</b>{" "}
-                        Guided body-based practices that support the release of
-                        stored stress, emotional residue, and outdated survival
-                        responses, allowing your system to find greater safety
-                        and coherence.
+                        <b>Somatic Repatterning & Nervous System Reset:</b>
+                        <p>
+                          Guided body-based practices that support the release
+                          of stored stress, emotional residue, and outdated
+                          survival responses, allowing your system to find
+                          greater safety and coherence.
+                        </p>
                       </li>
                       <li>
                         <b>Astrological Initiation & Embodiment</b>
-                        Deep exploration of your natal chart and current
-                        transits as living forces within your body and emotional
-                        field, helping you consciously integrate cycles of
-                        death, rebirth, and becoming.
+                        <p>
+                          Deep exploration of your natal chart and current
+                          transits as living forces within your body and
+                          emotional field, helping you consciously integrate
+                          cycles of death, rebirth, and becoming.
+                        </p>
                       </li>
                       <li>
                         <b>Emotional Alchemy & Integration</b>
-                        Spacious, compassionate processing of core themes, life
-                        transitions, and identity shifts, meeting emotions as
-                        intelligence rather than obstacles.
+                        <p>
+                          Spacious, compassionate processing of core themes,
+                          life transitions, and identity shifts, meeting
+                          emotions as intelligence rather than obstacles.
+                        </p>
                       </li>
                       <li>
                         <b>Ritual, Reflection & Personalized Practices</b>
-                        Intentionally designed practices, prompts, and rituals
-                        to support integration throughout the 10 days, anchoring
-                        insight into lived experience.
+                        <p>
+                          Intentionally designed practices, prompts, and rituals
+                          to support integration throughout the 10 days,
+                          anchoring insight into lived experience.
+                        </p>
                       </li>
                     </ul>
                     <p className="text-gray-700 mt-4 mb-4">
@@ -231,9 +250,8 @@ export default function Offerings() {
                     <p>It is a return to the body as the compass.</p>
                     <p>A reclamation of inner timing.</p>
                     <p>
-                      {" "}
                       A rebirth guided by both the stars and your own deep
-                      knowing.{" "}
+                      knowing.
                     </p>
                   </ReadMore>
                 </div>
@@ -301,30 +319,38 @@ export default function Offerings() {
                     <ul className="list-disc pl-5 text-gray-700 space-y-2">
                       <li>
                         <b>Somatic Leadership & Capacity Building</b>
-                        Ongoing body-based work that expands your nervous
-                        system’s ability to hold visibility, responsibility,
-                        creativity, and growth without burnout or collapse.
+                        <p>
+                          Ongoing body-based work that expands your nervous
+                          system’s ability to hold visibility, responsibility,
+                          creativity, and growth without burnout or collapse.
+                        </p>
                       </li>
                       <li>
                         <b>Astrological Design & Strategic Timing</b>
-                        Deep attunement to your natal chart, transits, and
-                        seasonal cycles as a blueprint for aligned
-                        decision-making, sustainable momentum, and life and
-                        business strategy that honors your unique design.
+                        <p>
+                          Deep attunement to your natal chart, transits, and
+                          seasonal cycles as a blueprint for aligned
+                          decision-making, sustainable momentum, and life and
+                          business strategy that honors your unique design.
+                        </p>
                       </li>
                       <li>
                         <b>Emotional Alchemy for Creators & Leaders</b>
-                        Conscious integration of fear, self-doubt, creative
-                        blocks, and identity shifts, meeting emotional patterns
-                        as intelligence that informs your next evolution rather
-                        than obstacles to overcome.
+                        <p>
+                          Conscious integration of fear, self-doubt, creative
+                          blocks, and identity shifts, meeting emotional
+                          patterns as intelligence that informs your next
+                          evolution rather than obstacles to overcome.
+                        </p>
                       </li>
                       <li>
                         <b>Embodied Vision & Real-World Integration</b>
-                        Personalized practices, reflections, and strategy
-                        prompts that bridge inner work with tangible action,
-                        helping your vision land in the world in a way that
-                        feels grounded, resourced, and true.
+                        <p>
+                          Personalized practices, reflections, and strategy
+                          prompts that bridge inner work with tangible action,
+                          helping your vision land in the world in a way that
+                          feels grounded, resourced, and true.
+                        </p>
                       </li>
                     </ul>
                     <p className="text-gray-700 mt-4 mb-4">

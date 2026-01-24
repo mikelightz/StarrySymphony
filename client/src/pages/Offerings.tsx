@@ -5,7 +5,8 @@ import { useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import ReadMore from "@/components/ReadMore";
-import BookingCalendar from "@/components/BookingCalendar";
+import { useEffect } from "react";
+import { getCalApi } from "@calcom/embed-react";
 
 export default function Offerings() {
   const { toast } = useToast();
@@ -33,6 +34,18 @@ export default function Offerings() {
   const handleAddToCart = (productId: number) => {
     addToCartMutation.mutate(productId);
   };
+
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi();
+      cal("ui", {
+        theme: "light",
+        styles: { branding: { brandColor: "#A05E44" } }, // Terracotta color
+        hideEventTypeDetails: false,
+        layout: "month_view",
+      });
+    })();
+  }, []);
 
   return (
     <div className="pt-24 pb-16">
@@ -122,27 +135,26 @@ export default function Offerings() {
                   <p className="text-lg font-medium text-deepblue mb-2">
                     Session Options:
                   </p>
-                  {/* OLD BUTTONS (Commented out) */}
-                  {/* <div className="flex flex-col sm:flex-row gap-4">
-                    <a
-                      href="https://calendly.com/omflorwellness/30min?month=2025-05"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 transition duration-300"
+
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    {/* BUTTON 1: Single Session */}
+                    <button
+                      data-cal-link="omflorwellness/60min?overlayCalendar=true" // Check this slug in Cal.com!
+                      data-cal-config='{"layout":"month_view"}'
+                      className="bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 transition duration-300 w-full sm:w-auto"
                     >
-                      Single Session ($120)
-                    </a>
-                    <a
-                      href="https://calendly.com/omflorwellness/new-meeting"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-olive text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 transition duration-300"
+                      Book Now ($120)
+                    </button>
+
+                    {/* BUTTON 2: Package
+                    <button
+                      data-cal-link="omflorwellness/package-of-4" // You must create this event type in Cal.com
+                      data-cal-config='{"layout":"month_view"}'
+                      className="bg-olive text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 transition duration-300 w-full sm:w-auto"
                     >
                       Package of 4 ($425)
-                    </a>
-                  </div> */}
-                  {/* NEW CALENDAR */}
-                  <BookingCalendar />
+                    </button> */}
+                  </div>
                 </div>
               </div>
             </div>

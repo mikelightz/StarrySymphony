@@ -168,10 +168,11 @@ export default function Offerings() {
         >
           <div className="bg-white p-8 rounded-xl shadow-md">
             <div className="flex flex-col md:flex-row gap-8">
-              {/*<div className="md:w-1/3 rounded-lg overflow-hidden">
+              {/* An image showing a coaching or counseling session */}
+              {/* <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80"
-                  alt="Moon journal with celestial elements"
+                  src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80"
+                  alt="One-on-one counseling session"
                   className="w-full h-auto"
                 />
               </div> */}
@@ -279,14 +280,14 @@ export default function Offerings() {
         >
           <div className="bg-white p-8 rounded-xl shadow-md">
             <div className="flex flex-col md:flex-row gap-8">
-              {/*<div className="md:w-1/3 rounded-lg overflow-hidden">
+              {/* An image showing a coaching or counseling session */}
+              {/* <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80"
-                  alt="Moon journal with celestial elements"
+                  src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80"
+                  alt="One-on-one counseling session"
                   className="w-full h-auto"
                 />
               </div> */}
-
               <div className="md:w-2/3">
                 <h2 className="font-playfair text-2xl mb-4 text-terracotta">
                   The Visionaries’ Homecoming: A 3-Month Signature Container

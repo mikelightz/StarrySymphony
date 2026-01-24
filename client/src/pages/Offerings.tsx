@@ -100,7 +100,7 @@ export default function Offerings() {
                     In our sessions, we may explore:
                   </h2>
 
-                  <ReadMore collapsedHeight="h-0">
+                  <ReadMore collapsedHeight="0px">
                     <ul className="list-disc pl-5 text-gray-700 space-y-2">
                       <li>
                         Somatic Moon Work: Working with the lunar cycle as a
@@ -131,17 +131,18 @@ export default function Offerings() {
                   </ReadMore>
                 </div>
 
-                <div className="mt-6">
+                {/* <div className="mt-6">
                   <p className="text-lg font-medium text-deepblue mb-2">
                     Session Options:
                   </p>
+                */}
 
                   <div className="flex flex-col sm:flex-row gap-4">
                     {/* BUTTON 1: Single Session */}
                     <button
                       data-cal-link="omflorwellness/60min?overlayCalendar=true" // Check this slug in Cal.com!
                       data-cal-config='{"layout":"month_view"}'
-                      className="bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 transition duration-300 w-full sm:w-auto"
+                      className="bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto"
                     >
                       Book Now ($120)
                     </button>

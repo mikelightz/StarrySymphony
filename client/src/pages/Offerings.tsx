@@ -57,7 +57,7 @@ export default function Offerings() {
                   relationship with your body, your emotions, and the grander
                   rhythms guiding your life.
                 </p>
-                <p>
+                <p className="text-gray-700 mb-4">
                   Blending somatic awareness, astrology, and emotional
                   integration, our work together supports you in understanding
                   not just what is happening in your life, but how it is alive
@@ -156,7 +156,7 @@ export default function Offerings() {
                   expression . A guided descent and renewal designed to support
                   profound recalibration in body, psyche, and soul.
                 </p>
-                <p>
+                <p className="text-gray-700 mb-4">
                   The AstroSomatic Rebirth Intensive weaves somatic practice,
                   astrological insight, and emotional integration into a
                   cohesive journey of release, remembrance, and re-embodiment.
@@ -164,7 +164,7 @@ export default function Offerings() {
                   deeper layers of patterning to surface, soften, and reorganize
                   in alignment with your natural rhythms.
                 </p>
-                <p>
+                <p className="text-gray-700 mb-4">
                   This is about creating the conditions for your nervous system
                   to shed what it has outgrown and reorganize around truth,
                   vitality, and inner authority.
@@ -178,7 +178,7 @@ export default function Offerings() {
                   <ReadMore collapsedHeight="20px">
                     <ul className="list-disc pl-5 text-gray-700 space-y-2">
                       <li>
-                        <b>Somatic Repatterning & Nervous System Reset:</b>
+                        <b>Somatic Repatterning & Nervous System Reset</b>
                         <p>
                           Guided body-based practices that support the release
                           of stored stress, emotional residue, and outdated
@@ -267,14 +267,14 @@ export default function Offerings() {
                   entrepreneurs, and change-makers who feel the pull toward
                   their next level of expression, impact, and alignment.
                 </p>
-                <p>
+                <p className="text-gray-700 mb-4">
                   This container is designed as a season of elevation. Twelve
                   intentional weeks devoted to aligning your body, your vision,
                   and your real-world strategy so that what you create, lead,
                   and offer is no longer at odds with your nervous system,
                   energy, or soul blueprint.
                 </p>
-                <p>
+                <p className="text-gray-700 mb-4">
                   Rather than hustling toward success or bypassing the body in
                   pursuit of vision, this journey supports you in building a
                   life and body that can actually hold what you are here to

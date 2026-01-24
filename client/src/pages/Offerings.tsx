@@ -1,40 +1,10 @@
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/animations";
-import { Link } from "wouter";
-import { useMutation } from "@tanstack/react-query";
-import { queryClient, apiRequest } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
 import ReadMore from "@/components/ReadMore";
 import { useEffect } from "react";
 import { getCalApi } from "@calcom/embed-react";
 
 export default function Offerings() {
-  const { toast } = useToast();
-
-  const addToCartMutation = useMutation({
-    mutationFn: (productId: number) =>
-      apiRequest("POST", "/cart/add", { productId }),
-    onSuccess: () => {
-      toast({
-        title: "Added to cart",
-        description: "Product has been added to your cart.",
-      });
-      queryClient.invalidateQueries({ queryKey: ["/cart"] });
-    },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description:
-          error.message || "Could not add to cart. Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const handleAddToCart = (productId: number) => {
-    addToCartMutation.mutate(productId);
-  };
-
   useEffect(() => {
     (async function () {
       const cal = await getCalApi();
@@ -169,14 +139,14 @@ export default function Offerings() {
           <div className="bg-white p-8 rounded-xl shadow-md">
             <div className="flex flex-col md:flex-row gap-8">
               {/* An image showing a coaching or counseling session */}
-              {/* <div className="md:w-1/3 rounded-lg overflow-hidden">
+              <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80"
-                  alt="One-on-one counseling session"
+                  src="https://unsplash.com/photos/blue-and-black-butterfly-in-close-up-photography-IBhsB71R97k"
+                  alt="blue butterfly flying"
                   className="w-full h-auto"
                 />
-              </div> */}
-              <div className="md:w-2/3 order-2 md:order-1">
+              </div>
+              <div className="md:w-2/3">
                 <h2 className="font-playfair text-2xl mb-4 text-terracotta">
                   AstroSomatic Rebirth Intensive: A 10-Day Transformative
                   Immersion
@@ -281,13 +251,13 @@ export default function Offerings() {
           <div className="bg-white p-8 rounded-xl shadow-md">
             <div className="flex flex-col md:flex-row gap-8">
               {/* An image showing a coaching or counseling session */}
-              {/* <div className="md:w-1/3 rounded-lg overflow-hidden">
+              <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80"
+                  src="https://unsplash.com/photos/sun-light-passing-through-green-leafed-tree-EwKXn5CapA4"
                   alt="One-on-one counseling session"
                   className="w-full h-auto"
                 />
-              </div> */}
+              </div>
               <div className="md:w-2/3">
                 <h2 className="font-playfair text-2xl mb-4 text-terracotta">
                   The Visionaries’ Homecoming: A 3-Month Signature Container

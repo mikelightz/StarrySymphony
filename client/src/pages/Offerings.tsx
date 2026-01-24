@@ -140,7 +140,6 @@ export default function Offerings() {
                   >
                     BOOK NOW
                   </button>
-
                 </div>
                 {/* </div> */}
               </div>
@@ -160,16 +159,26 @@ export default function Offerings() {
             <div className="flex flex-col md:flex-row gap-8">
               <div className="md:w-2/3 order-2 md:order-1">
                 <h2 className="font-playfair text-2xl mb-4 text-terracotta">
-                  AstroSomatic Rebirth Intensive: A 10-Day Transformative Immersion
+                  AstroSomatic Rebirth Intensive: A 10-Day Transformative
+                  Immersion
                 </h2>
                 <p className="text-gray-700 mb-4">
-                  This 10-day immersion is a call to transform into your highest expression . A guided descent and renewal designed to support profound recalibration in body, psyche, and soul. 
+                  This 10-day immersion is a call to transform into your highest
+                  expression . A guided descent and renewal designed to support
+                  profound recalibration in body, psyche, and soul.
                 </p>
                 <p>
-                  The AstroSomatic Rebirth Intensive weaves somatic practice, astrological insight, and emotional integration into a cohesive journey of release, remembrance, and re-embodiment. Over ten days, we work slowly and intentionally, allowing deeper layers of patterning to surface, soften, and reorganize in alignment with your natural rhythms.
+                  The AstroSomatic Rebirth Intensive weaves somatic practice,
+                  astrological insight, and emotional integration into a
+                  cohesive journey of release, remembrance, and re-embodiment.
+                  Over ten days, we work slowly and intentionally, allowing
+                  deeper layers of patterning to surface, soften, and reorganize
+                  in alignment with your natural rhythms.
                 </p>
-                <p>  
-                  This is about creating the conditions for your nervous system to shed what it has outgrown and reorganize around truth, vitality, and inner authority.
+                <p>
+                  This is about creating the conditions for your nervous system
+                  to shed what it has outgrown and reorganize around truth,
+                  vitality, and inner authority.
                 </p>
 
                 <div className="mb-6 mt-8">
@@ -178,34 +187,58 @@ export default function Offerings() {
                   </h3>
                   <ul className="list-disc pl-5 text-gray-700 space-y-2">
                     <li>
-                      Somatic Repatterning & Nervous System Reset:
-                      Guided body-based practices that support the release of stored stress, emotional residue, and outdated survival responses, allowing your system to find greater safety and coherence.
+                      Somatic Repatterning & Nervous System Reset: Guided
+                      body-based practices that support the release of stored
+                      stress, emotional residue, and outdated survival
+                      responses, allowing your system to find greater safety and
+                      coherence.
                     </li>
-                    <li>Astrological Initiation & Embodiment
-                        Deep exploration of your natal chart and current transits as living forces within your body and emotional field, helping you consciously integrate cycles of death, rebirth, and becoming.</li>
-                    <li>Emotional Alchemy & Integration
-                        Spacious, compassionate processing of core themes, life transitions, and identity shifts, meeting emotions as intelligence rather than obstacles.</li>
-                    <li>Ritual, Reflection & Personalized Practices
-                        Intentionally designed practices, prompts, and rituals to support integration throughout the 10 days, anchoring insight into lived experience.</li>
+                    <li>
+                      Astrological Initiation & Embodiment Deep exploration of
+                      your natal chart and current transits as living forces
+                      within your body and emotional field, helping you
+                      consciously integrate cycles of death, rebirth, and
+                      becoming.
+                    </li>
+                    <li>
+                      Emotional Alchemy & Integration Spacious, compassionate
+                      processing of core themes, life transitions, and identity
+                      shifts, meeting emotions as intelligence rather than
+                      obstacles.
+                    </li>
+                    <li>
+                      Ritual, Reflection & Personalized Practices Intentionally
+                      designed practices, prompts, and rituals to support
+                      integration throughout the 10 days, anchoring insight into
+                      lived experience.
+                    </li>
                   </ul>
-                    <p className="text-gray-700 mt-4 mb-4">
-                      This immersion is ideal for those standing at a life threshold, moving through major transition, or feeling the call to shed an old skin and step into a more embodied, aligned way of being.
-                    </p>
-                    <p>It is a return to the body as the compass.</p><p>A reclamation of inner timing.</p><p> A rebirth guided by both the stars and your own deep knowing. </p>
+                  <p className="text-gray-700 mt-4 mb-4">
+                    This immersion is ideal for those standing at a life
+                    threshold, moving through major transition, or feeling the
+                    call to shed an old skin and step into a more embodied,
+                    aligned way of being.
+                  </p>
+                  <p>It is a return to the body as the compass.</p>
+                  <p>A reclamation of inner timing.</p>
+                  <p>
+                    {" "}
+                    A rebirth guided by both the stars and your own deep
+                    knowing.{" "}
+                  </p>
                 </div>
-              </div>
 
                 <div className="mt-6">
                   <p className="text-lg font-medium text-deepblue mb-2">
-                  Purchase Options:
-                 </p>
+                    Purchase Options:
+                  </p>
 
                   {/* Button connecting to Stripe */}
                   <a
-                  href=" https://buy.stripe.com/aFa14o3J98P9fkmgvkgEg02" // Paste your Stripe URL here
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-block bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
+                    href=" https://buy.stripe.com/aFa14o3J98P9fkmgvkgEg02" // Paste your Stripe URL here
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
                   >
                     BOOK NOW
                   </a>
@@ -214,7 +247,7 @@ export default function Offerings() {
             </div>
           </div>
         </motion.div>
-        
+
         {/* Moon Masterclass 
         * <motion.div
           className="mb-20"

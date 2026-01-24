@@ -187,60 +187,59 @@ export default function Offerings() {
                   </h3>
 
                   <ReadMore collapsedHeight="0px">
-                  <ul className="list-disc pl-5 text-gray-700 space-y-2">
-                    <li>
-                      Somatic Repatterning & Nervous System Reset: Guided
-                      body-based practices that support the release of stored
-                      stress, emotional residue, and outdated survival
-                      responses, allowing your system to find greater safety and
-                      coherence.
-                    </li>
-                    <li>
-                      Astrological Initiation & Embodiment Deep exploration of
-                      your natal chart and current transits as living forces
-                      within your body and emotional field, helping you
-                      consciously integrate cycles of death, rebirth, and
-                      becoming.
-                    </li>
-                    <li>
-                      Emotional Alchemy & Integration Spacious, compassionate
-                      processing of core themes, life transitions, and identity
-                      shifts, meeting emotions as intelligence rather than
-                      obstacles.
-                    </li>
-                    <li>
-                      Ritual, Reflection & Personalized Practices Intentionally
-                      designed practices, prompts, and rituals to support
-                      integration throughout the 10 days, anchoring insight into
-                      lived experience.
-                    </li>
-                  </ul>
-                  <p className="text-gray-700 mt-4 mb-4">
-                    This immersion is ideal for those standing at a life
-                    threshold, moving through major transition, or feeling the
-                    call to shed an old skin and step into a more embodied,
-                    aligned way of being.
-                  </p>
-                  <p>It is a return to the body as the compass.</p>
-                  <p>A reclamation of inner timing.</p>
-                  <p>
-                    {" "}
-                    A rebirth guided by both the stars and your own deep
-                    knowing.{" "}
-                  </p>
+                    <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                      <li>
+                        Somatic Repatterning & Nervous System Reset: Guided
+                        body-based practices that support the release of stored
+                        stress, emotional residue, and outdated survival
+                        responses, allowing your system to find greater safety
+                        and coherence.
+                      </li>
+                      <li>
+                        Astrological Initiation & Embodiment Deep exploration of
+                        your natal chart and current transits as living forces
+                        within your body and emotional field, helping you
+                        consciously integrate cycles of death, rebirth, and
+                        becoming.
+                      </li>
+                      <li>
+                        Emotional Alchemy & Integration Spacious, compassionate
+                        processing of core themes, life transitions, and
+                        identity shifts, meeting emotions as intelligence rather
+                        than obstacles.
+                      </li>
+                      <li>
+                        Ritual, Reflection & Personalized Practices
+                        Intentionally designed practices, prompts, and rituals
+                        to support integration throughout the 10 days, anchoring
+                        insight into lived experience.
+                      </li>
+                    </ul>
+                    <p className="text-gray-700 mt-4 mb-4">
+                      This immersion is ideal for those standing at a life
+                      threshold, moving through major transition, or feeling the
+                      call to shed an old skin and step into a more embodied,
+                      aligned way of being.
+                    </p>
+                    <p>It is a return to the body as the compass.</p>
+                    <p>A reclamation of inner timing.</p>
+                    <p>
+                      {" "}
+                      A rebirth guided by both the stars and your own deep
+                      knowing.{" "}
+                    </p>
                   </ReadMore>
                 </div>
 
-                  {/* Button connecting to Stripe */}
-                  <a
-                    href=" https://buy.stripe.com/aFa14o3J98P9fkmgvkgEg02" // Paste your Stripe URL here
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
-                  >
-                    BOOK NOW
-                  </a>
-                </div>
+                {/* Button connecting to Stripe */}
+                <a
+                  href=" https://buy.stripe.com/aFa14o3J98P9fkmgvkgEg02" // Paste your Stripe URL here
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
+                >
+                  BOOK NOW
+                </a>
               </div>
             </div>
           </div>

@@ -100,7 +100,7 @@ export default function Offerings() {
                     In our sessions, we may explore:
                   </h3>
 
-                  <ReadMore collapsedHeight="0px">
+                  <ReadMore collapsedHeight="32px">
                     <ul className="list-disc pl-5 text-gray-700 space-y-2">
                       <li>
                         <b>Somatic Moon Work:</b> Working with the lunar cycle
@@ -157,6 +157,13 @@ export default function Offerings() {
         >
           <div className="bg-white p-8 rounded-xl shadow-md">
             <div className="flex flex-col md:flex-row gap-8">
+              {/*<div className="md:w-1/3 rounded-lg overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80"
+                  alt="Moon journal with celestial elements"
+                  className="w-full h-auto"
+                />
+              </div> */}
               <div className="md:w-2/3 order-2 md:order-1">
                 <h2 className="font-playfair text-2xl mb-4 text-terracotta">
                   AstroSomatic Rebirth Intensive: A 10-Day Transformative
@@ -186,7 +193,7 @@ export default function Offerings() {
                     Within this immersion, we may explore:
                   </h3>
 
-                  <ReadMore collapsedHeight="0px">
+                  <ReadMore collapsedHeight="32px">
                     <ul className="list-disc pl-5 text-gray-700 space-y-2">
                       <li>
                         <b>Somatic Repatterning & Nervous System Reset:</b>{" "}
@@ -289,50 +296,55 @@ export default function Offerings() {
                   <h3 className="font-medium text-deepblue mb-2">
                     Within this journey, we may explore:
                   </h3>
-                  <ul className="list-disc pl-5 text-gray-700 space-y-2">
-                    <li>
-                      <b>Somatic Leadership & Capacity Building</b>
-                      Ongoing body-based work that expands your nervous system’s
-                      ability to hold visibility, responsibility, creativity,
-                      and growth without burnout or collapse.
-                    </li>
-                    <li>
-                      <b>Astrological Design & Strategic Timing</b>
-                      Deep attunement to your natal chart, transits, and
-                      seasonal cycles as a blueprint for aligned
-                      decision-making, sustainable momentum, and life and
-                      business strategy that honors your unique design.
-                    </li>
-                    <li>
-                      <b>Emotional Alchemy for Creators & Leaders</b>
-                      Conscious integration of fear, self-doubt, creative
-                      blocks, and identity shifts, meeting emotional patterns as
-                      intelligence that informs your next evolution rather than
-                      obstacles to overcome.
-                    </li>
-                    <li>
-                      <b>Embodied Vision & Real-World Integration</b>
-                      Personalized practices, reflections, and strategy prompts
-                      that bridge inner work with tangible action, helping your
-                      vision land in the world in a way that feels grounded,
-                      resourced, and true.
-                    </li>
-                  </ul>
-                  <p className="text-gray-700 mt-4 mb-4">
-                    This container is ideal for those who know they are here to
-                    build, lead, or create something meaningful and are ready to
-                    do so without self-betrayal, depletion, or misalignment.
-                  </p>
-                  <p>Three months – One season.</p>
-                  <p>
-                    A deliberate recalibration of how you live, lead, and
-                    create.
-                  </p>
-                  <p>
-                    The Visionaries Homecoming is designed to shape the way you
-                    move through every season, guided by embodied wisdom,
-                    strategic clarity, and deep trust in your own divine design.
-                  </p>
+
+                  <ReadMore collapsedHeight="32px">
+                    <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                      <li>
+                        <b>Somatic Leadership & Capacity Building</b>
+                        Ongoing body-based work that expands your nervous
+                        system’s ability to hold visibility, responsibility,
+                        creativity, and growth without burnout or collapse.
+                      </li>
+                      <li>
+                        <b>Astrological Design & Strategic Timing</b>
+                        Deep attunement to your natal chart, transits, and
+                        seasonal cycles as a blueprint for aligned
+                        decision-making, sustainable momentum, and life and
+                        business strategy that honors your unique design.
+                      </li>
+                      <li>
+                        <b>Emotional Alchemy for Creators & Leaders</b>
+                        Conscious integration of fear, self-doubt, creative
+                        blocks, and identity shifts, meeting emotional patterns
+                        as intelligence that informs your next evolution rather
+                        than obstacles to overcome.
+                      </li>
+                      <li>
+                        <b>Embodied Vision & Real-World Integration</b>
+                        Personalized practices, reflections, and strategy
+                        prompts that bridge inner work with tangible action,
+                        helping your vision land in the world in a way that
+                        feels grounded, resourced, and true.
+                      </li>
+                    </ul>
+                    <p className="text-gray-700 mt-4 mb-4">
+                      This container is ideal for those who know they are here
+                      to build, lead, or create something meaningful and are
+                      ready to do so without self-betrayal, depletion, or
+                      misalignment.
+                    </p>
+                    <p>Three months – One season.</p>
+                    <p>
+                      A deliberate recalibration of how you live, lead, and
+                      create.
+                    </p>
+                    <p>
+                      The Visionaries Homecoming is designed to shape the way
+                      you move through every season, guided by embodied wisdom,
+                      strategic clarity, and deep trust in your own divine
+                      design.
+                    </p>
+                  </ReadMore>
                 </div>
 
                 {/* Button connecting to Stripe */}

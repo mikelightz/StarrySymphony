@@ -195,21 +195,21 @@ export default function Offerings() {
                 </div>
               </div>
 
-              <div className="mt-6">
-  <p className="text-lg font-medium text-deepblue mb-2">
-    Purchase Options:
-  </p>
+                <div className="mt-6">
+                  <p className="text-lg font-medium text-deepblue mb-2">
+                  Purchase Options:
+                 </p>
 
-  {/* Button connecting to Stripe */}
-  <a
-    href=" https://buy.stripe.com/aFa14o3J98P9fkmgvkgEg02" // Paste your Stripe URL here
-    target="_blank" 
-    rel="noopener noreferrer"
-    className="inline-block bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
-  >
-    Buy Guide ($50)
-  </a>
-</div>
+                  {/* Button connecting to Stripe */}
+                  <a
+                  href=" https://buy.stripe.com/aFa14o3J98P9fkmgvkgEg02" // Paste your Stripe URL here
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
+                  >
+                    BOOK NOW
+                  </a>
+                </div>
               </div>
             </div>
           </div>

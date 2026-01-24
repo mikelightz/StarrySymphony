@@ -109,7 +109,7 @@ export default function Offerings() {
                         between sessions.
                       </li>
                     </ul>
-                    <p className="text-gray-700 mb-4">
+                    <p className="text-gray-700 mt-4 mb-4">
                       These sessions are ideal if you’re seeking deeper
                       self-trust, emotional clarity, and a more embodied
                       relationship with your life path.

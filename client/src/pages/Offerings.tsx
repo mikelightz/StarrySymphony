@@ -103,22 +103,22 @@ export default function Offerings() {
                   <ReadMore collapsedHeight="0px">
                     <ul className="list-disc pl-5 text-gray-700 space-y-2">
                       <li>
-                        Somatic Moon Work: Working with the lunar cycle as a
-                        mirror for your inner rhythms, helping you attune to
-                        your body’s changing needs and emotional tides.
+                        <b>Somatic Moon Work:</b> Working with the lunar cycle
+                        as a mirror for your inner rhythms, helping you attune
+                        to your body’s changing needs and emotional tides.
                       </li>
                       <li>
-                        Astrological Embodiment: Translating planetary movements
-                        and natal placements into lived, physical, and emotional
-                        experience, so insight becomes integration.
+                        <b>Astrological Embodiment:</b> Translating planetary
+                        movements and natal placements into lived, physical, and
+                        emotional experience, so insight becomes integration.
                       </li>
                       <li>
-                        Emotional Integration: Gently processing stored
+                        <b>Emotional Integration:</b> Gently processing stored
                         patterns, stress, and emotional residue through
                         body-centered awareness rather than force or analysis.
                       </li>
                       <li>
-                        Custom Supportive Practices: Simple, personalized
+                        <b>Custom Supportive Practices:</b> Simple, personalized
                         practices to help you stay connected and supported
                         between sessions.
                       </li>
@@ -189,27 +189,27 @@ export default function Offerings() {
                   <ReadMore collapsedHeight="0px">
                     <ul className="list-disc pl-5 text-gray-700 space-y-2">
                       <li>
-                        Somatic Repatterning & Nervous System Reset: Guided
-                        body-based practices that support the release of stored
-                        stress, emotional residue, and outdated survival
+                        <b>Somatic Repatterning & Nervous System Reset:</b>{" "}
+                        Guided body-based practices that support the release of
+                        stored stress, emotional residue, and outdated survival
                         responses, allowing your system to find greater safety
                         and coherence.
                       </li>
                       <li>
-                        Astrological Initiation & Embodiment Deep exploration of
-                        your natal chart and current transits as living forces
-                        within your body and emotional field, helping you
-                        consciously integrate cycles of death, rebirth, and
-                        becoming.
+                        <b>Astrological Initiation & Embodiment</b>
+                        Deep exploration of your natal chart and current
+                        transits as living forces within your body and emotional
+                        field, helping you consciously integrate cycles of
+                        death, rebirth, and becoming.
                       </li>
                       <li>
-                        Emotional Alchemy & Integration Spacious, compassionate
-                        processing of core themes, life transitions, and
-                        identity shifts, meeting emotions as intelligence rather
-                        than obstacles.
+                        <b>Emotional Alchemy & Integration</b>
+                        Spacious, compassionate processing of core themes, life
+                        transitions, and identity shifts, meeting emotions as
+                        intelligence rather than obstacles.
                       </li>
                       <li>
-                        Ritual, Reflection & Personalized Practices
+                        <b>Ritual, Reflection & Personalized Practices</b>
                         Intentionally designed practices, prompts, and rituals
                         to support integration throughout the 10 days, anchoring
                         insight into lived experience.
@@ -233,7 +233,111 @@ export default function Offerings() {
 
                 {/* Button connecting to Stripe */}
                 <a
-                  href=" https://buy.stripe.com/aFa14o3J98P9fkmgvkgEg02" // Paste your Stripe URL here
+                  href="https://buy.stripe.com/aFa14o3J98P9fkmgvkgEg02" // Paste your Stripe URL here
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
+                >
+                  BOOK NOW
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* The Visionaries’ Homecoming */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <div className="bg-white p-8 rounded-xl shadow-md">
+            <div className="flex flex-col md:flex-row gap-8">
+              {/*<div className="md:w-1/3 rounded-lg overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80"
+                  alt="Moon journal with celestial elements"
+                  className="w-full h-auto"
+                />
+              </div> */}
+
+              <div className="md:w-2/3">
+                <h2 className="font-playfair text-2xl mb-4 text-terracotta">
+                  The Visionaries’ Homecoming: A 3-Month Signature Container
+                </h2>
+                <p className="text-gray-700 mb-4">
+                  The Homecoming Journey is a three-month immersion for
+                  creatives, entrepreneurs, and change-makers who feel the pull
+                  toward their next level of expression, impact, and alignment.
+                </p>
+                <p>
+                  This container is designed as a season of elevation. Three
+                  intentional months devoted to aligning your body, your vision,
+                  and your real-world stategy so that what you create, lead, and
+                  offer is no longer at odds with your nervous system, energy,
+                  or soul blueprint.
+                </p>
+                <p>
+                  Rather than hustling toward success or bypassing the body in
+                  pursuit of vision, this journey supports you in building a
+                  life and body that can actually hold what you are here to
+                  bring through.
+                </p>
+
+                <div className="mb-6 mt-8">
+                  <h3 className="font-medium text-deepblue mb-2">
+                    Within this journey, we may explore:
+                  </h3>
+                  <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                    <li>
+                      <b>Somatic Leadership & Capacity Building</b>
+                      Ongoing body-based work that expands your nervous system’s
+                      ability to hold visibility, responsibility, creativity,
+                      and growth without burnout or collapse.
+                    </li>
+                    <li>
+                      <b>Astrological Design & Strategic Timing</b>
+                      Deep attunement to your natal chart, transits, and
+                      seasonal cycles as a blueprint for aligned
+                      decision-making, sustainable momentum, and life and
+                      business strategy that honors your unique design.
+                    </li>
+                    <li>
+                      <b>Emotional Alchemy for Creators & Leaders</b>
+                      Conscious integration of fear, self-doubt, creative
+                      blocks, and identity shifts, meeting emotional patterns as
+                      intelligence that informs your next evolution rather than
+                      obstacles to overcome.
+                    </li>
+                    <li>
+                      <b>Embodied Vision & Real-World Integration</b>
+                      Personalized practices, reflections, and strategy prompts
+                      that bridge inner work with tangible action, helping your
+                      vision land in the world in a way that feels grounded,
+                      resourced, and true.
+                    </li>
+                  </ul>
+                  <p className="text-gray-700 mt-4 mb-4">
+                    This container is ideal for those who know they are here to
+                    build, lead, or create something meaningful and are ready to
+                    do so without self-betrayal, depletion, or misalignment.
+                  </p>
+                  <p>Three months – One season.</p>
+                  <p>
+                    A deliberate recalibration of how you live, lead, and
+                    create.
+                  </p>
+                  <p>
+                    The Visionaries Homecoming is designed to shape the way you
+                    move through every season, guided by embodied wisdom,
+                    strategic clarity, and deep trust in your own divine design.
+                  </p>
+                </div>
+
+                {/* Button connecting to Stripe */}
+                <a
+                  href="https://buy.stripe.com/4gM8wQfrRaXhfkm6UKgEg03" // Paste your Stripe URL here
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"

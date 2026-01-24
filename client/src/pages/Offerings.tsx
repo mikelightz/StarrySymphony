@@ -137,17 +137,17 @@ export default function Offerings() {
                   </p>
                 */}
 
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    {/* BUTTON 1: Single Session */}
-                    <button
-                      data-cal-link="omflorwellness/60min?overlayCalendar=true" // Check this slug in Cal.com!
-                      data-cal-config='{"layout":"month_view"}'
-                      className="bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto"
-                    >
-                      Book Now ($120)
-                    </button>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  {/* BUTTON 1: Single Session */}
+                  <button
+                    data-cal-link="omflorwellness/60min?overlayCalendar=true" // Check this slug in Cal.com!
+                    data-cal-config='{"layout":"month_view"}'
+                    className="bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto"
+                  >
+                    Book Now ($120)
+                  </button>
 
-                    {/* BUTTON 2: Package
+                  {/* BUTTON 2: Package
                     <button
                       data-cal-link="omflorwellness/package-of-4" // You must create this event type in Cal.com
                       data-cal-config='{"layout":"month_view"}'
@@ -155,8 +155,8 @@ export default function Offerings() {
                     >
                       Package of 4 ($425)
                     </button> */}
-                  </div>
                 </div>
+                {/* </div> */}
               </div>
             </div>
           </div>

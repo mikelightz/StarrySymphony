@@ -4,7 +4,7 @@ import { Link } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import ReadMore from "@/components/readmore";
+import ReadMore from "@/components/ReadMore";
 
 export default function Offerings() {
   const { toast } = useToast();

@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import ReadMore from "@/components/readmore";
 
 export default function Offerings() {
   const { toast } = useToast();
@@ -65,36 +66,53 @@ export default function Offerings() {
 
               <div className="md:w-2/3">
                 <h2 className="font-playfair text-2xl mb-4 text-terracotta">
-                  1:1 Sessions
+                  1:1 AstroSomatic Sessions
                 </h2>
                 <p className="text-gray-700 mb-4">
-                  Personalized guidance that combines somatic awareness,
-                  astrological insights, and emotional processing techniques to
-                  help you navigate your unique journey with greater ease and
-                  alignment.
+                  These private sessions are a sanctuary for coming back into
+                  relationship with your body, your emotions, and the grander
+                  rhythms guiding your life. Blending somatic awareness,
+                  astrology, and emotional integration, our work together
+                  supports you in understanding not just what is happening in
+                  your life, but how it is alive in your body. Each session is
+                  intuitive, personalized, and paced to meet your nervous system
+                  with care.
                 </p>
 
                 <div className="mb-6 mt-8">
                   <h3 className="font-medium text-deepblue mb-2">
-                    Our sessions include:
+                    In our sessions, we may explore:
                   </h3>
-                  <ul className="list-disc pl-5 text-gray-700 space-y-2">
-                    <li>
-                      Somatic Moon Work: Connect with your body's wisdom through
-                      the lunar cycle
-                    </li>
-                    <li>
-                      Astrological Embodiment: Understand how planetary energies
-                      manifest in your physical and emotional experience
-                    </li>
-                    <li>
-                      Emotional Integration: Process and transform challenging
-                      patterns with gentle, body-centered approaches
-                    </li>
-                    <li>
-                      Custom practices to support your journey between sessions
-                    </li>
-                  </ul>
+
+                  <ReadMore collapsedHeight="h-0">
+                    <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                      <li>
+                        Somatic Moon Work: Working with the lunar cycle as a
+                        mirror for your inner rhythms, helping you attune to
+                        your body’s changing needs and emotional tides.
+                      </li>
+                      <li>
+                        Astrological Embodiment: Translating planetary movements
+                        and natal placements into lived, physical, and emotional
+                        experience, so insight becomes integration.
+                      </li>
+                      <li>
+                        Emotional Integration: Gently processing stored
+                        patterns, stress, and emotional residue through
+                        body-centered awareness rather than force or analysis.
+                      </li>
+                      <li>
+                        Custom Supportive Practices: Simple, personalized
+                        practices to help you stay connected and supported
+                        between sessions.
+                      </li>
+                      <p className="text-gray-700 mb-4">
+                        These sessions are ideal if you’re seeking deeper
+                        self-trust, emotional clarity, and a more embodied
+                        relationship with your life path.
+                      </p>
+                    </ul>
+                  </ReadMore>
                 </div>
 
                 <div className="mt-6">

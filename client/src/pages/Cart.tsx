@@ -52,7 +52,7 @@ export default function Cart() {
     <div className="pt-24 pb-16">
       <div className="container-custom max-w-4xl">
         <motion.h1
-          className="font-playfair text-4xl md:text-5xl text-center mb-8 text-deepblue"
+          className="font-circe tracking-widest uppercase font-light text-4xl md:text-5xl text-center mb-8 text-foreground"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -62,7 +62,7 @@ export default function Cart() {
 
         {isLoading ? (
           <div className="text-center py-8">
-            <div className="w-8 h-8 border-4 border-terracotta rounded-full border-t-transparent animate-spin mx-auto"></div>
+            <div className="w-8 h-8 border-4 border-copper rounded-full border-t-transparent animate-spin mx-auto"></div>
             <p className="mt-4 text-gray-600">Loading your cart...</p>
           </div>
         ) : cart && cart.items && cart.items.length > 0 ? (
@@ -81,7 +81,7 @@ export default function Cart() {
                         <div className="text-gray-500">x{item.quantity}</div>
                       </div>
                       <div className="flex items-center space-x-6">
-                        <div className="font-medium text-terracotta">
+                        <div className="font-medium text-copper">
                           ${(item.price * item.quantity).toFixed(2)}
                         </div>
                         <button
@@ -98,14 +98,14 @@ export default function Cart() {
 
               <div className="flex justify-between items-center pt-4 border-t border-gray-200">
                 <div className="text-lg font-medium">Total</div>
-                <div className="text-xl font-bold text-terracotta">
+                <div className="text-xl font-bold text-copper">
                   ${cart && cart.total ? cart.total.toFixed(2) : "0.00"}
                 </div>
               </div>
 
               <div className="mt-8 space-y-4">
                 <Link href="/checkout">
-                  <a className="w-full bg-olive hover:bg-opacity-90 text-white py-3 px-6 rounded-lg transition duration-300 block text-center">
+                  <a className="w-full bg-forest hover:bg-opacity-90 text-white py-3 px-6 rounded-lg transition duration-300 block text-center">
                     Proceed to Checkout
                   </a>
                 </Link>
@@ -120,14 +120,14 @@ export default function Cart() {
         ) : (
           <div className="text-center py-12 bg-white rounded-xl shadow-md">
             <ShoppingBag size={48} className="mx-auto text-gray-300 mb-4" />
-            <h2 className="text-2xl font-playfair mb-4 text-deepblue">
+            <h2 className="text-2xl font-circe tracking-widest uppercase font-light mb-4 text-foreground">
               Your cart is empty
             </h2>
             <p className="text-gray-500 mb-8">
               Looks like you haven't added any items to your cart yet.
             </p>
             <Link href="/shop">
-              <a className="bg-terracotta text-white px-6 py-3 rounded-lg inline-block hover:bg-opacity-90 transition duration-300">
+              <a className="bg-copper text-white px-6 py-3 rounded-lg inline-block hover:bg-opacity-90 transition duration-300">
                 Browse Products
               </a>
             </Link>

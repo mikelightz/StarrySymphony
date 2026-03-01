@@ -14,14 +14,14 @@ export default function MoonMasterclass() {
           animate="visible"
           variants={fadeIn}
         >
-          <h1 className="font-playfair text-4xl md:text-5xl text-deepblue mb-6">
+          <h1 className="font-circe tracking-widest uppercase font-light text-4xl md:text-5xl text-foreground mb-6">
             Unlock Your Inner Wisdom with the Moon Masterclass
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Journey through the lunar cycles for profound self-discovery, emotional balance, and embodied living.
           </p>
           <div className="mt-8 flex justify-center">
-            <MoonPhasesSVG className="w-48 h-48 text-deepblue opacity-90" />
+            <MoonPhasesSVG className="w-48 h-48 text-foreground opacity-90" />
           </div>
         </motion.div>
         
@@ -33,7 +33,7 @@ export default function MoonMasterclass() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-playfair text-3xl text-terracotta mb-6 text-center">
+          <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-copper mb-6 text-center">
             Are You Ready to Align with Nature's Rhythm?
           </h2>
           <div className="text-gray-700 space-y-4">
@@ -54,14 +54,14 @@ export default function MoonMasterclass() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-playfair text-3xl text-deepblue mb-10 text-center">
+          <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground mb-10 text-center">
             What You'll Discover in the Masterclass:
           </h2>
           
           <div className="space-y-10">
             <div className="flex flex-col md:flex-row gap-6">
               <div className="md:w-1/4 flex justify-center">
-                <div className="w-20 h-20 rounded-full bg-deepblue flex items-center justify-center">
+                <div className="w-20 h-20 rounded-full bg-foreground flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                     <circle cx="12" cy="12" r="10"></circle>
                     <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
@@ -69,7 +69,7 @@ export default function MoonMasterclass() {
                 </div>
               </div>
               <div className="md:w-3/4">
-                <h3 className="text-xl font-playfair text-terracotta mb-3">
+                <h3 className="text-xl font-circe tracking-widest uppercase font-light text-copper mb-3">
                   Video Modules: Journey Through Each Moon Phase
                 </h3>
                 <p className="text-gray-700 mb-4">
@@ -86,7 +86,7 @@ export default function MoonMasterclass() {
             
             <div className="flex flex-col md:flex-row gap-6">
               <div className="md:w-1/4 flex justify-center">
-                <div className="w-20 h-20 rounded-full bg-terracotta flex items-center justify-center">
+                <div className="w-20 h-20 rounded-full bg-copper flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                     <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
                     <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
@@ -97,7 +97,7 @@ export default function MoonMasterclass() {
                 </div>
               </div>
               <div className="md:w-3/4">
-                <h3 className="text-xl font-playfair text-olive mb-3">
+                <h3 className="text-xl font-circe tracking-widest uppercase font-light text-forest mb-3">
                   Somatic Practices: Embodying Lunar Wisdom
                 </h3>
                 <p className="text-gray-700">
@@ -119,7 +119,7 @@ export default function MoonMasterclass() {
                 </div>
               </div>
               <div className="md:w-3/4">
-                <h3 className="text-xl font-playfair text-deepblue mb-3">
+                <h3 className="text-xl font-circe tracking-widest uppercase font-light text-foreground mb-3">
                   Journaling Prompts & Reflection Exercises
                 </h3>
                 <p className="text-gray-700">
@@ -130,7 +130,7 @@ export default function MoonMasterclass() {
             
             <div className="flex flex-col md:flex-row gap-6">
               <div className="md:w-1/4 flex justify-center">
-                <div className="w-20 h-20 rounded-full bg-olive flex items-center justify-center">
+                <div className="w-20 h-20 rounded-full bg-forest flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                     <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -140,7 +140,7 @@ export default function MoonMasterclass() {
                 </div>
               </div>
               <div className="md:w-3/4">
-                <h3 className="text-xl font-playfair text-terracotta mb-3">
+                <h3 className="text-xl font-circe tracking-widest uppercase font-light text-copper mb-3">
                   Lunar Tracking Tools & Templates
                 </h3>
                 <p className="text-gray-700">
@@ -151,14 +151,14 @@ export default function MoonMasterclass() {
             
             <div className="flex flex-col md:flex-row gap-6">
               <div className="md:w-1/4 flex justify-center">
-                <div className="w-20 h-20 rounded-full bg-deepblue flex items-center justify-center">
+                <div className="w-20 h-20 rounded-full bg-foreground flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                   </svg>
                 </div>
               </div>
               <div className="md:w-3/4">
-                <h3 className="text-xl font-playfair text-gold mb-3">
+                <h3 className="text-xl font-circe tracking-widest uppercase font-light text-gold mb-3">
                   BONUS: Seasonal Lunar Guides
                 </h3>
                 <p className="text-gray-700">
@@ -177,13 +177,13 @@ export default function MoonMasterclass() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-playfair text-3xl text-deepblue mb-8 text-center">
+          <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground mb-8 text-center">
             Is This Masterclass For You?
           </h2>
           
           <div className="space-y-4">
             <div className="flex items-start gap-4">
-              <div className="min-w-10 h-10 bg-terracotta rounded-full flex items-center justify-center mt-1">
+              <div className="min-w-10 h-10 bg-copper rounded-full flex items-center justify-center mt-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
@@ -192,7 +192,7 @@ export default function MoonMasterclass() {
             </div>
             
             <div className="flex items-start gap-4">
-              <div className="min-w-10 h-10 bg-terracotta rounded-full flex items-center justify-center mt-1">
+              <div className="min-w-10 h-10 bg-copper rounded-full flex items-center justify-center mt-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
@@ -201,7 +201,7 @@ export default function MoonMasterclass() {
             </div>
             
             <div className="flex items-start gap-4">
-              <div className="min-w-10 h-10 bg-terracotta rounded-full flex items-center justify-center mt-1">
+              <div className="min-w-10 h-10 bg-copper rounded-full flex items-center justify-center mt-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
@@ -210,7 +210,7 @@ export default function MoonMasterclass() {
             </div>
             
             <div className="flex items-start gap-4">
-              <div className="min-w-10 h-10 bg-terracotta rounded-full flex items-center justify-center mt-1">
+              <div className="min-w-10 h-10 bg-copper rounded-full flex items-center justify-center mt-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
@@ -219,7 +219,7 @@ export default function MoonMasterclass() {
             </div>
             
             <div className="flex items-start gap-4">
-              <div className="min-w-10 h-10 bg-terracotta rounded-full flex items-center justify-center mt-1">
+              <div className="min-w-10 h-10 bg-copper rounded-full flex items-center justify-center mt-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
@@ -249,7 +249,7 @@ export default function MoonMasterclass() {
             </div>
             
             <div className="md:w-2/3">
-              <h2 className="font-playfair text-3xl text-deepblue mb-4 text-center md:text-left">
+              <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground mb-4 text-center md:text-left">
                 Meet Your Guide, Sierra Flor
               </h2>
               <p className="text-gray-700 mb-4">
@@ -270,20 +270,20 @@ export default function MoonMasterclass() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-playfair text-3xl text-deepblue mb-8 text-center">
+          <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground mb-8 text-center">
             What You'll Gain:
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-neutral bg-opacity-30 p-6 rounded-lg">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-10 h-10 bg-terracotta rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-copper rounded-full flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                   </svg>
                 </div>
-                <h3 className="text-lg font-medium text-deepblue">Lunar Understanding</h3>
+                <h3 className="text-lg font-medium text-foreground">Lunar Understanding</h3>
               </div>
               <p className="text-gray-700">
                 A profound understanding of how lunar energies influence your life, emotions, and creative cycles.
@@ -292,13 +292,13 @@ export default function MoonMasterclass() {
             
             <div className="bg-neutral bg-opacity-30 p-6 rounded-lg">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-10 h-10 bg-olive rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-forest rounded-full flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                   </svg>
                 </div>
-                <h3 className="text-lg font-medium text-deepblue">Emotional Navigation</h3>
+                <h3 className="text-lg font-medium text-foreground">Emotional Navigation</h3>
               </div>
               <p className="text-gray-700">
                 Practical tools to navigate emotional ebbs and flows with grace, understanding, and self-compassion.
@@ -313,7 +313,7 @@ export default function MoonMasterclass() {
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                   </svg>
                 </div>
-                <h3 className="text-lg font-medium text-deepblue">Personalized Practices</h3>
+                <h3 className="text-lg font-medium text-foreground">Personalized Practices</h3>
               </div>
               <p className="text-gray-700">
                 The ability to create personalized rituals and practices that support your unique intentions and life journey.
@@ -322,13 +322,13 @@ export default function MoonMasterclass() {
             
             <div className="bg-neutral bg-opacity-30 p-6 rounded-lg">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-10 h-10 bg-deepblue rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-foreground rounded-full flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                   </svg>
                 </div>
-                <h3 className="text-lg font-medium text-deepblue">Intuitive Connection</h3>
+                <h3 className="text-lg font-medium text-foreground">Intuitive Connection</h3>
               </div>
               <p className="text-gray-700">
                 A deeper connection to your intuition and inner wisdom, allowing for more aligned decision-making.
@@ -337,13 +337,13 @@ export default function MoonMasterclass() {
             
             <div className="bg-neutral bg-opacity-30 p-6 rounded-lg">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-10 h-10 bg-terracotta rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-copper rounded-full flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                   </svg>
                 </div>
-                <h3 className="text-lg font-medium text-deepblue">Embodied Living</h3>
+                <h3 className="text-lg font-medium text-foreground">Embodied Living</h3>
               </div>
               <p className="text-gray-700">
                 A sense of embodiment and presence that brings greater joy, ease, and flow to your daily experience.
@@ -352,13 +352,13 @@ export default function MoonMasterclass() {
             
             <div className="bg-neutral bg-opacity-30 p-6 rounded-lg">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-10 h-10 bg-olive rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-forest rounded-full flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                   </svg>
                 </div>
-                <h3 className="text-lg font-medium text-deepblue">Rhythmic Awareness</h3>
+                <h3 className="text-lg font-medium text-foreground">Rhythmic Awareness</h3>
               </div>
               <p className="text-gray-700">
                 The gift of living in harmony with natural cycles, creating a more sustainable and balanced approach to productivity and rest.
@@ -375,7 +375,7 @@ export default function MoonMasterclass() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-playfair text-3xl text-deepblue mb-10 text-center">
+          <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground mb-10 text-center">
             What Our Students Say
           </h2>
           
@@ -384,34 +384,34 @@ export default function MoonMasterclass() {
               <p className="text-gray-700 italic mb-4">
                 "The Moon Masterclass completely transformed my relationship with time and my own inner rhythms. I finally understand why I feel the way I do during different parts of the month, and I have concrete tools to work with these energies instead of fighting against them."
               </p>
-              <p className="font-medium text-deepblue">- Maya K.</p>
+              <p className="font-medium text-foreground">- Maya K.</p>
             </div>
             
             <div className="bg-neutral bg-opacity-20 p-6 rounded-lg">
               <p className="text-gray-700 italic mb-4">
                 "As someone who was totally new to moon cycles, I was worried this might be too 'out there' for me. I was so wrong! Sierra presents everything in such a grounded, practical way. The somatic practices have been especially powerful for helping me process emotions I used to just push down."
               </p>
-              <p className="font-medium text-deepblue">- James T.</p>
+              <p className="font-medium text-foreground">- James T.</p>
             </div>
             
             <div className="bg-neutral bg-opacity-20 p-6 rounded-lg">
               <p className="text-gray-700 italic mb-4">
                 "This course gave me the structure and support I needed to establish consistent self-care practices. The journaling prompts are incredible for gaining clarity, and I love how the content is accessible whenever I need it. Worth every penny!"
               </p>
-              <p className="font-medium text-deepblue">- Sophia R.</p>
+              <p className="font-medium text-foreground">- Sophia R.</p>
             </div>
           </div>
         </motion.div>
         
         {/* Enrollment Section */}
         <motion.div
-          className="bg-deepblue text-white p-8 md:p-12 rounded-xl shadow-md mb-12 text-center"
+          className="bg-foreground text-white p-8 md:p-12 rounded-xl shadow-md mb-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-playfair text-3xl mb-6">
+          <h2 className="font-circe tracking-widest uppercase font-light text-3xl mb-6">
             Ready to Begin Your Lunar Journey?
           </h2>
           <p className="text-xl mb-8">Investment: $197</p>
@@ -435,34 +435,34 @@ export default function MoonMasterclass() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-playfair text-3xl text-deepblue mb-8 text-center">
+          <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground mb-8 text-center">
             Frequently Asked Questions
           </h2>
           
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-medium text-terracotta mb-2">How long will I have access to the course materials?</h3>
+              <h3 className="text-xl font-medium text-copper mb-2">How long will I have access to the course materials?</h3>
               <p className="text-gray-700">
                 You'll have lifetime access to all the course materials, including any future updates or additions. Once you enroll, the content is yours to keep forever.
               </p>
             </div>
             
             <div>
-              <h3 className="text-xl font-medium text-terracotta mb-2">Is this course suitable for beginners?</h3>
+              <h3 className="text-xl font-medium text-copper mb-2">Is this course suitable for beginners?</h3>
               <p className="text-gray-700">
                 Absolutely! The Moon Masterclass is designed for all levels of experience. Whether you're completely new to lunar wisdom or have been working with moon cycles for years, you'll find valuable insights and practices.
               </p>
             </div>
             
             <div>
-              <h3 className="text-xl font-medium text-terracotta mb-2">What technology do I need?</h3>
+              <h3 className="text-xl font-medium text-copper mb-2">What technology do I need?</h3>
               <p className="text-gray-700">
                 All you need is a device with internet access to view the videos and download the materials. The course works well on computers, tablets, and smartphones.
               </p>
             </div>
             
             <div>
-              <h3 className="text-xl font-medium text-terracotta mb-2">Is there a refund policy?</h3>
+              <h3 className="text-xl font-medium text-copper mb-2">Is there a refund policy?</h3>
               <p className="text-gray-700">
                 Yes, we offer a 14-day satisfaction guarantee. If you're not completely satisfied with the course after trying it, simply email us within 14 days of purchase for a full refund.
               </p>
@@ -473,7 +473,7 @@ export default function MoonMasterclass() {
         {/* Back to Offerings Link */}
         <div className="text-center mb-8">
           <Link href="/offerings">
-            <a className="text-deepblue hover:text-terracotta transition duration-300 flex items-center justify-center gap-2">
+            <a className="text-foreground hover:text-copper transition duration-300 flex items-center justify-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>

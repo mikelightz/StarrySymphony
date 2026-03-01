@@ -1,82 +1,88 @@
-@import url("https://fonts.googleapis.com/css2?family=Prata&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Prata&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: 36 30% 96%;
-  --foreground: 225 39% 25%;
+  /* Earthy Neutral Backgrounds */
+  --earth: 35 30% 88%;
+  --sand: 40 35% 94%;
+  --forest: 140 25% 25%;
+  --copper: 15 45% 55%;
+  --gold: 45 60% 65%;
+  --moonlight: 220 30% 18%;
+  --floral: 340 35% 55%;
 
-  --muted: 60 5% 96%;
-  --muted-foreground: 25 5% 45%;
+  /* Semantic mappings to standard shadcn colors / tailwind */
+  --background: 40 35% 94%; /* sand */
+  --foreground: 220 30% 18%; /* moonlight */
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 225 39% 25%;
+  --muted: 35 30% 88%; /* earth */
+  --muted-foreground: 140 20% 45%;
 
-  --card: 0 0% 100%;
-  --card-foreground: 225 39% 25%;
+  --popover: 40 35% 94%;
+  --popover-foreground: 220 30% 18%;
 
-  --border: 20 6% 90%;
-  --input: 20 6% 90%;
+  --card: 35 30% 88%; /* slightly darker than background for cards */
+  --card-foreground: 220 30% 18%;
 
-  /* Brand colors */
-  --terracotta: 14 37% 58%;
-  --olive: 84 13% 49%;
-  --cream: 37 64% 96%;
-  --neutral: 0 0% 92%;
-  --gold: 46 57% 52%;
-  --deepblue: 216 50% 25%;
+  --border: 35 30% 80%;
+  --input: 35 30% 80%;
 
-  /* Primary: using terracotta as primary */
-  --primary: 14 37% 58%;
-  --primary-foreground: 0 0% 100%;
+  /* Primary: forest green */
+  --primary: 140 25% 25%;
+  --primary-foreground: 40 35% 94%;
 
-  /* Secondary: using olive as secondary */
-  --secondary: 84 13% 49%;
-  --secondary-foreground: 0 0% 100%;
+  /* Secondary: copper */
+  --secondary: 15 45% 55%;
+  --secondary-foreground: 40 35% 94%;
 
-  /* Accent: using gold as accent */
-  --accent: 46 57% 52%;
-  --accent-foreground: 225 39% 25%;
+  /* Accent: soft gold */
+  --accent: 45 60% 65%;
+  --accent-foreground: 220 30% 18%;
 
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
 
-  --ring: 46 57% 52%;
+  --ring: 45 60% 65%; /* gold ring */
 
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: 225 39% 25%;
-  --foreground: 0 0% 98%;
+  /* Invert or slightly adjust for a moonlight-focused dark mode */
+  --background: 220 30% 18%; /* moonlight */
+  --foreground: 40 35% 94%; /* sand */
 
-  --muted: 223 47% 11%;
-  --muted-foreground: 215 20% 65%;
+  --muted: 220 30% 12%;
+  --muted-foreground: 35 20% 70%;
 
-  --popover: 225 39% 25%;
-  --popover-foreground: 0 0% 98%;
+  --popover: 220 30% 18%;
+  --popover-foreground: 40 35% 94%;
 
-  --card: 225 39% 25%;
-  --card-foreground: 0 0% 98%;
+  --card: 220 30% 14%;
+  --card-foreground: 40 35% 94%;
 
-  --border: 223 47% 11%;
-  --input: 223 47% 11%;
+  --border: 220 30% 25%;
+  --input: 220 30% 25%;
 
-  --primary: 14 37% 58%;
-  --primary-foreground: 0 0% 100%;
+  /* Primary: copper in dark mode for pop */
+  --primary: 15 45% 55%;
+  --primary-foreground: 40 35% 94%;
 
-  --secondary: 84 13% 49%;
-  --secondary-foreground: 0 0% 100%;
+  /* Secondary: soft gold */
+  --secondary: 45 60% 65%;
+  --secondary-foreground: 220 30% 18%;
 
-  --accent: 46 57% 52%;
-  --accent-foreground: 225 39% 25%;
+  /* Accent: forest */
+  --accent: 140 25% 25%;
+  --accent-foreground: 40 35% 94%;
 
   --destructive: 0 63% 31%;
   --destructive-foreground: 0 0% 98%;
 
-  --ring: 46 57% 52%;
+  --ring: 45 60% 65%;
 }
 
 @layer base {
@@ -89,46 +95,65 @@
   }
 
   body {
-    @apply font-lato bg-cream text-deepblue antialiased;
+    @apply font-lato bg-background text-foreground antialiased;
+    /* Soft noise texture globally applied */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-prata;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-circe font-normal tracking-wide;
   }
 }
 
 @layer components {
   .container-custom {
-    @apply container mx-auto px-4;
+    @apply container mx-auto px-4 md:px-8;
   }
 
-  .text-shadow {
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  .text-shadow-gold {
+    text-shadow: 0px 4px 12px hsl(45 60% 65% / 0.4); /* subtle gold shadow */
+  }
+
+  .text-shadow-moonlight {
+    text-shadow: 0px 4px 12px hsl(220 30% 18% / 0.3); /* subtle deep shadow */
   }
 
   .animate-fade-in {
-    @apply animate-in fade-in duration-700;
+    @apply animate-in fade-in duration-1000;
   }
 
   .animate-slide-up {
-    @apply animate-in slide-in-from-bottom-5 duration-700;
+    @apply animate-in slide-in-from-bottom-5 duration-1000;
   }
 
-  .moon-phases-bg {
-    @apply relative;
-    background-image: url("/images/bg-cover.png");
-    background-size: cover;
-    background-position: center bottom;
+  .bg-texture-linen {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    position: relative;
   }
 
-  .moon-phases-bg::before {
-    content: "";
-    @apply absolute inset-0 bg-gradient-to-b from-deepblue/30 to-deepblue/10 z-0;
+  .bg-golden-glow {
+    background: radial-gradient(circle at center, hsl(45 60% 65% / 0.15) 0%, transparent 60%);
+  }
+  
+  .bg-moonlight-glow {
+    background: radial-gradient(circle at top right, hsl(220 30% 18% / 0.1) 0%, transparent 70%);
+  }
+
+  .bg-floral-gradient {
+    background: linear-gradient(135deg, hsl(340 35% 55% / 0.08) 0%, hsl(45 60% 65% / 0.05) 100%);
+  }
+
+  /* Soft geometric flowing shapes */
+  .shape-blob-1 {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+  
+  .shape-blob-2 {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+
+  .shape-blob-3 {
+    border-radius: 30% 70% 50% 50% / 50% 30% 70% 50%;
   }
 
   .tab-underline {
@@ -137,7 +162,7 @@
 
   .tab-underline::after {
     content: "";
-    @apply absolute w-0 h-0.5 bottom-[-2px] left-0 bg-gold transition-all duration-300;
+    @apply absolute w-0 h-[1px] bottom-[-4px] left-0 bg-gold transition-all duration-500 ease-out;
   }
 
   .tab-underline:hover::after,

@@ -9,7 +9,7 @@ export default function MoonPhases({
   color = "deepblue",
   centerSize = 10
 }: MoonPhasesProps) {
-  const colorClass = color === "gold" ? "bg-gold" : "bg-deepblue";
+  const colorClass = color === "gold" ? "bg-gold" : "bg-foreground";
   
   const phases = [
     { size: 2, opacity: "opacity-20" },

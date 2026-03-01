@@ -21,7 +21,7 @@ export default function Offerings() {
     <div className="pt-24 pb-16">
       <div className="container-custom max-w-4xl">
         <motion.h1
-          className="font-playfair text-4xl md:text-5xl text-center mb-16 text-deepblue"
+          className="font-circe tracking-widest uppercase font-light text-4xl md:text-5xl text-center mb-16 text-foreground"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -49,7 +49,7 @@ export default function Offerings() {
               </div>
 
               <div className="md:w-2/3">
-                <h2 className="font-playfair text-2xl mb-4 text-terracotta">
+                <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper">
                   1:1 AstroSomatic Sessions
                 </h2>
                 <p className="text-gray-700 mb-4">
@@ -66,7 +66,7 @@ export default function Offerings() {
                 </p>
 
                 <div className="mb-6 mt-8">
-                  <h3 className="font-medium text-deepblue mb-2">
+                  <h3 className="font-medium text-foreground mb-2">
                     In our sessions, we may explore:
                   </h3>
 
@@ -117,7 +117,7 @@ export default function Offerings() {
                   <button
                     data-cal-link="omflorwellness/60min?overlayCalendar=true" // Check this slug in Cal.com!
                     data-cal-config='{"layout":"month_view"}'
-                    className="bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto"
+                    className="bg-copper text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto"
                   >
                     BOOK NOW
                   </button>
@@ -147,7 +147,7 @@ export default function Offerings() {
                 />
               </div>
               <div className="md:w-2/3">
-                <h2 className="font-playfair text-2xl mb-4 text-terracotta">
+                <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper">
                   AstroSomatic Rebirth Intensive: A 10-Day Transformative
                   Immersion
                 </h2>
@@ -171,7 +171,7 @@ export default function Offerings() {
                 </p>
 
                 <div className="mb-6 mt-8">
-                  <h3 className="font-medium text-deepblue mb-2">
+                  <h3 className="font-medium text-foreground mb-2">
                     Within this immersion, we may explore:
                   </h3>
 
@@ -232,7 +232,7 @@ export default function Offerings() {
                   href="https://buy.stripe.com/aFa14o3J98P9fkmgvkgEg02" // Paste your Stripe URL here
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
+                  className="inline-block bg-copper text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
                 >
                   BOOK NOW
                 </a>
@@ -259,7 +259,7 @@ export default function Offerings() {
                 />
               </div>
               <div className="md:w-2/3">
-                <h2 className="font-playfair text-2xl mb-4 text-terracotta">
+                <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper">
                   The Visionaries’ Homecoming: A 12 Week Container
                 </h2>
                 <p className="text-gray-700 mb-4">
@@ -282,7 +282,7 @@ export default function Offerings() {
                 </p>
 
                 <div className="mb-6 mt-8">
-                  <h3 className="font-medium text-deepblue mb-2">
+                  <h3 className="font-medium text-foreground mb-2">
                     Within this journey, we may explore:
                   </h3>
 
@@ -349,7 +349,7 @@ export default function Offerings() {
                   href="https://buy.stripe.com/4gM8wQfrRaXhfkm6UKgEg03" // Paste your Stripe URL here
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
+                  className="inline-block bg-copper text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
                 >
                   BOOK NOW
                 </a>
@@ -369,7 +369,7 @@ export default function Offerings() {
           <div className="bg-white p-8 rounded-xl shadow-md">
             <div className="flex flex-col md:flex-row gap-8">
               <div className="md:w-2/3 order-2 md:order-1">
-                <h2 className="font-playfair text-2xl mb-4 text-terracotta">
+                <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper">
                   Moon Masterclass
                 </h2>
                 <p className="text-gray-700 mb-4">
@@ -380,7 +380,7 @@ export default function Offerings() {
                 </p>
 
                 <div className="mb-6 mt-8">
-                  <h3 className="font-medium text-deepblue mb-2">
+                  <h3 className="font-medium text-foreground mb-2">
                     This masterclass includes:
                   </h3>
                   <ul className="list-disc pl-5 text-gray-700 space-y-2">
@@ -398,11 +398,11 @@ export default function Offerings() {
                 </div>
 
                 <div className="mt-6">
-                  <p className="text-lg font-medium text-deepblue mb-2">
+                  <p className="text-lg font-medium text-foreground mb-2">
                     Investment: $197
                   </p>
                   <Link href="/moon-masterclass">
-                    <button className="bg-deepblue text-white px-6 py-3 rounded-lg inline-block hover:bg-opacity-90 transition duration-300">
+                    <button className="bg-foreground text-white px-6 py-3 rounded-lg inline-block hover:bg-opacity-90 transition duration-300">
                       Learn More
                     </button>
                   </Link>
@@ -441,7 +441,7 @@ export default function Offerings() {
               </div>
 
               <div className="md:w-2/3">
-                <h2 className="font-playfair text-2xl mb-4 text-terracotta">
+                <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper">
                   The Somatic Moon Journal
                 </h2>
                 <p className="text-gray-700 mb-4">
@@ -451,7 +451,7 @@ export default function Offerings() {
                 </p>
 
                 <div className="mb-6 mt-8">
-                  <h3 className="font-medium text-deepblue mb-2">Features:</h3>
+                  <h3 className="font-medium text-foreground mb-2">Features:</h3>
                   <ul className="list-disc pl-5 text-gray-700 space-y-2">
                     <li>Monthly lunar calendars with phase information</li>
                     <li>Guided prompts for each moon phase</li>
@@ -470,7 +470,7 @@ export default function Offerings() {
                       Digital Version ($27)
                     </button>
                     <button
-                      className="bg-terracotta text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 transition duration-300"
+                      className="bg-copper text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 transition duration-300"
                       onClick={() => handleAddToCart(2)}
                     >
                       Print Version ($45)

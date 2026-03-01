@@ -56,7 +56,7 @@ export default function NewsletterForm() {
 
   return (
     <div className="bg-[#a24b27] bg-opacity-50 rounded-lg p-6 max-w-md mx-auto md:mx-0">
-      <h3 className="font-playfair text-xl mb-4 text-center md:text-left">
+      <h3 className="font-circe tracking-widest uppercase font-light text-xl mb-4 text-center md:text-left">
         Stay Lunar-Aligned
       </h3>
       <p className="text-gray-300 mb-4 text-center md:text-left">
@@ -83,7 +83,7 @@ export default function NewsletterForm() {
         </div>
         <button
           type="submit"
-          className="bg-gold text-deepblue px-6 py-3 rounded-lg hover:bg-opacity-90 transition duration-300 whitespace-nowrap"
+          className="bg-gold text-foreground px-6 py-3 rounded-lg hover:bg-opacity-90 transition duration-300 whitespace-nowrap"
           disabled={isSubmitting}
         >
           {isSubmitting ? "Subscribing..." : "Subscribe"}

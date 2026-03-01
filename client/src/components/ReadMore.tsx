@@ -29,7 +29,7 @@ const ReadMore = ({ children, collapsedHeight = "10rem" }: ReadMoreProps) => {
       {/* Button is now completely separate from the gradient */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="mt-4 text-terracotta font-bold hover:underline focus:outline-none uppercase tracking-wide text-sm"
+        className="mt-4 text-copper font-bold hover:underline focus:outline-none uppercase tracking-wide text-sm"
       >
         {isExpanded ? "Read Less" : "Read More"}
       </button>

@@ -1,15 +1,22 @@
 import { Instagram, Facebook, Mail } from "lucide-react";
 import MoonPhases from "@/components/MoonPhases";
 import NewsletterForm from "@/components/NewsletterForm";
-import { Link } from "wouter";
+import { useLocation } from "wouter";
 
 export default function Footer() {
+  const [, setLocation] = useLocation();
+
+  const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setLocation(href);
+  };
+
   return (
-    <footer className="bg-[#a24b27] text-white py-16">
+    <footer className="bg-transparent text-white py-16 relative z-10">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
           <div className="text-center md:text-left max-w-sm">
-            <h2 className="font-playfair text-2xl mb-4">OmFlor Wellness</h2>
+            <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4">OmFlor Wellness</h2>
             <p className="text-gray-300 mb-6">
               Guiding you back to yourself through lunar wisdom, embodiment
               practices, and psychosomatic healing.
@@ -46,16 +53,20 @@ export default function Footer() {
             reserved.
           </p>
           <div className="flex justify-center space-x-6 mt-4">
-            <Link href="/privacy">
-              <a className="hover:text-gray-300 transition duration-300">
-                Privacy Policy
-              </a>
-            </Link>
-            <Link href="/terms">
-              <a className="hover:text-gray-300 transition duration-300">
-                Terms of Service
-              </a>
-            </Link>
+            <a
+              href="/privacy"
+              className="hover:text-gray-300 transition duration-300"
+              onClick={(e) => handleNav(e, "/privacy")}
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="/terms"
+              className="hover:text-gray-300 transition duration-300"
+              onClick={(e) => handleNav(e, "/terms")}
+            >
+              Terms of Service
+            </a>
           </div>
         </div>
       </div>

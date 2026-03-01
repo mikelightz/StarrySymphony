@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+{
+  /* import React, { useEffect, useState } from "react";
 import {
   useStripe,
   Elements,
@@ -61,7 +62,7 @@ const CheckoutForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="bg-white p-6 rounded-lg border border-gold/20">
-        <h3 className="text-lg font-semibold text-deepblue mb-4 flex items-center">
+        <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center">
           <CreditCard className="h-5 w-5 mr-2" />
           Payment Details
         </h3>
@@ -108,11 +109,11 @@ export default function Checkout() {
 
   if (!cart || !cart.items || cart.items.length === 0) {
     return (
-      <div className="min-h-screen bg-cream py-20">
+      <div className="min-h-screen bg-background py-20">
         <div className="container-custom max-w-2xl">
           <div className="text-center">
             <ShoppingBag className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-            <h1 className="text-2xl font-semibold text-deepblue mb-2">
+            <h1 className="text-2xl font-semibold text-foreground mb-2">
               Your cart is empty
             </h1>
             <p className="text-gray-600 mb-6">
@@ -132,11 +133,11 @@ export default function Checkout() {
 
   if (!clientSecret) {
     return (
-      <div className="min-h-screen bg-cream py-20">
+      <div className="min-h-screen bg-background py-20">
         <div className="container-custom max-w-2xl">
           <div className="text-center">
             <div className="animate-spin w-8 h-8 border-4 border-gold border-t-transparent rounded-full mx-auto mb-4" />
-            <p className="text-deepblue">Preparing your checkout...</p>
+            <p className="text-foreground">Preparing your checkout...</p>
           </div>
         </div>
       </div>
@@ -144,7 +145,7 @@ export default function Checkout() {
   }
 
   return (
-    <div className="min-h-screen bg-cream py-20">
+    <div className="min-h-screen bg-background py-20">
       <div className="container-custom max-w-2xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -157,15 +158,15 @@ export default function Checkout() {
                 <Sparkles className="h-8 w-8 text-gold" />
               </div>
             </div>
-            <h1 className="font-playfair text-3xl font-bold text-deepblue mb-2">
+            <h1 className="font-circe tracking-widest uppercase font-light text-3xl font-bold text-foreground mb-2">
               Complete Your Purchase
             </h1>
             <p className="text-gray-600">Secure checkout powered by Stripe</p>
           </div>
 
-          {/* Order Summary */}
+           Order Summary 
           <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 className="text-xl font-semibold text-deepblue mb-4">
+            <h2 className="text-xl font-semibold text-foreground mb-4">
               Order Summary
             </h2>
             <div className="space-y-3">
@@ -175,28 +176,28 @@ export default function Checkout() {
                   className="flex justify-between items-center"
                 >
                   <div>
-                    <h3 className="font-medium text-deepblue">
+                    <h3 className="font-medium text-foreground">
                       {item.productName}
                     </h3>
                     <p className="text-sm text-gray-600">
                       Quantity: {item.quantity}
                     </p>
                   </div>
-                  <p className="font-semibold text-deepblue">
+                  <p className="font-semibold text-foreground">
                     ${(item.price * item.quantity).toFixed(2)}
                   </p>
                 </div>
               ))}
               <div className="border-t pt-3 mt-3">
                 <div className="flex justify-between items-center text-lg font-semibold">
-                  <span className="text-deepblue">Total:</span>
+                  <span className="text-foreground">Total:</span>
                   <span className="text-gold">${cart.total.toFixed(2)}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Payment Form */}
+          Payment Form 
           <div className="bg-white rounded-lg shadow-md p-6">
             <Elements stripe={stripePromise} options={{ clientSecret }}>
               <CheckoutForm />
@@ -206,4 +207,6 @@ export default function Checkout() {
       </div>
     </div>
   );
+  }
+  */
 }

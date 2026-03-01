@@ -63,7 +63,7 @@ export default function Contact() {
     <div className="pt-24 pb-16">
       <div className="container-custom max-w-4xl">
         <motion.h1
-          className="font-playfair text-4xl md:text-5xl text-center mb-16 text-deepblue"
+          className="font-circe tracking-widest uppercase font-light text-4xl md:text-5xl text-center mb-16 text-foreground"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -78,7 +78,7 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="font-playfair text-2xl mb-6 text-terracotta">
+              <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-6 text-copper">
                 Get in Touch
               </h2>
               <p className="text-gray-700 mb-8">
@@ -88,7 +88,7 @@ export default function Contact() {
               </p>
 
               <div className="mb-10">
-                <h3 className="font-medium text-deepblue mb-4">
+                <h3 className="font-medium text-foreground mb-4">
                   Connect With Us
                 </h3>
                 <div className="flex space-x-4">
@@ -107,7 +107,7 @@ export default function Contact() {
 
               {/* Celestial elements */}
               <div className="mt-12 p-8 bg-white rounded-lg shadow-md">
-                <h3 className="font-playfair text-xl mb-4 text-deepblue">
+                <h3 className="font-circe tracking-widest uppercase font-light text-xl mb-4 text-foreground">
                   Lunar Office Hours
                 </h3>
                 <p className="text-gray-700 mb-2">
@@ -137,7 +137,7 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
             >
               <div className="bg-white p-8 rounded-xl shadow-md">
-                <h3 className="font-playfair text-xl mb-6 text-deepblue">
+                <h3 className="font-circe tracking-widest uppercase font-light text-xl mb-6 text-foreground">
                   Contact Us
                 </h3>
                 <p className="text-gray-700 mb-6">
@@ -177,7 +177,7 @@ function SocialLink({ href, icon, label }: SocialLinkProps) {
   return (
     <a
       href={href}
-      className="text-2xl text-terracotta hover:text-deepblue transition duration-300"
+      className="text-2xl text-copper hover:text-foreground transition duration-300"
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}

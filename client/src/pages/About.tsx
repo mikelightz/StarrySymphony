@@ -7,7 +7,7 @@ export default function About() {
     <div className="pt-24 pb-16">
       <div className="container-custom max-w-4xl">
         <motion.h1
-          className="font-playfair text-4xl md:text-5xl text-center mb-16 text-deepblue"
+          className="font-circe tracking-widest uppercase font-light text-4xl md:text-5xl text-center mb-16 text-foreground"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -22,7 +22,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
         >
           {/* Circular portrait image */}
-          <div className="w-64 h-64 rounded-full overflow-hidden shadow-lg border-4 border-cream flex-shrink-0 mx-auto md:mx-0">
+          <div className="w-64 h-64 rounded-full overflow-hidden shadow-lg border-4 border-border flex-shrink-0 mx-auto md:mx-0">
             <img
               src="/images/new_1.jpg"
               alt="Founder portrait"
@@ -31,7 +31,7 @@ export default function About() {
           </div>
 
           <div>
-            <h2 className="font-playfair text-2xl mb-4 text-terracotta text-center md:text-left">
+            <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper text-center md:text-left">
               Meet the Founder
             </h2>
             <p className="text-gray-700 mb-4 leading-relaxed">
@@ -57,7 +57,7 @@ export default function About() {
         {/* Philosophy Section */}
         <div className="mt-20">
           <motion.h2
-            className="font-playfair text-3xl text-center mb-10 text-deepblue"
+            className="font-circe tracking-widest uppercase font-light text-3xl text-center mb-10 text-foreground"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -129,10 +129,10 @@ function PhilosophyCard({
   color,
 }: PhilosophyCardProps) {
   const colorClass = {
-    olive: "text-olive",
-    terracotta: "text-terracotta",
+    olive: "text-forest",
+    terracotta: "text-copper",
     gold: "text-gold",
-    deepblue: "text-deepblue",
+    deepblue: "text-foreground",
   }[color];
 
   return (
@@ -144,7 +144,7 @@ function PhilosophyCard({
       viewport={{ once: true }}
     >
       <div className={`text-3xl mb-4 ${colorClass}`}>{icon}</div>
-      <h3 className="font-playfair text-xl mb-3 text-deepblue">{title}</h3>
+      <h3 className="font-circe tracking-widest uppercase font-light text-xl mb-3 text-foreground">{title}</h3>
       <p className="text-gray-700">{description}</p>
     </motion.div>
   );

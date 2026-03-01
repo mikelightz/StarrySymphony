@@ -106,7 +106,7 @@ export default function Shop() {
     <div className="pt-24 pb-16 bg-neutral bg-opacity-20">
       <div className="container-custom max-w-5xl">
         <motion.h1
-          className="font-playfair text-4xl md:text-5xl text-center mb-16 text-deepblue"
+          className="font-circe tracking-widest uppercase font-light text-4xl md:text-5xl text-center mb-16 text-foreground"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -116,7 +116,7 @@ export default function Shop() {
 
         {isLoading ? (
           <div className="text-center py-8">
-            <div className="w-8 h-8 border-4 border-terracotta rounded-full border-t-transparent animate-spin mx-auto"></div>
+            <div className="w-8 h-8 border-4 border-copper rounded-full border-t-transparent animate-spin mx-auto"></div>
             <p className="mt-4 text-gray-600">Loading products...</p>
           </div>
         ) : (
@@ -207,7 +207,7 @@ function ProductCard({
 
       <div className="p-6">
         <div className="flex justify-between items-start mb-4">
-          <h2 className="font-playfair text-2xl text-deepblue">
+          <h2 className="font-circe tracking-widest uppercase font-light text-2xl text-foreground">
             {product.name}
           </h2>
           <span
@@ -215,12 +215,12 @@ function ProductCard({
             px-4 py-1 rounded-full text-sm text-white
             ${
               product.type === "DIGITAL"
-                ? "bg-deepblue"
+                ? "bg-foreground"
                 : product.type === "PRINT"
-                ? "bg-terracotta"
+                ? "bg-copper"
                 : product.type === "COURSE"
                 ? "bg-gold"
-                : "bg-deepblue"
+                : "bg-foreground"
             }
           `}
           >
@@ -231,13 +231,13 @@ function ProductCard({
         <div className="mb-4">
           {product.originalPrice ? (
             <div className="flex items-center">
-              <span className="text-xl font-medium text-terracotta">
+              <span className="text-xl font-medium text-copper">
                 ${product.price.toFixed(2)}
               </span>
               <span className="ml-3 line-through text-gray-500">
                 ${product.originalPrice.toFixed(2)}
               </span>
-              <span className="ml-3 bg-terracotta text-white text-xs px-2 py-1 rounded">
+              <span className="ml-3 bg-copper text-white text-xs px-2 py-1 rounded">
                 SAVE{" "}
                 {Math.round(
                   100 - (product.price / product.originalPrice) * 100
@@ -246,7 +246,7 @@ function ProductCard({
               </span>
             </div>
           ) : (
-            <span className="text-xl font-medium text-terracotta">
+            <span className="text-xl font-medium text-copper">
               ${product.price.toFixed(2)}
             </span>
           )}
@@ -255,11 +255,11 @@ function ProductCard({
         <p className="text-gray-700 mb-6">{product.description}</p>
 
         <div className="flex justify-between items-center">
-          <a href="#" className="text-deepblue underline">
+          <a href="#" className="text-foreground underline">
             View Details
           </a>
           <button
-            className="bg-olive hover:bg-opacity-90 text-white px-6 py-3 rounded-lg transition duration-300"
+            className="bg-forest hover:bg-opacity-90 text-white px-6 py-3 rounded-lg transition duration-300"
             // Conditional onClick handler based on isExternalLink prop
             onClick={() => {
               if (isExternalLink) {

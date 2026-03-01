@@ -55,7 +55,7 @@ export default function NewsletterForm() {
   };
 
   return (
-    <div className="bg-[#a24b27] bg-opacity-50 rounded-lg p-6 max-w-md mx-auto md:mx-0">
+    <div className="bg-[#a24b27] bg-opacity-83 rounded-lg p-6 max-w-md mx-auto md:mx-0">
       <h3 className="font-circe tracking-widest uppercase font-light text-xl mb-4 text-center md:text-left">
         Stay Lunar-Aligned
       </h3>
@@ -71,9 +71,8 @@ export default function NewsletterForm() {
           <input
             type="email"
             placeholder="Your email address"
-            className={`px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-gold w-full ${
-              errors.email ? "border-red-500" : ""
-            }`}
+            className={`px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-gold w-full ${errors.email ? "border-red-500" : ""
+              }`}
             {...register("email")}
             aria-invalid={errors.email ? "true" : "false"}
           />

@@ -42,8 +42,8 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed w-full top-0 z-50 transition-all duration-500 ease-in-out ${scrolled
-          ? "bg-background/95 shadow-sm backdrop-blur-md border-b border-border/40 py-3"
-          : "bg-transparent py-5"
+        ? "bg-background/95 shadow-sm backdrop-blur-md border-b border-border/40 py-3"
+        : "bg-transparent py-5"
         }`}
     >
       <div className="container-custom">
@@ -67,7 +67,7 @@ export default function Navbar() {
               Offerings
             </NavLink>
             <NavLink href="/natal-chart" active={isActive("/natal-chart")}>
-              Natal Chart
+              Birth Chart
             </NavLink>
             <NavLink href="/shop" active={isActive("/shop")}>
               Shop
@@ -109,7 +109,7 @@ export default function Navbar() {
                   Offerings
                 </MobileNavLink>
                 <MobileNavLink href="/natal-chart" active={isActive("/natal-chart")} onClick={closeMenu}>
-                  Natal Chart
+                  Birth Chart
                 </MobileNavLink>
                 <MobileNavLink href="/shop" active={isActive("/shop")} onClick={closeMenu}>
                   Shop

@@ -12,12 +12,12 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-transparent text-white py-16 relative z-10">
+    <footer className="bg-background text-foreground py-16 relative z-10 mt-safe border-t border-border/40">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
           <div className="text-center md:text-left max-w-sm">
-            <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4">OmFlor Wellness</h2>
-            <p className="text-gray-300 mb-6">
+            <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-foreground">OmFlor Wellness</h2>
+            <p className="text-muted-foreground mb-6 font-lato font-light leading-relaxed">
               Guiding you back to yourself through lunar wisdom, embodiment
               practices, and psychosomatic healing.
             </p>
@@ -43,11 +43,11 @@ export default function Footer() {
         </div>
 
         {/* Moon phase divider */}
-        <div className="my-12">
+        <div className="my-12 opacity-80">
           <MoonPhases color="gold" />
         </div>
 
-        <div className="text-center text-gray-400 text-sm">
+        <div className="text-center text-muted-foreground/80 text-sm font-lato font-light tracking-wide">
           <p>
             &copy; {new Date().getFullYear()} OmFlor Wellness. All rights
             reserved.
@@ -55,14 +55,14 @@ export default function Footer() {
           <div className="flex justify-center space-x-6 mt-4">
             <a
               href="/privacy"
-              className="hover:text-gray-300 transition duration-300"
+              className="hover:text-gold transition duration-300"
               onClick={(e) => handleNav(e, "/privacy")}
             >
               Privacy Policy
             </a>
             <a
               href="/terms"
-              className="hover:text-gray-300 transition duration-300"
+              className="hover:text-gold transition duration-300"
               onClick={(e) => handleNav(e, "/terms")}
             >
               Terms of Service
@@ -83,7 +83,7 @@ function SocialLink({ href, icon }: SocialLinkProps) {
   return (
     <a
       href={href}
-      className="text-gray-300 hover:text-gold transition duration-300"
+      className="text-muted-foreground hover:text-gold transition duration-300 transform hover:scale-110"
       target="_blank"
       rel="noopener noreferrer"
     >

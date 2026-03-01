@@ -562,7 +562,7 @@ export default function NatalChart() {
               </div>
               <div className="text-center">
                 <a
-                  href="/moon-masterclass"
+                  //href=""
                   className="inline-block bg-copper text-white py-3 px-6 rounded-lg font-semibold hover:bg-copper/90 transition duration-300 mr-4"
                 >
                   Get Your Moon Sign Rituals & Prompts

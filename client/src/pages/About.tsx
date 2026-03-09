@@ -22,11 +22,11 @@ export default function About() {
           transition={{ duration: 0.6 }}
         >
           {/* Circular portrait image */}
-          <div className="w-64 h-64 rounded-full overflow-hidden shadow-lg border-4 border-border flex-shrink-0 mx-auto md:mx-0">
+          <div className="w-64 h-64 rounded-full overflow-hidden shadow-lg border-4 border-border flex-shrink-0 mx-auto">
             <img
-              src="/images/new_1.jpg"
+              src="/images/new_3.jpg"
               alt="Founder portrait"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-[center_15%]"
             />
           </div>
 
@@ -34,18 +34,18 @@ export default function About() {
             <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper text-center md:text-left">
               Meet the Founder
             </h2>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <p className="text-espresso mb-4 leading-relaxed">
               As a Psychosomatic Wellness Counselor, I blend the ancient wisdom
               of astrology with modern embodiment practices and emotional
               healing techniques to guide you on your journey back to yourself.
             </p>
-            <p className="text-gray-700 mb-4 leading-relaxed">
+            <p className="text-espresso mb-4 leading-relaxed">
               My approach is deeply rooted in the understanding that our bodies
               hold wisdom, our emotions carry messages, and the cosmos provides
               a natural rhythm we can align with for greater harmony and
               wellbeing.
             </p>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-espresso leading-relaxed">
               With over a decade of study in somatic practices, lunar wisdom,
               and psychological healing modalities, I create safe spaces for
               exploration, growth, and transformation that honors your unique
@@ -83,14 +83,14 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <PhilosophyCard
               icon={<Sprout className="h-8 w-8" />}
-              title="Earth & Sky Connection"
+              title="Earth : Sky Connection"
               description="We believe in honoring both our earthly existence and cosmic connections. By aligning with natural rhythms, we find balance and purpose in our daily lives."
               color="olive"
             />
 
             <PhilosophyCard
               icon={<Brain className="h-8 w-8" />}
-              title="Mind-Body Integration"
+              title="Mind • Body Integration"
               description="Our approach integrates psychological understanding with somatic awareness, honoring the profound connection between emotional patterns and physical experience."
               color="terracotta"
             />
@@ -137,7 +137,7 @@ function PhilosophyCard({
 
   return (
     <motion.div
-      className="bg-white p-8 rounded-lg shadow-md"
+      className="bg-muted/40 p-8 rounded-lg shadow-md"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -145,7 +145,7 @@ function PhilosophyCard({
     >
       <div className={`text-3xl mb-4 ${colorClass}`}>{icon}</div>
       <h3 className="font-circe tracking-widest uppercase font-light text-xl mb-3 text-foreground">{title}</h3>
-      <p className="text-gray-700">{description}</p>
+      <p className="text-espresso">{description}</p>
     </motion.div>
   );
 }

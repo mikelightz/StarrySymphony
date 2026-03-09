@@ -50,10 +50,10 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           <a
             href="/"
-            className="text-foreground tracking-[0.2em] font-circe text-lg md:text-2xl uppercase flex items-center gap-2 transition-all duration-300 hover:text-copper"
+            className={`${scrolled ? "text-gold" : "text-cloth"} tracking-[0.2em] font-circe text-lg md:text-2xl uppercase flex items-center gap-2 transition-all duration-300 hover:text-copper`}
             onClick={(e) => handleNav(e, "/")}
           >
-            <span className="text-gold text-sm md:text-xl">✧</span> OMFLOR WELLNESS
+            <span className={`${scrolled ? "text-gold" : "text-cloth"} text-sm md:text-xl transition-colors duration-300`}>✧</span> OMFLOR WELLNESS
           </a>
 
           <div className="hidden md:flex space-x-10 items-center font-lato text-sm tracking-widest uppercase">
@@ -79,7 +79,7 @@ export default function Navbar() {
 
           <div className="flex items-center space-x-4">
             <button
-              className="md:hidden text-foreground hover:text-gold transition-colors"
+              className={`md:hidden ${scrolled ? "text-gold" : "text-cloth"} hover:text-copper transition-colors`}
               onClick={toggleMenu}
               aria-label="Toggle menu"
             >

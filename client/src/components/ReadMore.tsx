@@ -22,7 +22,7 @@ const ReadMore = ({ children, collapsedHeight = "10rem" }: ReadMoreProps) => {
 
         {/* 2. MOVED INSIDE: The gradient now lives here */}
         {!isExpanded && collapsedHeight !== "0px" && (
-          <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-muted/0 to-transparent pointer-events-none" />
         )}
       </motion.div>
 

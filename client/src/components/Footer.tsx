@@ -18,8 +18,7 @@ export default function Footer() {
           <div className="text-center md:text-left max-w-sm">
             <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-foreground">OmFlor Wellness</h2>
             <p className="text-muted-foreground mb-6 font-lato font-light leading-relaxed">
-              Guiding you back to yourself through lunar wisdom, embodiment
-              practices, and psychosomatic healing.
+              Your sacred space for astrological wisdom and embodied living.
             </p>
             <div className="flex justify-center md:justify-start space-x-4">
               <SocialLink

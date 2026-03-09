@@ -51,13 +51,18 @@ export default {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         // Brand colors (Earth tones, golden, moonlight accents)
-        earth: "hsl(var(--earth))",
-        sand: "hsl(var(--sand))",
-        forest: "hsl(var(--forest))",
-        copper: "hsl(var(--copper))",
-        gold: "hsl(var(--gold))",
-        moonlight: "hsl(var(--moonlight))",
-        floral: "hsl(var(--floral))",
+        verde: "hsl(var(--verde))",
+        dune: "hsl(var(--dune))",
+        cloth: "hsl(var(--cloth))",
+        clay: "hsl(var(--clay))",
+        casa: "hsl(var(--casa))",
+        oliva: "hsl(var(--oliva))",
+        "ambar-rustico": "hsl(var(--ambar-rustico))",
+        terracota: "hsl(var(--terracota))",
+        "areia-rose": "hsl(var(--areia-rose))",
+        marfim: "hsl(var(--marfim))",
+        espresso: "hsl(var(--espresso))",
+        nude: "hsl(var(--nude))",
         chart: {
           "1": "hsl(var(--chart-1))",
           "2": "hsl(var(--chart-2))",
@@ -75,6 +80,9 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      backgroundImage: {
+        'noise': "url('/images/noise_small.png')",
       },
       keyframes: {
         "accordion-down": {

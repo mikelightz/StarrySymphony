@@ -37,7 +37,7 @@ export default function Offerings() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="bg-white p-8 rounded-xl shadow-md">
+          <div className="bg-muted/40 p-8 rounded-xl shadow-md">
             <div className="flex flex-col md:flex-row gap-8">
               {/* An image showing a coaching or counseling session */}
               <div className="md:w-1/3 rounded-lg overflow-hidden">
@@ -52,12 +52,12 @@ export default function Offerings() {
                 <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper">
                   1:1 AstroSomatic Sessions
                 </h2>
-                <p className="text-gray-700 mb-4">
+                <p className="text-espresso mb-4">
                   These private sessions are a sanctuary for coming back into
                   relationship with your body, your emotions, and the grander
                   rhythms guiding your life.
                 </p>
-                <p className="text-gray-700 mb-4">
+                <p className="text-espresso mb-4">
                   Blending somatic awareness, astrology, and emotional
                   integration, our work together supports you in understanding
                   not just what is happening in your life, but how it is alive
@@ -71,7 +71,7 @@ export default function Offerings() {
                   </h3>
 
                   <ReadMore collapsedHeight="20px">
-                    <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                    <ul className="list-disc pl-5 text-espresso space-y-2">
                       <li>
                         <b>Somatic Moon Work</b>
                         <p>
@@ -104,7 +104,7 @@ export default function Offerings() {
                         </p>
                       </li>
                     </ul>
-                    <p className="text-gray-700 mt-4 mb-4">
+                    <p className="text-espresso mt-4 mb-4">
                       These sessions are ideal if you’re seeking deeper
                       self-trust, emotional clarity, and a more embodied
                       relationship with your life path.
@@ -117,7 +117,7 @@ export default function Offerings() {
                   <button
                     data-cal-link="omflorwellness/60min?overlayCalendar=true" // Check this slug in Cal.com!
                     data-cal-config='{"layout":"month_view"}'
-                    className="bg-copper text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto"
+                    className="bg-ambar-rustico text-cloth px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto"
                   >
                     BOOK NOW
                   </button>
@@ -136,7 +136,7 @@ export default function Offerings() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="bg-white p-8 rounded-xl shadow-md">
+          <div className="bg-muted/40 p-8 rounded-xl shadow-md">
             <div className="flex flex-col md:flex-row gap-8">
               {/* An image showing a coaching or counseling session */}
               <div className="md:w-1/3 rounded-lg overflow-hidden">
@@ -151,12 +151,12 @@ export default function Offerings() {
                   AstroSomatic Rebirth Intensive: A 10-Day Transformative
                   Immersion
                 </h2>
-                <p className="text-gray-700 mb-4">
+                <p className="text-espresso mb-4">
                   This 10-day immersion is a call to transform into your highest
                   expression . A guided descent and renewal designed to support
                   profound recalibration in body, psyche, and soul.
                 </p>
-                <p className="text-gray-700 mb-4">
+                <p className="text-espresso mb-4">
                   The AstroSomatic Rebirth Intensive weaves somatic practice,
                   astrological insight, and emotional integration into a
                   cohesive journey of release, remembrance, and re-embodiment.
@@ -164,7 +164,7 @@ export default function Offerings() {
                   deeper layers of patterning to surface, soften, and reorganize
                   in alignment with your natural rhythms.
                 </p>
-                <p className="text-gray-700 mb-4">
+                <p className="text-espresso mb-4">
                   This is about creating the conditions for your nervous system
                   to shed what it has outgrown and reorganize around truth,
                   vitality, and inner authority.
@@ -176,7 +176,7 @@ export default function Offerings() {
                   </h3>
 
                   <ReadMore collapsedHeight="20px">
-                    <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                    <ul className="list-disc pl-5 text-espresso space-y-2">
                       <li>
                         <b>Somatic Repatterning & Nervous System Reset</b>
                         <p>
@@ -212,7 +212,7 @@ export default function Offerings() {
                         </p>
                       </li>
                     </ul>
-                    <p className="text-gray-700 mt-4 mb-4">
+                    <p className="text-espresso mt-4 mb-4">
                       This immersion is ideal for those standing at a life
                       threshold, moving through major transition, or feeling the
                       call to shed an old skin and step into a more embodied,
@@ -232,7 +232,7 @@ export default function Offerings() {
                   href="https://buy.stripe.com/aFa14o3J98P9fkmgvkgEg02" // Paste your Stripe URL here
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-copper text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
+                  className="inline-block bg-ambar-rustico text-cloth px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
                 >
                   BOOK NOW
                 </a>
@@ -248,7 +248,7 @@ export default function Offerings() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="bg-white p-8 rounded-xl shadow-md">
+          <div className="bg-muted/40 p-8 rounded-xl shadow-md">
             <div className="flex flex-col md:flex-row gap-8">
               {/* An image showing a coaching or counseling session */}
               <div className="md:w-1/3 rounded-lg overflow-hidden">
@@ -262,19 +262,19 @@ export default function Offerings() {
                 <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper">
                   The Visionaries’ Homecoming: A 12 Week Container
                 </h2>
-                <p className="text-gray-700 mb-4">
+                <p className="text-espresso mb-4">
                   The Homecoming Journey is a 12 week immersion for creatives,
                   entrepreneurs, and change-makers who feel the pull toward
                   their next level of expression, impact, and alignment.
                 </p>
-                <p className="text-gray-700 mb-4">
+                <p className="text-espresso mb-4">
                   This container is designed as a season of elevation. Twelve
                   intentional weeks devoted to aligning your body, your vision,
                   and your real-world strategy so that what you create, lead,
                   and offer is no longer at odds with your nervous system,
                   energy, or soul blueprint.
                 </p>
-                <p className="text-gray-700 mb-4">
+                <p className="text-espresso mb-4">
                   Rather than hustling toward success or bypassing the body in
                   pursuit of vision, this journey supports you in building a
                   life and body that can actually hold what you are here to
@@ -287,7 +287,7 @@ export default function Offerings() {
                   </h3>
 
                   <ReadMore collapsedHeight="20px">
-                    <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                    <ul className="list-disc pl-5 text-espresso space-y-2">
                       <li>
                         <b>Somatic Leadership & Capacity Building</b>
                         <p>
@@ -324,7 +324,7 @@ export default function Offerings() {
                         </p>
                       </li>
                     </ul>
-                    <p className="text-gray-700 mt-4 mb-4">
+                    <p className="text-espresso mt-4 mb-4">
                       This container is ideal for those who know they are here
                       to build, lead, or create something meaningful and are
                       ready to do so without self-betrayal, depletion, or
@@ -349,7 +349,7 @@ export default function Offerings() {
                   href="https://buy.stripe.com/4gM8wQfrRaXhfkm6UKgEg03" // Paste your Stripe URL here
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-copper text-white px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
+                  className="inline-block bg-ambar-rustico text-cloth px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
                 >
                   BOOK NOW
                 </a>

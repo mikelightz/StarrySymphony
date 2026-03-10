@@ -9,7 +9,7 @@ export default {
         playfair: ["Playfair Display", "serif"],
         lato: ["Lato", "sans-serif"],
         prata: ["Prata", "serif"],
-        circe: ['"FONTSPRING DEMO - Circe Contrast"', "Prata", "serif"],
+        circe: ["circe", "Prata", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

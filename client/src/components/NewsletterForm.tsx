@@ -55,8 +55,8 @@ export default function NewsletterForm() {
   };
 
   return (
-    <div className="bg-oliva/100 rounded-lg p-6 max-w-md mx-auto md:mx-0">
-      <h3 className="font-circe tracking-widest uppercase font-light text-xl mb-4 text-center md:text-left text-cloth">
+    <div className="bg-verde/100 rounded-lg p-6 max-w-md mx-auto md:mx-0">
+      <h3 className="font-playfair tracking-widest uppercase font-light text-xl mb-4 text-center md:text-left text-cloth">
         Stay Astro Aligned
       </h3>
       <p className="text-cloth/90 mb-4 text-center md:text-left">

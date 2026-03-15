@@ -85,11 +85,10 @@ export default function Shop() {
     {
       id: 5,
       name: "AstroSomatics Guidebook",
-      price: 33.0,
+      price: 22.0,
       type: "DIGITAL",
       description: "",
-      imageUrl:
-        "https://omflor-wellness.s3.us-east-1.amazonaws.com/IMG_0007.jpg",
+      imageUrl: "/images/Guidebook_Banner.png",
     },
     {
       id: 6,
@@ -97,8 +96,7 @@ export default function Shop() {
       price: 44.0,
       type: "PRINT",
       description: "",
-      imageUrl:
-        "https://omflor-wellness.s3.us-east-1.amazonaws.com/IMG_7444_1.jpg",
+      imageUrl: "/images/Journal_Banner.png",
     },
   ].filter((product) => !productsToHide.includes(product.id)); // Filter hardcoded products
 
@@ -106,7 +104,7 @@ export default function Shop() {
     <div className="pt-24 pb-16 bg-neutral bg-opacity-20">
       <div className="container-custom max-w-5xl">
         <motion.h1
-          className="font-circe tracking-widest uppercase font-light text-4xl md:text-5xl text-center mb-16 text-foreground"
+          className="font-playfair tracking-widest uppercase font-light text-4xl md:text-5xl text-center mb-16 text-foreground"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -132,19 +130,19 @@ export default function Shop() {
                     onAddToCart={
                       product.id === 5
                         ? () =>
-                            window.open(
-                              "https://payhip.com/b/bPHMX",
-                              "_blank",
-                              "noopener,noreferrer"
-                            )
+                          window.open(
+                            "https://payhip.com/b/bPHMX",
+                            "_blank",
+                            "noopener,noreferrer"
+                          )
                         : product.id === 6
-                        ? () =>
+                          ? () =>
                             window.open(
                               "https://www.amazon.com/dp/B0FWN7MK3V/?_encoding=UTF8&ref_=navm_hdr_signin",
                               "_blank",
                               "noopener,noreferrer"
                             )
-                        : handleAddToCart
+                          : handleAddToCart
                     }
                   />
                 ))}
@@ -160,10 +158,10 @@ export default function Shop() {
                     key={product.id}
                     product={product}
                     onAddToCart={handleAddToCart}
-                    // If product.id 5 comes from API, you'd need similar conditional logic here:
-                    // isExternalLink={product.id === 5}
-                    // onAddToCart={product.id === 5 ?
-                    // () => window.open("https://payhip.com/b/bPHMX", "_blank", "noopener,noreferrer") : handleAddToCart}
+                  // If product.id 5 comes from API, you'd need similar conditional logic here:
+                  // isExternalLink={product.id === 5}
+                  // onAddToCart={product.id === 5 ?
+                  // () => window.open("https://payhip.com/b/bPHMX", "_blank", "noopener,noreferrer") : handleAddToCart}
                   />
                 ))
             )}
@@ -207,21 +205,20 @@ function ProductCard({
 
       <div className="p-6">
         <div className="flex justify-between items-start mb-4">
-          <h2 className="font-circe tracking-widest uppercase font-light text-2xl text-foreground">
+          <h2 className="font-playfair tracking-widest uppercase font-light text-2xl text-foreground">
             {product.name}
           </h2>
           <span
             className={`
             px-4 py-1 rounded-full text-sm text-white
-            ${
-              product.type === "DIGITAL"
+            ${product.type === "DIGITAL"
                 ? "bg-foreground"
                 : product.type === "PRINT"
-                ? "bg-copper"
-                : product.type === "COURSE"
-                ? "bg-gold"
-                : "bg-foreground"
-            }
+                  ? "bg-copper"
+                  : product.type === "COURSE"
+                    ? "bg-gold"
+                    : "bg-foreground"
+              }
           `}
           >
             {product.type}
@@ -259,7 +256,7 @@ function ProductCard({
             View Details
           </a>
           <button
-            className="bg-forest hover:bg-opacity-90 text-white px-6 py-3 rounded-lg transition duration-300"
+            className="bg-verde hover:bg-opacity-90 text-white px-6 py-3 rounded-lg transition duration-300"
             // Conditional onClick handler based on isExternalLink prop
             onClick={() => {
               if (isExternalLink) {

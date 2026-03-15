@@ -21,7 +21,7 @@ export default function Offerings() {
     <div className="pt-24 pb-16">
       <div className="container-custom max-w-4xl">
         <motion.h1
-          className="font-circe tracking-widest uppercase font-light text-4xl md:text-5xl text-center mb-16 text-foreground"
+          className="font-playfair tracking-widest uppercase font-light text-4xl md:text-5xl text-center mb-16 text-foreground"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -42,15 +42,15 @@ export default function Offerings() {
               {/* An image showing a coaching or counseling session */}
               <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800&q=80"
+                  src="/images/alignment_sesh.png"
                   alt="One-on-one counseling session"
-                  className="w-full aspect-[3/4] object-cover"
+                  className="w-full object-cover"
                 />
               </div>
 
               <div className="md:w-2/3">
-                <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper">
-                  1:1 AstroSomatic Sessions
+                <h2 className="font-playfair tracking-widest uppercase font-light text-2xl mb-4 text-copper">
+                  1:1 Alignment Sessions
                 </h2>
                 <p className="text-espresso mb-4">
                   These private sessions are a sanctuary for coming back into
@@ -141,13 +141,13 @@ export default function Offerings() {
               {/* An image showing a coaching or counseling session */}
               <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1599631438215-75bc2640feb8?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src="/images/snake_banner.png"
                   alt="black and blue butterfly in close up"
                   className="w-full aspect-[3/4] object-cover"
                 />
               </div>
               <div className="md:w-2/3">
-                <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper">
+                <h2 className="font-playfair tracking-widest uppercase font-light text-2xl mb-4 text-copper">
                   AstroSomatic Rebirth Intensive: A 10-Day Transformative
                   Immersion
                 </h2>
@@ -259,7 +259,7 @@ export default function Offerings() {
                 />
               </div>
               <div className="md:w-2/3">
-                <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper">
+                <h2 className="font-playfair tracking-widest uppercase font-light text-2xl mb-4 text-copper">
                   The Visionaries’ Homecoming: A 12 Week Container
                 </h2>
                 <p className="text-espresso mb-4">
@@ -369,7 +369,7 @@ export default function Offerings() {
           <div className="bg-white p-8 rounded-xl shadow-md">
             <div className="flex flex-col md:flex-row gap-8">
               <div className="md:w-2/3 order-2 md:order-1">
-                <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper">
+                <h2 className="font-playfair tracking-widest uppercase font-light text-2xl mb-4 text-copper">
                   Moon Masterclass
                 </h2>
                 <p className="text-gray-700 mb-4">
@@ -441,7 +441,7 @@ export default function Offerings() {
               </div>
 
               <div className="md:w-2/3">
-                <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper">
+                <h2 className="font-playfair tracking-widest uppercase font-light text-2xl mb-4 text-copper">
                   The Somatic Moon Journal
                 </h2>
                 <p className="text-gray-700 mb-4">

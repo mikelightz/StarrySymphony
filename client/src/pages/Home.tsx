@@ -22,7 +22,7 @@ export default function Home() {
               initial="hidden" animate="visible" variants={fadeIn}
               className="flex-1 text-center lg:text-left z-20"
             >
-              <h1 className="font-circe text-5xl md:text-7xl lg:text-[6rem] text-cloth mb-6 md:mb-8 capitalize tracking-normal leading-[1.1]">
+              <h1 className="font-playfair text-5xl md:text-7xl lg:text-[6rem] text-cloth mb-6 md:mb-8 capitalize tracking-normal leading-[1.1]">
                 OMFLOR<br />WELLNESS
               </h1>
 
@@ -114,26 +114,28 @@ export default function Home() {
               </motion.div>
 
               <motion.div
-                className="order-1 lg:order-2 lg:w-8/12 bg-terracota/80 backdrop-blur-md p-8 md:p-12 lg:p-16 rounded-3xl border border-white/10 shadow-2xl z-20 lg:-ml-12"
+                className="order-1 lg:order-2 lg:w-8/12 bg-dune/80 backdrop-blur-md p-8 md:p-12 lg:p-16 rounded-3xl border border-white/10 shadow-2xl z-20 lg:-ml-12"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
                 <div className="space-y-6 lg:space-y-8">
-                  <h2 className="font-circe text-4xl md:text-5xl lg:text-6xl text-oliva font-normal capitalize drop-shadow-sm">
+                  <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-gold font-normal capitalize drop-shadow-sm">
                     OUR MISSION
                   </h2>
                   <div className="space-y-4 lg:space-y-6 font-lato text-cloth md:text-lg text-cloth/90 leading-relaxed font-light drop-shadow-md">
                     <p>
-                      At OmFlor Wellness, we believe that true transformation happens when we align with both our inner wisdom and the natural rhythms that surround us. Our approach combines somatic embodiment practices, astrological wisdom, and psycho-spiritual guidance to help you reconnect and reimagine yourself in a holistic way.
+                      At OmFlor Wellness, we believe that true transformation happens when we align with both our inner wisdom and the natural rhythms that surround us. Our approach combines somatic embodiment practices, astrological & earthly wisdom, and psycho-spiritual guidance to help you reconnect and reimagine yourself in a holistic way.
                     </p>
                     <p>
                       Through intentional practices and gentle awareness, we create a nurturing space for you to honor your body's wisdom and harness the power of celestial cycles for profound personal and creative expression.
                     </p>
                   </div>
 
-                  <button className="bg-cloth text-dune hover:bg-white hover:text-black px-8 py-3 rounded-sm transition-all duration-300 font-lato tracking-widest text-xs uppercase mt-6">
+                  <button
+                    onClick={() => navigate('/about')}
+                    className="bg-cloth text-dune hover:bg-white hover:text-black px-8 py-3 rounded-sm transition-all duration-300 font-lato tracking-widest text-xs uppercase mt-6">
                     Read More
                   </button>
                 </div>
@@ -145,7 +147,7 @@ export default function Home() {
               <FeatureCard
                 icon={<Moon className="h-8 w-8 md:h-10 md:w-10 text-dune" strokeWidth={1} />}
                 title="Celestial Wisdom"
-                description="Harness the energy of moon phases to align your self-care practices with natural cycles."
+                description="Harness the energy of planetary movements to align your self-nourishment practices with natural cycles."
               />
 
               <FeatureCard
@@ -189,10 +191,10 @@ export default function Home() {
       <div className="py-20 md:py-32 px-4 relative z-10 bg-dune/90">
         <div className="container-custom max-w-6xl mx-auto">
           <div className="text-center mb-16 md:mb-24">
-            <h2 className="font-circe text-4xl md:text-5xl lg:text-6xl text-cloth font-normal capitalize mb-4">
-              Sacred Transformations
+            <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-gold font-normal capitalize mb-4">
+              Sacred Integrations
             </h2>
-            <p className="text-cloth/80 font-lato text-sm tracking-widest uppercase">
+            <p className="text-clay/80 font-lato text-sm tracking-widest uppercase">
               Hear from those who have journeyed with us.
             </p>
           </div>
@@ -200,11 +202,11 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <TestimonialCard
               quote="The embodiment practices have completely transformed how I handle stress. I finally feel connected to my body again after years of living entirely in my head."
-              author="Sarah Jenkins"
+              author="Sarah"
             />
             <TestimonialCard
               quote="Understanding my natural rhythms through the lunar cycles has brought so much peace and productivity to my life. OmFlor's guidance is truly invaluable."
-              author="Michael Chen"
+              author="Michael"
             />
           </div>
         </div>
@@ -229,7 +231,7 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
       viewport={{ once: true }}
     >
       <div className="mb-4 md:mb-6 p-3 md:p-4 bg-background rounded-full">{icon}</div>
-      <h3 className="font-circe text-xl md:text-2xl mb-3 md:mb-4 text-cloth tracking-wider uppercase">{title}</h3>
+      <h3 className="font-playfair text-xl md:text-2xl mb-3 md:mb-4 text-cloth tracking-wider uppercase">{title}</h3>
       <p className="text-espresso font-lato font-light text-sm md:text-base leading-relaxed">{description}</p>
     </motion.div>
   );
@@ -257,7 +259,7 @@ function ServiceCard({ image, title, description }: ServiceCardProps) {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
         />
       </div>
-      <h3 className="font-circe text-2xl mb-3 text-cloth capitalize">{title}</h3>
+      <h3 className="font-playfair text-2xl mb-3 text-cloth capitalize">{title}</h3>
       <p className="text-cloth/90 font-lato font-light text-sm leading-relaxed mb-4 max-w-[250px]">{description}</p>
       <button className="bg-clay text-background hover:bg-dune px-6 py-2 rounded-sm text-xs tracking-widest uppercase font-lato transition-colors">
         More
@@ -294,7 +296,7 @@ function TestimonialCard({ quote, author }: TestimonialCardProps) {
         <p className="font-lato font-light text-espresso leading-relaxed md:leading-loose text-base md:text-lg mb-6 md:mb-8 italic">
           {quote}
         </p>
-        <p className="font-circe text-espresso uppercase tracking-widest text-xs md:text-sm">— {author}</p>
+        <p className="font-playfair text-espresso uppercase tracking-widest text-xs md:text-sm">— {author}</p>
       </div>
     </motion.div>
   );

@@ -50,7 +50,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           <a
             href="/"
-            className={`${scrolled ? "text-gold" : "text-cloth"} tracking-[0.2em] font-circe text-lg md:text-2xl uppercase flex items-center gap-2 transition-all duration-300 hover:text-copper`}
+            className={`${scrolled ? "text-gold" : "text-cloth"} tracking-[0.2em] font-playfair text-lg md:text-2xl uppercase flex items-center gap-2 transition-all duration-300 hover:text-copper`}
             onClick={(e) => handleNav(e, "/")}
           >
             <span className={`${scrolled ? "text-gold" : "text-cloth"} text-sm md:text-xl transition-colors duration-300`}>✧</span> OMFLOR WELLNESS

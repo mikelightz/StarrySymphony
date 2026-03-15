@@ -52,7 +52,7 @@ export default function Cart() {
     <div className="pt-24 pb-16">
       <div className="container-custom max-w-4xl">
         <motion.h1
-          className="font-circe tracking-widest uppercase font-light text-4xl md:text-5xl text-center mb-8 text-foreground"
+          className="font-playfair tracking-widest uppercase font-light text-4xl md:text-5xl text-center mb-8 text-foreground"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -120,7 +120,7 @@ export default function Cart() {
         ) : (
           <div className="text-center py-12 bg-white rounded-xl shadow-md">
             <ShoppingBag size={48} className="mx-auto text-gray-300 mb-4" />
-            <h2 className="text-2xl font-circe tracking-widest uppercase font-light mb-4 text-foreground">
+            <h2 className="text-2xl font-playfair tracking-widest uppercase font-light mb-4 text-foreground">
               Your cart is empty
             </h2>
             <p className="text-gray-500 mb-8">

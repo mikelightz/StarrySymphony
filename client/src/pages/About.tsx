@@ -7,7 +7,7 @@ export default function About() {
     <div className="pt-24 pb-16">
       <div className="container-custom max-w-4xl">
         <motion.h1
-          className="font-circe tracking-widest uppercase font-light text-4xl md:text-5xl text-center mb-16 text-foreground"
+          className="font-playfair tracking-widest uppercase font-light text-4xl md:text-5xl text-center mb-16 text-foreground"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -31,25 +31,17 @@ export default function About() {
           </div>
 
           <div>
-            <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-copper text-center md:text-left">
-              Meet the Founder
+            <h2 className="font-playfair tracking-widest uppercase font-light text-2xl mb-4 text-copper text-center md:text-left">
+              Meet the Founder — Sierra Flor
             </h2>
             <p className="text-espresso mb-4 leading-relaxed">
-              As a Psychosomatic Wellness Counselor, I blend the ancient wisdom
-              of astrology with modern embodiment practices and emotional
-              healing techniques to guide you on your journey back to yourself.
+              As a Somatic Astrologer & Wellness Counselor, I blend the ancient wisdom of astrology with modern embodiment practices and nervous system regulation techniques to guide you on your journey to harmonious living and authentic expression.
             </p>
             <p className="text-espresso mb-4 leading-relaxed">
-              My approach is deeply rooted in the understanding that our bodies
-              hold wisdom, our emotions carry messages, and the cosmos provides
-              a natural rhythm we can align with for greater harmony and
-              wellbeing.
+              My approach is deeply rooted in the understanding that our bodies hold answers, our emotions carry messages, and the cosmos provides a natural rhythm mirrored on earth that we can align with for greater harmony and wellbeing.
             </p>
             <p className="text-espresso leading-relaxed">
-              With over a decade of study in somatic practices, lunar wisdom,
-              and psychological healing modalities, I create safe spaces for
-              exploration, growth, and transformation that honors your unique
-              path.
+              With over a decade of study in astrological wisdom, somatic practices, and psychological healing modalities, I create safe, nurturing spaces for exploration, growth, and impact that honors your unique path.
             </p>
           </div>
         </motion.div>
@@ -57,7 +49,7 @@ export default function About() {
         {/* Philosophy Section */}
         <div className="mt-20">
           <motion.h2
-            className="font-circe tracking-widest uppercase font-light text-3xl text-center mb-10 text-foreground"
+            className="font-playfair tracking-widest uppercase font-light text-3xl text-center mb-10 text-foreground"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -74,16 +66,16 @@ export default function About() {
             viewport={{ once: true }}
           >
             <img
-              src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=500&q=80"
+              src="/images/IMG_0535.jpg"
               alt="Serene nature landscape"
-              className="w-full h-auto"
+              className="w-full h-64 md:h-80 object-cover object-[center_35%]"
             />
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <PhilosophyCard
               icon={<Sprout className="h-8 w-8" />}
-              title="Earth : Sky Connection"
+              title="Earth • Sky Connection"
               description="We believe in honoring both our earthly existence and cosmic connections. By aligning with natural rhythms, we find balance and purpose in our daily lives."
               color="olive"
             />
@@ -97,15 +89,15 @@ export default function About() {
 
             <PhilosophyCard
               icon={<Moon className="h-8 w-8" />}
-              title="Lunar Wisdom"
-              description="We use the cycles of the moon as a powerful framework for personal growth, self-reflection, and renewal, honoring ancient traditions in a modern context."
+              title="Planetary Wisdom"
+              description="We use the movements of the planets as a powerful framework for personal growth, self-reflection, and renewal, honoring ancient traditions in a modern context."
               color="gold"
             />
 
             <PhilosophyCard
               icon={<HandHelping className="h-8 w-8" />}
               title="Embodied Practice"
-              description="We believe true transformation happens when we honor the body's wisdom through intentional awareness, movement, and somatic practices."
+              description="We believe true transformation happens when we honor the body's wisdom through intentional awareness, movement, and inspired action."
               color="deepblue"
             />
           </div>
@@ -144,7 +136,7 @@ function PhilosophyCard({
       viewport={{ once: true }}
     >
       <div className={`text-3xl mb-4 ${colorClass}`}>{icon}</div>
-      <h3 className="font-circe tracking-widest uppercase font-light text-xl mb-3 text-foreground">{title}</h3>
+      <h3 className="font-playfair tracking-widest uppercase font-light text-xl mb-3 text-foreground">{title}</h3>
       <p className="text-espresso">{description}</p>
     </motion.div>
   );

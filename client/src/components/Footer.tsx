@@ -16,7 +16,7 @@ export default function Footer() {
       <div className="container-custom">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
           <div className="text-center md:text-left max-w-sm">
-            <h2 className="font-circe tracking-widest uppercase font-light text-2xl mb-4 text-foreground">OmFlor Wellness</h2>
+            <h2 className="font-playfair tracking-widest uppercase font-light text-2xl mb-4 text-foreground">OmFlor Wellness</h2>
             <p className="text-muted-foreground mb-6 font-lato font-light leading-relaxed">
               Your sacred space for astrological wisdom and embodied living.
             </p>

@@ -14,7 +14,7 @@ export default function MoonMasterclass() {
           animate="visible"
           variants={fadeIn}
         >
-          <h1 className="font-circe tracking-widest uppercase font-light text-4xl md:text-5xl text-foreground mb-6">
+          <h1 className="font-playfair tracking-widest uppercase font-light text-4xl md:text-5xl text-foreground mb-6">
             Unlock Your Inner Wisdom with the Moon Masterclass
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -33,7 +33,7 @@ export default function MoonMasterclass() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-copper mb-6 text-center">
+          <h2 className="font-playfair tracking-widest uppercase font-light text-3xl text-copper mb-6 text-center">
             Are You Ready to Align with Nature's Rhythm?
           </h2>
           <div className="text-gray-700 space-y-4">
@@ -54,7 +54,7 @@ export default function MoonMasterclass() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground mb-10 text-center">
+          <h2 className="font-playfair tracking-widest uppercase font-light text-3xl text-foreground mb-10 text-center">
             What You'll Discover in the Masterclass:
           </h2>
           
@@ -69,7 +69,7 @@ export default function MoonMasterclass() {
                 </div>
               </div>
               <div className="md:w-3/4">
-                <h3 className="text-xl font-circe tracking-widest uppercase font-light text-copper mb-3">
+                <h3 className="text-xl font-playfair tracking-widest uppercase font-light text-copper mb-3">
                   Video Modules: Journey Through Each Moon Phase
                 </h3>
                 <p className="text-gray-700 mb-4">
@@ -97,7 +97,7 @@ export default function MoonMasterclass() {
                 </div>
               </div>
               <div className="md:w-3/4">
-                <h3 className="text-xl font-circe tracking-widest uppercase font-light text-forest mb-3">
+                <h3 className="text-xl font-playfair tracking-widest uppercase font-light text-forest mb-3">
                   Somatic Practices: Embodying Lunar Wisdom
                 </h3>
                 <p className="text-gray-700">
@@ -119,7 +119,7 @@ export default function MoonMasterclass() {
                 </div>
               </div>
               <div className="md:w-3/4">
-                <h3 className="text-xl font-circe tracking-widest uppercase font-light text-foreground mb-3">
+                <h3 className="text-xl font-playfair tracking-widest uppercase font-light text-foreground mb-3">
                   Journaling Prompts & Reflection Exercises
                 </h3>
                 <p className="text-gray-700">
@@ -140,7 +140,7 @@ export default function MoonMasterclass() {
                 </div>
               </div>
               <div className="md:w-3/4">
-                <h3 className="text-xl font-circe tracking-widest uppercase font-light text-copper mb-3">
+                <h3 className="text-xl font-playfair tracking-widest uppercase font-light text-copper mb-3">
                   Lunar Tracking Tools & Templates
                 </h3>
                 <p className="text-gray-700">
@@ -158,7 +158,7 @@ export default function MoonMasterclass() {
                 </div>
               </div>
               <div className="md:w-3/4">
-                <h3 className="text-xl font-circe tracking-widest uppercase font-light text-gold mb-3">
+                <h3 className="text-xl font-playfair tracking-widest uppercase font-light text-gold mb-3">
                   BONUS: Seasonal Lunar Guides
                 </h3>
                 <p className="text-gray-700">
@@ -177,7 +177,7 @@ export default function MoonMasterclass() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground mb-8 text-center">
+          <h2 className="font-playfair tracking-widest uppercase font-light text-3xl text-foreground mb-8 text-center">
             Is This Masterclass For You?
           </h2>
           
@@ -249,7 +249,7 @@ export default function MoonMasterclass() {
             </div>
             
             <div className="md:w-2/3">
-              <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground mb-4 text-center md:text-left">
+              <h2 className="font-playfair tracking-widest uppercase font-light text-3xl text-foreground mb-4 text-center md:text-left">
                 Meet Your Guide, Sierra Flor
               </h2>
               <p className="text-gray-700 mb-4">
@@ -270,7 +270,7 @@ export default function MoonMasterclass() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground mb-8 text-center">
+          <h2 className="font-playfair tracking-widest uppercase font-light text-3xl text-foreground mb-8 text-center">
             What You'll Gain:
           </h2>
           
@@ -375,7 +375,7 @@ export default function MoonMasterclass() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground mb-10 text-center">
+          <h2 className="font-playfair tracking-widest uppercase font-light text-3xl text-foreground mb-10 text-center">
             What Our Students Say
           </h2>
           
@@ -411,7 +411,7 @@ export default function MoonMasterclass() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-circe tracking-widest uppercase font-light text-3xl mb-6">
+          <h2 className="font-playfair tracking-widest uppercase font-light text-3xl mb-6">
             Ready to Begin Your Lunar Journey?
           </h2>
           <p className="text-xl mb-8">Investment: $197</p>
@@ -435,7 +435,7 @@ export default function MoonMasterclass() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground mb-8 text-center">
+          <h2 className="font-playfair tracking-widest uppercase font-light text-3xl text-foreground mb-8 text-center">
             Frequently Asked Questions
           </h2>
           

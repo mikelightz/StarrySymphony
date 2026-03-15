@@ -158,7 +158,7 @@ export default function Checkout() {
                 <Sparkles className="h-8 w-8 text-gold" />
               </div>
             </div>
-            <h1 className="font-circe tracking-widest uppercase font-light text-3xl font-bold text-foreground mb-2">
+            <h1 className="font-playfair tracking-widest uppercase font-light text-3xl font-bold text-foreground mb-2">
               Complete Your Purchase
             </h1>
             <p className="text-gray-600">Secure checkout powered by Stripe</p>

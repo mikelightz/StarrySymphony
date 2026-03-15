@@ -272,7 +272,7 @@ export default function NatalChart() {
               <Sparkles className="h-12 w-12 text-gold" />
             </div>
           </div>
-          <h1 className="font-circe tracking-widest uppercase font-light text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h1 className="font-playfair tracking-widest uppercase font-light text-4xl md:text-5xl font-bold text-foreground mb-6">
             Unlock Your Cosmic Blueprint
           </h1>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
@@ -290,7 +290,7 @@ export default function NatalChart() {
               animate="visible"
               variants={slideUp}
             >
-              <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground mb-6">
+              <h2 className="font-playfair tracking-widest uppercase font-light text-3xl text-foreground mb-6">
                 You are more than your Sun sign.
               </h2>
               <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
@@ -308,7 +308,7 @@ export default function NatalChart() {
               variants={slideUp}
               custom={0.2}
             >
-              <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground text-center mb-8">
+              <h2 className="font-playfair tracking-widest uppercase font-light text-3xl text-foreground text-center mb-8">
                 What You'll Receive
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -350,7 +350,7 @@ export default function NatalChart() {
               variants={slideUp}
               custom={0.4}
             >
-              <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground text-center mb-8">
+              <h2 className="font-playfair tracking-widest uppercase font-light text-3xl text-foreground text-center mb-8">
                 Begin Below:
               </h2>
               <form onSubmit={calculateChart} className="space-y-6">
@@ -511,7 +511,7 @@ export default function NatalChart() {
                   <Star className="h-12 w-12 text-gold" />
                 </div>
               </div>
-              <h2 className="font-circe tracking-widest uppercase font-light text-3xl text-foreground mb-4">
+              <h2 className="font-playfair tracking-widest uppercase font-light text-3xl text-foreground mb-4">
                 Hello {results?.name}, here is your cosmic blueprint:
               </h2>
             </div>
@@ -520,7 +520,7 @@ export default function NatalChart() {
                 <div className="text-center p-6 bg-copper/10 rounded-lg">
                   <Sun className="h-8 w-8 text-copper mx-auto mb-3" />
                   <h3 className="font-semibold text-foreground mb-2">Sun Sign</h3>
-                  <p className="text-2xl font-circe tracking-widest uppercase font-light text-copper">
+                  <p className="text-2xl font-playfair tracking-widest uppercase font-light text-copper">
                     {results?.sun}
                   </p>
                   <p className="text-sm text-gray-600 mt-2">
@@ -532,7 +532,7 @@ export default function NatalChart() {
                   <h3 className="font-semibold text-foreground mb-2">
                     Moon Sign
                   </h3>
-                  <p className="text-2xl font-circe tracking-widest uppercase font-light text-forest">
+                  <p className="text-2xl font-playfair tracking-widest uppercase font-light text-forest">
                     {results?.moon}
                   </p>
                   <p className="text-sm text-gray-600 mt-2">
@@ -544,7 +544,7 @@ export default function NatalChart() {
                   <h3 className="font-semibold text-foreground mb-2">
                     Rising Sign
                   </h3>
-                  <p className="text-2xl font-circe tracking-widest uppercase font-light text-gold">
+                  <p className="text-2xl font-playfair tracking-widest uppercase font-light text-gold">
                     {results?.rising}
                   </p>
                   <p className="text-sm text-gray-600 mt-2">

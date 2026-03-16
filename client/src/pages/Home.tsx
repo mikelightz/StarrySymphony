@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useLocation } from "wouter";
 import { Star, Moon, Heart } from "lucide-react";
@@ -6,6 +7,16 @@ import { fadeIn, slideUp } from "@/lib/animations";
 
 export default function Home() {
   const [_, navigate] = useLocation();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Force play on mount to bypass mobile browser restrictions on standard autoPlay attributes
+    if (videoRef.current) {
+      videoRef.current.play().catch((err) => {
+        console.warn("Mobile browser blocked autoplay:", err);
+      });
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-cloth">
@@ -53,6 +64,7 @@ export default function Home() {
               {/* Arched image container */}
               <div className="relative z-10 w-[65%] sm:w-[50%] md:w-[60%] lg:w-[80%] aspect-[3/4] rounded-t-full overflow-hidden shadow-2xl bg-black/5 mx-auto lg:mr-0 lg:ml-auto">
                 <video
+                  ref={videoRef}
                   className="w-full h-full object-cover"
                   autoPlay
                   loop
@@ -126,11 +138,11 @@ export default function Home() {
                   <h2 className="font-playfair text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-gold font-normal capitalize drop-shadow-sm leading-none">
                     OUR MISSION
                   </h2>
-                  <div className="space-y-3 sm:space-y-4 lg:space-y-6 font-lato text-cloth text-[11px] sm:text-xs md:text-lg leading-relaxed md:leading-relaxed font-light drop-shadow-md">
+                  <div className="space-y-3 sm:space-y-4 lg:space-y-6 font-lato text-cloth text-[11px] sm:text-xs md:text-lg leading-relaxed md:leading-relaxed font-light drop-shadow-md max-h-[110px] sm:max-h-none overflow-y-auto scrollbar-hide">
                     <p>
                       At OmFlor Wellness, we believe that true transformation happens when we align with both our inner wisdom and the natural rhythms that surround us. Our approach combines somatic embodiment practices, astrological & earthly wisdom, and psycho-spiritual guidance to help you reconnect and reimagine yourself in a holistic way.
                     </p>
-                    <p className="hidden sm:block">
+                    <p>
                       Through intentional practices and gentle awareness, we create a nurturing space for you to honor your body's wisdom and harness the power of celestial cycles for profound personal and creative expression.
                     </p>
                   </div>

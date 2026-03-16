@@ -215,17 +215,17 @@ function calculateMeanLilith(jd: number) {
 }
 
 function calculateChiron(jd: number) {
-  const d = jd - 2451545.0; 
-  const n = 0.019553; 
+  const d = jd - 2451545.0;
+  const n = 0.019553;
   let M = (113.3 + n * d) % 360;
   if (M < 0) M += 360;
-  const e = 0.381; 
+  const e = 0.381;
   let M_rad = M * Math.PI / 180;
   let E = M_rad;
   for (let i = 0; i < 5; i++) {
     E = E - (E - e * Math.sin(E) - M_rad) / (1 - e * Math.cos(E));
   }
-  const v = 2 * Math.atan(Math.sqrt((1 + e)/(1 - e)) * Math.tan(E / 2));
+  const v = 2 * Math.atan(Math.sqrt((1 + e) / (1 - e)) * Math.tan(E / 2));
   let v_deg = v * 180 / Math.PI;
   if (v_deg < 0) v_deg += 360;
   return (v_deg + 339.9) % 360;
@@ -396,11 +396,11 @@ export default function NatalChart() {
         // Today's Longitude
         const eq = Equator(p.body, birthDateUTC, observer, true, true);
         const pLon = getEclipticLon(eq.ra, eq.dec);
-        
+
         // Tomorrow's Longitude (for Retrograde)
         const eqFuture = Equator(p.body, futureDate, observer, true, true);
         const pLonFuture = getEclipticLon(eqFuture.ra, eqFuture.dec);
-        
+
         // Handle 359 -> 0 degree wrap for Retrograde calculations
         let diff = pLonFuture - pLon;
         if (diff > 180) diff -= 360;
@@ -462,7 +462,7 @@ export default function NatalChart() {
       for (let i = 0; i < placements.length; i++) {
         for (let j = i + 1; j < placements.length; j++) {
           const diff = getAngleDiff(placements[i].lon, placements[j].lon);
-          
+
           for (const aspect of ASPECTS) {
             if (Math.abs(diff - aspect.angle) <= aspect.orb) {
               calculatedAspects.push(`${placements[i].label} ${aspect.name} ${placements[j].label}`);
@@ -782,7 +782,7 @@ export default function NatalChart() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-gold text-white py-3 px-6 rounded-lg font-semibold hover:bg-gold/90 transition duration-300 transform hover:scale-105 disabled:bg-gray-400"
+                  className="w-full bg-dune text-white py-3 px-6 rounded-lg font-semibold hover:bg-dune/90 transition duration-300 transform hover:scale-105 disabled:bg-gray-400 disabled:opacity-50 disabled:hover:scale-100"
                   disabled={isLoading}
                 >
                   {isLoading ? "Decoding the Cosmos..." : "Generate My Chart"}
@@ -876,7 +876,7 @@ export default function NatalChart() {
                   <p className="text-sm text-gray-600 mb-6 font-lato">
                     Enter your email to receive a beautiful copy of these results, including a complete list of your generated planetary aspects.
                   </p>
-                  
+
                   {emailStatus === "success" ? (
                     <div className="bg-forest/10 border border-forest/30 text-forest px-4 py-3 rounded-lg flex items-center justify-center">
                       <Check className="h-5 w-5 mr-2" />
@@ -895,7 +895,11 @@ export default function NatalChart() {
                       <button
                         onClick={handleSendEmail}
                         disabled={isSendingEmail || !emailInput}
-                        className="bg-gold text-white py-3 px-6 rounded-lg font-semibold hover:bg-gold/90 transition duration-300 disabled:bg-gray-400 whitespace-nowrap"
+                        className={`py-3 px-6 rounded-lg font-semibold transition duration-300 whitespace-nowrap ${
+                          isSendingEmail || !emailInput
+                            ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                            : "bg-dune text-white hover:bg-dune/90 transform hover:scale-105"
+                        }`}
                       >
                         {isSendingEmail ? "Sending..." : "Send to Email"}
                       </button>

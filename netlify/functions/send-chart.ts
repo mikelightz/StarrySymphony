@@ -54,9 +54,15 @@ export const handler: Handler = async (event) => {
       return styles[sign] || { icon: "", color: "#333" };
     };
 
+    // Dynamically retrieve the domain for absolute image paths
+    const baseUrl = event.headers.origin || event.headers.referer || "https://www.omflorwellness.com";
+    
     // Basic HTML template for the email
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; background-color: #fdfaf6; padding: 20px; border-radius: 8px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <img src="${baseUrl}/images/email_banner.jpg" alt="OmFlor Wellness" style="max-width: 100%; height: auto; border-radius: 8px; display: block; margin: 0 auto;" />
+        </div>
         <h1 style="color: #6a4f4b; text-align: center;">Your Cosmic Blueprint, ${name || "Friend"}</h1>
         <p style="font-size: 16px;">Here is the full summary of your generated Natal Chart from OmFlor Wellness.</p>
         
@@ -82,6 +88,11 @@ export const handler: Handler = async (event) => {
           </table>
         </div>
 
+        <div style="background-color: #f8f1e9; padding: 25px 20px; border-radius: 8px; margin: 25px 0; text-align: center; border: 1px dashed #dcb994;">
+          <h3 style="color: #8c6b45; margin-top: 0; font-size: 20px;">1:1 Alignment Sessions</h3>
+          <p style="font-size: 16px; margin-bottom: 0; color: #555;">Want to deeply understand how these placements uniquely weave together to shape your life? Consider booking a 1:1 Alignment Session to explore the full story of your chart.</p>
+        </div>
+
         <div style="background-color: #fff; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #e2d9cd;">
           <h2 style="color: #8c6b45; margin-top: 0;">Major Aspects</h2>
           ${aspects && aspects.length > 0 ? `
@@ -89,6 +100,12 @@ export const handler: Handler = async (event) => {
               ${aspects.map((aspect: string) => `<li style="margin-bottom: 8px;">${aspect}</li>`).join("")}
             </ul>
           ` : `<p>No major tight aspects found in this chart.</p>`}
+        </div>
+
+        <div style="background-color: #fff; padding: 30px 20px; border-radius: 8px; margin: 35px 0; text-align: center; border: 2px solid #e2d9cd;">
+          <h2 style="color: #6a4f4b; margin-top: 0; font-size: 22px;">Align With Your Cosmic Blueprint</h2>
+          <p style="font-size: 16px; margin-bottom: 25px; color: #555;">Join me for an empowering <strong>1:1 Alignment Session</strong> to integrate these celestial influences into your daily life and find deeper clarity on your path.</p>
+          <a href="${baseUrl}/offerings" style="background-color: #bfa181; color: #fff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block; font-size: 16px; letter-spacing: 0.5px;">Book Now</a>
         </div>
 
         <p style="text-align: center; color: #777; font-size: 14px; margin-top: 30px;">

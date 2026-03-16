@@ -116,7 +116,7 @@ export const handler: Handler = async (event) => {
     `;
 
     const { data: responseData, error } = await resend.emails.send({
-      from: "OmFlor Wellness <onboarding@resend.dev>",
+      from: "OmFlor Wellness <hello@contact.omflorwellness.com>",
       to: [email],
       subject: "Your OmFlor Wellness Natal Chart",
       text: `Your Natal Chart:\nSun: ${sun}\nMoon: ${moon}\nRising: ${rising}`,

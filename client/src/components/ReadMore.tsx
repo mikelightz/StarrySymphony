@@ -12,18 +12,16 @@ const ReadMore = ({ children, collapsedHeight = "10rem" }: ReadMoreProps) => {
   return (
     <div className="relative">
       <motion.div
-        // 1. ADD "relative" here so the absolute gradient positions itself inside THIS box
         className="overflow-hidden relative"
         initial={false}
         animate={{ height: isExpanded ? "auto" : collapsedHeight }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
+        style={!isExpanded ? { 
+          WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)', 
+          maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)' 
+        } : undefined}
       >
         {children}
-
-        {/* 2. MOVED INSIDE: The gradient now lives here */}
-        {!isExpanded && collapsedHeight !== "0px" && (
-          <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-muted/0 to-transparent pointer-events-none" />
-        )}
       </motion.div>
 
       {/* Button is now completely separate from the gradient */}

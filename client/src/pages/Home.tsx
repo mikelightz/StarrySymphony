@@ -138,7 +138,12 @@ export default function Home() {
                   <h2 className="font-playfair text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-gold font-normal capitalize drop-shadow-sm leading-none">
                     OUR MISSION
                   </h2>
-                  <div className="space-y-3 sm:space-y-4 lg:space-y-6 font-lato text-cloth text-[11px] sm:text-xs md:text-lg leading-relaxed md:leading-relaxed font-light drop-shadow-md max-h-[110px] sm:max-h-none overflow-y-auto scrollbar-hide">
+                  
+                  {/* Scrolling container with a fade-out mask for mobile */}
+                  <div 
+                    className="space-y-3 sm:space-y-4 lg:space-y-6 font-lato text-cloth text-[11px] sm:text-xs md:text-lg leading-relaxed md:leading-relaxed font-light drop-shadow-md max-h-[115px] sm:max-h-none overflow-y-auto scrollbar-hide pb-6 sm:pb-0"
+                    style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)' }}
+                  >
                     <p>
                       At OmFlor Wellness, we believe that true transformation happens when we align with both our inner wisdom and the natural rhythms that surround us. Our approach combines somatic embodiment practices, astrological & earthly wisdom, and psycho-spiritual guidance to help you reconnect and reimagine yourself in a holistic way.
                     </p>

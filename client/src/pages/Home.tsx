@@ -107,16 +107,16 @@ export default function Home() {
         <div className="py-20 md:py-32 px-4 relative z-10">
           <div className="container-custom max-w-6xl mx-auto">
 
-            <div className="flex flex-row items-center gap-0 max-w-5xl mx-auto relative px-2 md:px-0">
+            <div className="flex flex-col sm:flex-row items-center gap-0 max-w-5xl mx-auto relative px-4 md:px-0">
 
               <motion.div
-                className="relative w-[45%] md:w-5/12 flex justify-end z-10"
+                className="relative order-2 sm:order-1 w-[85%] sm:w-[45%] md:w-5/12 flex justify-center sm:justify-end z-10 -mt-3 sm:mt-0"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="relative w-full aspect-[2/3] sm:aspect-[3/4] opacity-100">
+                <div className="relative w-[85%] aspect-[4/5] sm:aspect-[3/4] opacity-100">
                   <img
                     src="/images/v2/IMG_0470.JPG"
                     alt="Embodiment Practice"
@@ -128,21 +128,20 @@ export default function Home() {
               </motion.div>
 
               <motion.div
-                className="w-[65%] sm:w-8/12 md:bg-dune/80 bg-dune/90 backdrop-blur-md p-5 sm:p-6 md:p-12 lg:p-16 rounded-2xl md:rounded-3xl border border-white/10 shadow-2xl z-20 -ml-8 sm:-ml-12 md:-ml-16"
+                className="order-1 sm:order-2 w-full sm:w-[65%] md:w-8/12 bg-dune/90 md:bg-dune/80 backdrop-blur-md p-8 sm:p-6 md:p-12 lg:p-16 rounded-2xl md:rounded-3xl border border-white/10 shadow-2xl z-20 sm:-ml-12 md:-ml-16"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
                 <div className="space-y-4 md:space-y-6 lg:space-y-8">
-                  <h2 className="font-playfair text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-gold font-normal capitalize drop-shadow-sm leading-none">
+                  <h2 className="font-playfair text-3xl sm:text-3xl md:text-5xl lg:text-6xl text-gold font-normal capitalize drop-shadow-sm leading-none">
                     OUR MISSION
                   </h2>
-                  
-                  {/* Scrolling container with a fade-out mask for mobile */}
-                  <div 
-                    className="space-y-3 sm:space-y-4 lg:space-y-6 font-lato text-cloth text-[11px] sm:text-xs md:text-lg leading-relaxed md:leading-relaxed font-light drop-shadow-md max-h-[115px] sm:max-h-none overflow-y-auto scrollbar-hide pb-6 sm:pb-0"
-                    style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)' }}
+
+                  {/* Clean standard text block, rescaled to normal mobile sizes */}
+                  <div
+                    className="space-y-4 md:space-y-6 font-lato text-cloth text-sm md:text-lg leading-relaxed md:leading-relaxed font-light drop-shadow-md"
                   >
                     <p>
                       At OmFlor Wellness, we believe that true transformation happens when we align with both our inner wisdom and the natural rhythms that surround us. Our approach combines somatic embodiment practices, astrological & earthly wisdom, and psycho-spiritual guidance to help you reconnect and reimagine yourself in a holistic way.

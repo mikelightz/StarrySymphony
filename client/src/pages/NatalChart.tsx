@@ -49,8 +49,62 @@ interface ChartResults {
   sun: string;
   moon: string;
   rising: string;
+  sunInterpretation: string;
   moonInterpretation: string;
+  risingInterpretation: string;
 }
+
+const sunSignInterpretations = {
+  Aries:
+    "Your core identity is bold and pioneering. You shine brightest when leading and initiating new adventures.",
+  Taurus:
+    "You embody steadfastness and sensuality. Your core identity glows with stability and an appreciation for life's earthly pleasures.",
+  Gemini:
+    "Your essence is versatile and communicative. You shine by gathering and sharing knowledge with a curious spirit.",
+  Cancer:
+    "Your core is nurturing and deeply intuitive. You shine brightest when protecting and caring for those you love.",
+  Leo: "You radiate warmth and natural leadership. Your core identity is beautifully expressive and creative.",
+  Virgo:
+    "Your essence is analytical and service-oriented. You shine by bringing order, healing, and practical wisdom.",
+  Libra:
+    "Your core identity seeks harmony and connection. You shine brightest in partnership and creating beauty.",
+  Scorpio:
+    "You embody intensity and transformation. Your essence glows with depth, passion, and emotional power.",
+  Sagittarius:
+    "Your core is adventurous and philosophical. You shine through exploration, learning, and seeking higher truths.",
+  Capricorn:
+    "Your essence is ambitious and structured. You shine brightest when achieving goals and building lasting legacies.",
+  Aquarius:
+    "Your core identity is visionary and unconventional. You shine by innovating and championing humanitarian ideals.",
+  Pisces:
+    "You embody empathy and artistic sensitivity. Your essence glows with compassion and deep spiritual understanding.",
+};
+
+const risingSignInterpretations = {
+  Aries:
+    "You approach the world with bold enthusiasm. Your outer personality is decisive, energetic, and unapologetically direct.",
+  Taurus:
+    "You present a calm, grounded demeanor to the world. Your outer personality appears steady, deliberate, and drawn to beauty.",
+  Gemini:
+    "You greet life with curiosity and lively charm. Your outer personality is adaptable, quick-witted, and highly engaging.",
+  Cancer:
+    "You approach the world with gentle caution. Your outer personality is empathetic, nurturing, and immediately protective.",
+  Leo: "You enter a room with natural radiance and confidence. Your outer personality is magnetic, warm, and instinctively theatrical.",
+  Virgo:
+    "You present a thoughtful, organized face to the world. Your outer personality appears observant, modest, and keenly helpful.",
+  Libra:
+    "You greet life with grace and diplomacy. Your outer personality is charming, cooperative, and aesthetically attuned.",
+  Scorpio:
+    "You approach the world with a quietly intense presence. Your outer personality is magnetic, perceptive, and powerfully guarded.",
+  Sagittarius:
+    "You enter new situations with optimistic enthusiasm. Your outer personality is outward-looking, jovial, and wonderfully frank.",
+  Capricorn:
+    "You present a responsible, mature demeanor. Your outer personality is serious, capable, and commands natural respect.",
+  Aquarius:
+    "You greet life with a friendly but detached uniqueness. Your outer personality is intriguing, egalitarian, and fiercely independent.",
+  Pisces:
+    "You approach the world with a soft, dreamlike sensitivity. Your outer personality is gentle, receptive, and deeply intuitive.",
+};
 
 const moonSignInterpretations = {
   Aries:
@@ -100,6 +154,34 @@ function getEclipticLon(raHours: number, decDegrees: number): number {
   return lon;
 }
 
+// Aspect Calculation Helpers
+function getAngleDiff(lon1: number, lon2: number): number {
+  let diff = Math.abs(lon1 - lon2);
+  if (diff > 180) diff = 360 - diff;
+  return diff;
+}
+
+const ASPECTS = [
+  { name: 'Conjunction', angle: 0, orb: 8 },
+  { name: 'Sextile', angle: 60, orb: 6 },
+  { name: 'Square', angle: 90, orb: 8 },
+  { name: 'Trine', angle: 120, orb: 8 },
+  { name: 'Opposition', angle: 180, orb: 8 }
+];
+
+const PLANETS = [
+  { label: 'Sun', body: Body.Sun },
+  { label: 'Moon', body: Body.Moon },
+  { label: 'Mercury', body: Body.Mercury },
+  { label: 'Venus', body: Body.Venus },
+  { label: 'Mars', body: Body.Mars },
+  { label: 'Jupiter', body: Body.Jupiter },
+  { label: 'Saturn', body: Body.Saturn },
+  { label: 'Uranus', body: Body.Uranus },
+  { label: 'Neptune', body: Body.Neptune },
+  { label: 'Pluto', body: Body.Pluto }
+];
+
 export default function NatalChart() {
   const [formData, setFormData] = useState({
     name: "",
@@ -112,8 +194,14 @@ export default function NatalChart() {
     locationName: "",
   });
   const [results, setResults] = useState<ChartResults | null>(null);
+  const [aspectData, setAspectData] = useState<string[]>([]);
   const [showForm, setShowForm] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Email state
+  const [emailInput, setEmailInput] = useState("");
+  const [isSendingEmail, setIsSendingEmail] = useState(false);
+  const [emailStatus, setEmailStatus] = useState<"idle" | "success" | "error">("idle");
 
   // Autocomplete state
   const [openLocation, setOpenLocation] = useState(false);
@@ -225,13 +313,41 @@ export default function NatalChart() {
 
       const rising = getZodiacSign(ascDegrees);
 
+      // --- Calculate All Planetary Aspects ---
+      const planetPositions: { label: string; lon: number }[] = [];
+      for (const p of PLANETS) {
+        const eq = Equator(p.body, birthDateUTC, observer, true, true);
+        const pLon = getEclipticLon(eq.ra, eq.dec);
+        planetPositions.push({ label: p.label, lon: pLon });
+      }
+
+      const calculatedAspects: string[] = [];
+      for (let i = 0; i < planetPositions.length; i++) {
+        for (let j = i + 1; j < planetPositions.length; j++) {
+          const diff = getAngleDiff(planetPositions[i].lon, planetPositions[j].lon);
+          
+          for (const aspect of ASPECTS) {
+            if (Math.abs(diff - aspect.angle) <= aspect.orb) {
+              calculatedAspects.push(`${planetPositions[i].label} ${aspect.name} ${planetPositions[j].label}`);
+              break;
+            }
+          }
+        }
+      }
+
+      setAspectData(calculatedAspects);
+
       setResults({
         name: formData.name,
         sun,
         moon,
         rising,
+        sunInterpretation:
+          sunSignInterpretations[sun as keyof typeof sunSignInterpretations],
         moonInterpretation:
           moonSignInterpretations[moon as keyof typeof moonSignInterpretations],
+        risingInterpretation:
+          risingSignInterpretations[rising as keyof typeof risingSignInterpretations],
       });
 
       setShowForm(false);
@@ -245,7 +361,44 @@ export default function NatalChart() {
   const resetForm = () => {
     setShowForm(true);
     setResults(null);
+    setAspectData([]);
+    setEmailInput("");
+    setEmailStatus("idle");
     setFormData({ name: "", birthDate: "", birthTime: "", ampm: "AM", latitude: "", longitude: "", timezone: "", locationName: "" });
+  };
+
+  const handleSendEmail = async () => {
+    if (!emailInput) return;
+    setIsSendingEmail(true);
+    setEmailStatus("idle");
+
+    try {
+      const response = await fetch("/.netlify/functions/send-chart", {
+        method: "POST",
+        body: JSON.stringify({
+          email: emailInput,
+          name: results?.name,
+          sun: results?.sun,
+          moon: results?.moon,
+          rising: results?.rising,
+          aspects: aspectData
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      if (response.ok) {
+        setEmailStatus("success");
+      } else {
+        setEmailStatus("error");
+      }
+    } catch (err) {
+      console.error("Email transit error:", err);
+      setEmailStatus("error");
+    } finally {
+      setIsSendingEmail(false);
+    }
   };
 
   useEffect(() => {
@@ -552,24 +705,73 @@ export default function NatalChart() {
                   </p>
                 </div>
               </div>
-              <div className="bg-forest/5 rounded-lg p-6">
-                <h3 className="font-semibold text-foreground mb-3">
-                  Your Moon Sign Insights:
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  {results?.moonInterpretation}
-                </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-copper/5 rounded-lg p-6">
+                  <h3 className="font-semibold text-foreground mb-3 text-copper">
+                    Your Sun Sign Insights:
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed text-sm lg:text-base">
+                    {results?.sunInterpretation}
+                  </p>
+                </div>
+                <div className="bg-forest/5 rounded-lg p-6">
+                  <h3 className="font-semibold text-foreground mb-3 text-forest">
+                    Your Moon Sign Insights:
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed text-sm lg:text-base">
+                    {results?.moonInterpretation}
+                  </p>
+                </div>
+                <div className="bg-gold/5 rounded-lg p-6">
+                  <h3 className="font-semibold text-foreground mb-3 text-gold">
+                    Your Rising Sign Insights:
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed text-sm lg:text-base">
+                    {results?.risingInterpretation}
+                  </p>
+                </div>
               </div>
-              <div className="text-center">
-                <a
-                  //href=""
-                  className="inline-block bg-copper text-white py-3 px-6 rounded-lg font-semibold hover:bg-copper/90 transition duration-300 mr-4"
-                >
-                  Get Your Moon Sign Rituals & Prompts
-                </a>
+              <div className="bg-nude/30 border border-gold/20 p-8 rounded-xl mt-8">
+                <div className="text-center w-full max-w-lg mx-auto">
+                  <h3 className="font-playfair text-2xl text-foreground mb-3">Keep Your Chart</h3>
+                  <p className="text-sm text-gray-600 mb-6 font-lato">
+                    Enter your email to receive a beautiful copy of these results, including a complete list of your generated planetary aspects.
+                  </p>
+                  
+                  {emailStatus === "success" ? (
+                    <div className="bg-forest/10 border border-forest/30 text-forest px-4 py-3 rounded-lg flex items-center justify-center">
+                      <Check className="h-5 w-5 mr-2" />
+                      Your celestial blueprint has been sent!
+                    </div>
+                  ) : (
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <input
+                        type="email"
+                        placeholder="Your email address"
+                        value={emailInput}
+                        onChange={(e) => setEmailInput(e.target.value)}
+                        className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent outline-none"
+                        required
+                      />
+                      <button
+                        onClick={handleSendEmail}
+                        disabled={isSendingEmail || !emailInput}
+                        className="bg-gold text-white py-3 px-6 rounded-lg font-semibold hover:bg-gold/90 transition duration-300 disabled:bg-gray-400 whitespace-nowrap"
+                      >
+                        {isSendingEmail ? "Sending..." : "Send to Email"}
+                      </button>
+                    </div>
+                  )}
+                  {emailStatus === "error" && (
+                    <p className="text-red-500 text-sm mt-3">An error occurred while sending. Please try again or verify configuration.</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="text-center pt-8 border-t border-gray-100">
                 <button
                   onClick={resetForm}
-                  className="inline-block bg-gray-300 text-foreground py-3 px-6 rounded-lg font-semibold hover:bg-gray-400 transition duration-300"
+                  className="inline-block bg-gray-200 text-foreground py-3 px-8 rounded-lg font-semibold hover:bg-gray-300 transition duration-300"
                 >
                   Calculate Another Chart
                 </button>

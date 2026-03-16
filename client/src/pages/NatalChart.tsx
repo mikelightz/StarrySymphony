@@ -44,6 +44,18 @@ const slideUp = {
 };
 
 // --- Interfaces and Static Data ---
+interface Placement {
+  label: string;
+  lon: number;
+  sign: string;
+  signAbbr: string;
+  degree: number;
+  minutes: number;
+  house: number;
+  isRetrograde: boolean;
+  isPoint: boolean; // meaning it's not a physical planet, like nodes
+}
+
 interface ChartResults {
   name: string;
   sun: string;
@@ -52,7 +64,23 @@ interface ChartResults {
   sunInterpretation: string;
   moonInterpretation: string;
   risingInterpretation: string;
+  placements: Placement[];
 }
+
+const ZODIAC_SIGNS = [
+  { name: "Aries", abbr: "Ari" },
+  { name: "Taurus", abbr: "Tau" },
+  { name: "Gemini", abbr: "Gem" },
+  { name: "Cancer", abbr: "Can" },
+  { name: "Leo", abbr: "Leo" },
+  { name: "Virgo", abbr: "Vir" },
+  { name: "Libra", abbr: "Lib" },
+  { name: "Scorpio", abbr: "Sco" },
+  { name: "Sagittarius", abbr: "Sag" },
+  { name: "Capricorn", abbr: "Cap" },
+  { name: "Aquarius", abbr: "Aqu" },
+  { name: "Pisces", abbr: "Pis" }
+];
 
 const sunSignInterpretations = {
   Aries:
@@ -133,13 +161,17 @@ const moonSignInterpretations = {
 };
 
 // Astronomical Helper Functions
-function getZodiacSign(longitude: number): string {
-  const signs = [
-    "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
-    "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
-  ];
+function getZodiacInfo(longitude: number) {
   const index = Math.floor(longitude / 30) % 12;
-  return signs[index];
+  const sign = ZODIAC_SIGNS[index];
+  const degreeTotal = longitude % 30;
+  const degree = Math.floor(degreeTotal);
+  const minutes = Math.floor((degreeTotal - degree) * 60);
+  return { ...sign, index, degree, minutes };
+}
+
+function getZodiacSign(longitude: number): string {
+  return getZodiacInfo(longitude).name;
 }
 
 function getEclipticLon(raHours: number, decDegrees: number): number {
@@ -159,6 +191,44 @@ function getAngleDiff(lon1: number, lon2: number): number {
   let diff = Math.abs(lon1 - lon2);
   if (diff > 180) diff = 360 - diff;
   return diff;
+}
+
+// Mathematical Approximations for extra points
+function dateToJD(date: Date) {
+  return (date.getTime() / 86400000) + 2440587.5;
+}
+
+function calculateMeanNode(jd: number) {
+  const T = (jd - 2451545.0) / 36525;
+  let omega = 125.04452 - 1934.136261 * T + 0.0020708 * T * T;
+  omega = omega % 360;
+  if (omega < 0) omega += 360;
+  return omega;
+}
+
+function calculateMeanLilith(jd: number) {
+  const T = (jd - 2451545.0) / 36525;
+  let apogee = 83.35324 + 4069.013728 * T - 0.01032 * T * T;
+  apogee = apogee % 360;
+  if (apogee < 0) apogee += 360;
+  return apogee;
+}
+
+function calculateChiron(jd: number) {
+  const d = jd - 2451545.0; 
+  const n = 0.019553; 
+  let M = (113.3 + n * d) % 360;
+  if (M < 0) M += 360;
+  const e = 0.381; 
+  let M_rad = M * Math.PI / 180;
+  let E = M_rad;
+  for (let i = 0; i < 5; i++) {
+    E = E - (E - e * Math.sin(E) - M_rad) / (1 - e * Math.cos(E));
+  }
+  const v = 2 * Math.atan(Math.sqrt((1 + e)/(1 - e)) * Math.tan(E / 2));
+  let v_deg = v * 180 / Math.PI;
+  if (v_deg < 0) v_deg += 360;
+  return (v_deg + 339.9) % 360;
 }
 
 const ASPECTS = [
@@ -311,24 +381,91 @@ export default function NatalChart() {
       if (ascRadians < 0) ascRadians += 2 * Math.PI;
       const ascDegrees = ascRadians * (180 / Math.PI);
 
-      const rising = getZodiacSign(ascDegrees);
+      const risingInfo = getZodiacInfo(ascDegrees);
+      const rising = risingInfo.name;
+      const risingIndex = risingInfo.index;
 
-      // --- Calculate All Planetary Aspects ---
-      const planetPositions: { label: string; lon: number }[] = [];
+      // Calculate future date for Retrograde checking
+      const futureDate = new Date(birthDateUTC.getTime() + 86400000); // +1 day
+
+      // --- Calculate All Planetary Placements & Degrees ---
+      const jd = dateToJD(birthDateUTC);
+      const placements: Placement[] = [];
+
       for (const p of PLANETS) {
+        // Today's Longitude
         const eq = Equator(p.body, birthDateUTC, observer, true, true);
         const pLon = getEclipticLon(eq.ra, eq.dec);
-        planetPositions.push({ label: p.label, lon: pLon });
+        
+        // Tomorrow's Longitude (for Retrograde)
+        const eqFuture = Equator(p.body, futureDate, observer, true, true);
+        const pLonFuture = getEclipticLon(eqFuture.ra, eqFuture.dec);
+        
+        // Handle 359 -> 0 degree wrap for Retrograde calculations
+        let diff = pLonFuture - pLon;
+        if (diff > 180) diff -= 360;
+        if (diff < -180) diff += 360;
+        const isRetrograde = diff < 0 && p.label !== "Sun" && p.label !== "Moon";
+
+        const zInfo = getZodiacInfo(pLon);
+        // Whole Sign House System calculation
+        let house = ((zInfo.index - risingIndex + 12) % 12) + 1;
+
+        placements.push({
+          label: p.label,
+          lon: pLon,
+          sign: zInfo.name,
+          signAbbr: zInfo.abbr,
+          degree: zInfo.degree,
+          minutes: zInfo.minutes,
+          house,
+          isRetrograde,
+          isPoint: false
+        });
       }
 
+      // Calculate Extra Points (Nodes, Lilith, Chiron)
+      const meanNodeLon = calculateMeanNode(jd);
+      // Rough approximation for True Node (oscillates around Mean Node)
+      const trueNodeLon = (meanNodeLon - 1.5 * Math.sin((134.9 + 477198.867 * ((jd - 2451545.0) / 36525)) * Math.PI / 180)) % 360;
+      const lilithLon = calculateMeanLilith(jd);
+      const chironLon = calculateChiron(jd);
+
+      const extraPoints = [
+        { label: "Node (M)", lon: meanNodeLon },
+        { label: "Node (T)", lon: trueNodeLon < 0 ? trueNodeLon + 360 : trueNodeLon },
+        { label: "Lilith (M)", lon: lilithLon },
+        { label: "Chiron", lon: chironLon }
+      ];
+
+      for (const xp of extraPoints) {
+        const zInfo = getZodiacInfo(xp.lon);
+        let house = ((zInfo.index - risingIndex + 12) % 12) + 1;
+        // Nodes are generally always "retrograding" backwards
+        const isRetrograde = xp.label.includes("Node");
+
+        placements.push({
+          label: xp.label,
+          lon: xp.lon,
+          sign: zInfo.name,
+          signAbbr: zInfo.abbr,
+          degree: zInfo.degree,
+          minutes: zInfo.minutes,
+          house,
+          isRetrograde,
+          isPoint: true
+        });
+      }
+
+      // --- Calculate Aspects ---
       const calculatedAspects: string[] = [];
-      for (let i = 0; i < planetPositions.length; i++) {
-        for (let j = i + 1; j < planetPositions.length; j++) {
-          const diff = getAngleDiff(planetPositions[i].lon, planetPositions[j].lon);
+      for (let i = 0; i < placements.length; i++) {
+        for (let j = i + 1; j < placements.length; j++) {
+          const diff = getAngleDiff(placements[i].lon, placements[j].lon);
           
           for (const aspect of ASPECTS) {
             if (Math.abs(diff - aspect.angle) <= aspect.orb) {
-              calculatedAspects.push(`${planetPositions[i].label} ${aspect.name} ${planetPositions[j].label}`);
+              calculatedAspects.push(`${placements[i].label} ${aspect.name} ${placements[j].label}`);
               break;
             }
           }
@@ -348,6 +485,7 @@ export default function NatalChart() {
           moonSignInterpretations[moon as keyof typeof moonSignInterpretations],
         risingInterpretation:
           risingSignInterpretations[rising as keyof typeof risingSignInterpretations],
+        placements
       });
 
       setShowForm(false);
@@ -381,7 +519,8 @@ export default function NatalChart() {
           sun: results?.sun,
           moon: results?.moon,
           rising: results?.rising,
-          aspects: aspectData
+          aspects: aspectData,
+          placements: results?.placements
         }),
         headers: {
           "Content-Type": "application/json"

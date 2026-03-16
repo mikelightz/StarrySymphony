@@ -10,7 +10,7 @@ export const handler: Handler = async (event) => {
 
   try {
     const data = JSON.parse(event.body || "{}");
-    const { email, name, sun, moon, rising, aspects } = data;
+    const { email, name, sun, moon, rising, aspects, placements } = data;
 
     if (!email) {
       return { statusCode: 400, body: JSON.stringify({ error: "Email is required" }) };
@@ -26,6 +26,34 @@ export const handler: Handler = async (event) => {
       };
     }
 
+    const getPlanetIcon = (label: string) => {
+      const icons: Record<string, string> = {
+        "Sun": "☉", "Moon": "☾", "Mercury": "☿", "Venus": "♀",
+        "Mars": "♂", "Jupiter": "♃", "Saturn": "♄", "Uranus": "♅",
+        "Neptune": "♆", "Pluto": "♇", "Node (M)": "☊", "Node (T)": "☊",
+        "Lilith (M)": "⚸", "Chiron": "⚷"
+      };
+      return icons[label] || "•";
+    };
+
+    const getSignStyle = (sign: string) => {
+      const styles: Record<string, { icon: string, color: string }> = {
+        "Aries": { icon: "♈︎", color: "#e53935" },     // Fire
+        "Taurus": { icon: "♉︎", color: "#43a047" },    // Earth
+        "Gemini": { icon: "♊︎", color: "#f57c00" },    // Air
+        "Cancer": { icon: "♋︎", color: "#1e88e5" },     // Water
+        "Leo": { icon: "♌︎", color: "#e53935" },       // Fire
+        "Virgo": { icon: "♍︎", color: "#43a047" },     // Earth
+        "Libra": { icon: "♎︎", color: "#f57c00" },     // Air
+        "Scorpio": { icon: "♏︎", color: "#1e88e5" },    // Water
+        "Sagittarius": { icon: "♐︎", color: "#e53935" },// Fire
+        "Capricorn": { icon: "♑︎", color: "#43a047" }, // Earth
+        "Aquarius": { icon: "♒︎", color: "#f57c00" },   // Air
+        "Pisces": { icon: "♓︎", color: "#1e88e5" }     // Water
+      };
+      return styles[sign] || { icon: "", color: "#333" };
+    };
+
     // Basic HTML template for the email
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; background-color: #fdfaf6; padding: 20px; border-radius: 8px;">
@@ -33,12 +61,25 @@ export const handler: Handler = async (event) => {
         <p style="font-size: 16px;">Here is the full summary of your generated Natal Chart from OmFlor Wellness.</p>
         
         <div style="background-color: #fff; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #e2d9cd;">
-          <h2 style="color: #8c6b45; margin-top: 0;">Your Big Three</h2>
-          <ul style="list-style-type: none; padding: 0; font-size: 16px;">
-            <li style="margin-bottom: 10px;"><strong>Sun:</strong> ${sun || "Unknown"}</li>
-            <li style="margin-bottom: 10px;"><strong>Moon:</strong> ${moon || "Unknown"}</li>
-            <li style="margin-bottom: 10px;"><strong>Rising:</strong> ${rising || "Unknown"}</li>
-          </ul>
+          <h2 style="color: #8c6b45; margin-top: 0;">Detailed Placements</h2>
+          <table style="width: 100%; border-collapse: collapse; font-size: 16px;">
+            <tbody>
+              ${placements ? placements.map((p: any) => {
+                const s = getSignStyle(p.sign);
+                const plIcon = getPlanetIcon(p.label);
+                return `
+                  <tr style="border-bottom: 1px solid #f0f0f0;">
+                    <td style="padding: 6px 0; width: 30px; font-size: 20px; text-align: center;">${plIcon}</td>
+                    <td style="padding: 6px 10px; width: 100px;">${p.label}</td>
+                    <td style="padding: 6px 0; color: ${s.color}; font-size: 20px; width: 30px; text-align: center;">${s.icon}</td>
+                    <td style="padding: 6px 10px; width: 80px;">${p.degree}&deg;${p.minutes.toString().padStart(2, '0')}'</td>
+                    <td style="padding: 6px 10px; width: 50px;">${p.signAbbr}</td>
+                    <td style="padding: 6px 10px; color: #777;">${p.isRetrograde ? 'R' : ''}</td>
+                  </tr>
+                `;
+              }).join("") : '<tr><td>No placements generated.</td></tr>'}
+            </tbody>
+          </table>
         </div>
 
         <div style="background-color: #fff; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #e2d9cd;">

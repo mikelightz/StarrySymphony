@@ -1,40 +1,13 @@
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/animations";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import { queryClient, apiRequest } from "@/lib/queryClient";
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
 import { Product } from "@/types";
 
 export default function Shop() {
-  const { toast } = useToast();
   const { data: products, isLoading } = useQuery({
     queryKey: ["/products"],
   });
-
-  const addToCartMutation = useMutation({
-    mutationFn: (productId: number) =>
-      apiRequest("POST", "/cart/add", { productId }),
-    onSuccess: () => {
-      toast({
-        title: "Added to cart",
-        description: "Product has been added to your cart.",
-      });
-      queryClient.invalidateQueries({ queryKey: ["/cart"] });
-    },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description:
-          error.message || "Could not add to cart. Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const handleAddToCart = (productId: number) => {
-    addToCartMutation.mutate(productId);
-  };
 
   // Define an array of product IDs to hide
   const productsToHide = [1, 2, 3, 4];
@@ -126,8 +99,7 @@ export default function Shop() {
                   <ProductCard
                     key={product.id}
                     product={product}
-                    isExternalLink={product.id === 5 || product.id === 6}
-                    onAddToCart={
+                    onBuyClick={
                       product.id === 5
                         ? () =>
                           window.open(
@@ -142,7 +114,7 @@ export default function Shop() {
                               "_blank",
                               "noopener,noreferrer"
                             )
-                          : handleAddToCart
+                          : undefined
                     }
                   />
                 ))}
@@ -157,11 +129,6 @@ export default function Shop() {
                   <ProductCard
                     key={product.id}
                     product={product}
-                    onAddToCart={handleAddToCart}
-                  // If product.id 5 comes from API, you'd need similar conditional logic here:
-                  // isExternalLink={product.id === 5}
-                  // onAddToCart={product.id === 5 ?
-                  // () => window.open("https://payhip.com/b/bPHMX", "_blank", "noopener,noreferrer") : handleAddToCart}
                   />
                 ))
             )}
@@ -174,14 +141,12 @@ export default function Shop() {
 
 interface ProductCardProps {
   product: Product;
-  onAddToCart: (productId: number) => void; // This will now accept any function, not just one taking productId
-  isExternalLink?: boolean; // New optional prop
+  onBuyClick?: () => void;
 }
 
 function ProductCard({
   product,
-  onAddToCart,
-  isExternalLink,
+  onBuyClick,
 }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   return (
@@ -214,7 +179,7 @@ function ProductCard({
             ${product.type === "DIGITAL"
                 ? "bg-foreground"
                 : product.type === "PRINT"
-                  ? "bg-copper"
+                  ? "bg-cloth"
                   : product.type === "COURSE"
                     ? "bg-gold"
                     : "bg-foreground"
@@ -257,19 +222,9 @@ function ProductCard({
           </a>
           <button
             className="bg-verde hover:bg-opacity-90 text-white px-6 py-3 rounded-lg transition duration-300"
-            // Conditional onClick handler based on isExternalLink prop
-            onClick={() => {
-              if (isExternalLink) {
-                // If it's an external link, onAddToCart is already the direct function
-                onAddToCart();
-              } else {
-                // Otherwise, it's a regular internal product, pass the ID
-                onAddToCart(product.id);
-              }
-            }}
+            onClick={onBuyClick}
           >
-            {isExternalLink ? "Buy Now" : "Add to Cart"}{" "}
-            {/* Change button text */}
+            Buy Now
           </button>
         </div>
       </div>

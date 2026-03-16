@@ -45,13 +45,13 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              className="flex-1 relative w-full max-w-lg mx-auto lg:max-w-none flex justify-center lg:justify-end"
+              className="flex-1 relative w-full flex justify-center lg:justify-end mt-8 md:mt-12 lg:mt-0"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               {/* Arched image container */}
-              <div className="relative z-10 w-[80%] aspect-[3/4] rounded-t-full overflow-hidden shadow-2xl bg-black/5">
+              <div className="relative z-10 w-[65%] sm:w-[50%] md:w-[60%] lg:w-[80%] aspect-[3/4] rounded-t-full overflow-hidden shadow-2xl bg-black/5 mx-auto lg:mr-0 lg:ml-auto">
                 <video
                   className="w-full h-full object-cover"
                   autoPlay
@@ -60,7 +60,7 @@ export default function Home() {
                   playsInline
                 >
                   {/* Moved the source here and added the type attribute */}
-                  <source src="/videos/v2/Cosmic_Wellness_Journey.MP4" type="video/mp4" />
+                  <source src="/videos/v2/Cosmic_Wellness_Journey_2.mp4" type="video/mp4" />
 
                   {/* Fallback text just in case the browser utterly fails */}
                   Your browser does not support the video tag.
@@ -69,12 +69,14 @@ export default function Home() {
 
               {/* Background offset shape/texture placeholder */}
               <div
-                className="absolute top-[10%] -left-[10%] w-[70%] h-[90%] backdrop-blur-md rounded-tl-3xl -z-10 shadow-2xl"
+                className="absolute top-[8%] left-[10%] lg:-left-[10%] w-[55%] sm:w-[45%] md:w-[55%] lg:w-[70%] h-[90%] backdrop-blur-md rounded-tl-3xl -z-10 shadow-2xl"
                 style={{ backgroundColor: 'hsl(var(--terracota) / 0.35)' }}
               ></div>
 
               {/* Planet Badge replacing the "NEW" circle */}
-              <PlanetBadge />
+              <div className="absolute top-4 left-[70%] sm:top-1/4 sm:left-[80%] md:top-[10%] md:left-[70%] lg:-top-12 lg:-right-16 lg:left-auto z-20">
+                <PlanetBadge />
+              </div>
             </motion.div>
 
           </div>
@@ -93,42 +95,42 @@ export default function Home() {
         <div className="py-20 md:py-32 px-4 relative z-10">
           <div className="container-custom max-w-6xl mx-auto">
 
-            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-0 max-w-5xl mx-auto">
+            <div className="flex flex-row items-center gap-0 max-w-5xl mx-auto relative px-2 md:px-0">
 
               <motion.div
-                className="relative order-2 lg:order-1 flex lg:w-5/12 justify-center lg:justify-end z-10"
+                className="relative w-[45%] md:w-5/12 flex justify-end z-10"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="relative w-[70%] md:w-[90%] lg:w-full max-w-sm aspect-[3/4] opacity-100">
+                <div className="relative w-full aspect-[2/3] sm:aspect-[3/4] opacity-100">
                   <img
                     src="/images/v2/IMG_0470.JPG"
                     alt="Embodiment Practice"
                     className="w-full h-full object-cover shadow-2xl rounded-sm"
                   />
                   {/* Decorative background block shifted slightly left and down */}
-                  <div className="absolute -bottom-6 -left-6 lg:-left-8 w-3/4 h-3/4 bg-terracota/20 -z-10 rounded-sm blur-sm"></div>
+                  <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-8 w-3/4 h-3/4 bg-terracota/20 -z-10 rounded-sm blur-sm"></div>
                 </div>
               </motion.div>
 
               <motion.div
-                className="order-1 lg:order-2 lg:w-8/12 bg-dune/80 backdrop-blur-md p-8 md:p-12 lg:p-16 rounded-3xl border border-white/10 shadow-2xl z-20 lg:-ml-12"
+                className="w-[65%] sm:w-8/12 md:bg-dune/80 bg-dune/90 backdrop-blur-md p-5 sm:p-6 md:p-12 lg:p-16 rounded-2xl md:rounded-3xl border border-white/10 shadow-2xl z-20 -ml-8 sm:-ml-12 md:-ml-16"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="space-y-6 lg:space-y-8">
-                  <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-gold font-normal capitalize drop-shadow-sm">
+                <div className="space-y-4 md:space-y-6 lg:space-y-8">
+                  <h2 className="font-playfair text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-gold font-normal capitalize drop-shadow-sm leading-none">
                     OUR MISSION
                   </h2>
-                  <div className="space-y-4 lg:space-y-6 font-lato text-cloth md:text-lg text-cloth/90 leading-relaxed font-light drop-shadow-md">
+                  <div className="space-y-3 sm:space-y-4 lg:space-y-6 font-lato text-cloth text-[11px] sm:text-xs md:text-lg leading-relaxed md:leading-relaxed font-light drop-shadow-md">
                     <p>
                       At OmFlor Wellness, we believe that true transformation happens when we align with both our inner wisdom and the natural rhythms that surround us. Our approach combines somatic embodiment practices, astrological & earthly wisdom, and psycho-spiritual guidance to help you reconnect and reimagine yourself in a holistic way.
                     </p>
-                    <p>
+                    <p className="hidden sm:block">
                       Through intentional practices and gentle awareness, we create a nurturing space for you to honor your body's wisdom and harness the power of celestial cycles for profound personal and creative expression.
                     </p>
                   </div>
@@ -304,7 +306,7 @@ function TestimonialCard({ quote, author }: TestimonialCardProps) {
 
 function PlanetBadge() {
   return (
-    <div className="absolute -top-4 -right-4 md:-top-12 md:-right-6 lg:-right-16 w-32 h-32 md:w-48 md:h-48 z-20 flex items-center justify-center pointer-events-none">
+    <div className="w-24 h-24 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 flex items-center justify-center pointer-events-none">
       <motion.div
         className="relative w-full h-full text-cloth flex items-center justify-center drop-shadow-lg"
         animate={{ rotate: 360 }}

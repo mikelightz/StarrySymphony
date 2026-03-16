@@ -50,13 +50,13 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           <a
             href="/"
-            className={`${scrolled ? "text-gold" : "text-cloth"} tracking-[0.2em] font-playfair text-lg md:text-2xl uppercase flex items-center gap-2 transition-all duration-300 hover:text-copper`}
+            className={`${scrolled ? "text-gold" : "text-cloth"} tracking-[0.2em] font-playfair text-lg md:text-xl lg:text-2xl uppercase flex items-center gap-2 transition-all duration-300 hover:text-copper whitespace-nowrap shrink-0`}
             onClick={(e) => handleNav(e, "/")}
           >
             <span className={`${scrolled ? "text-gold" : "text-cloth"} text-sm md:text-xl transition-colors duration-300`}>✧</span> OMFLOR WELLNESS
           </a>
 
-          <div className="hidden md:flex space-x-10 items-center font-lato text-sm tracking-widest uppercase">
+          <div className="hidden lg:flex space-x-6 xl:space-x-10 items-center font-lato text-sm tracking-widest uppercase">
             <NavLink href="/" active={isActive("/")}>
               Home
             </NavLink>
@@ -79,7 +79,7 @@ export default function Navbar() {
 
           <div className="flex items-center space-x-4">
             <button
-              className={`md:hidden ${scrolled ? "text-gold" : "text-cloth"} hover:text-copper transition-colors`}
+              className={`lg:hidden ${scrolled ? "text-gold" : "text-cloth"} hover:text-copper transition-colors`}
               onClick={toggleMenu}
               aria-label="Toggle menu"
             >
@@ -96,7 +96,7 @@ export default function Navbar() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden mt-4 pb-4 overflow-hidden bg-background/95 backdrop-blur-sm rounded-b-xl border-x border-b border-border/40 -mx-4 px-4 shadow-lg"
+              className="lg:hidden mt-4 pb-4 overflow-hidden bg-background/95 backdrop-blur-sm rounded-b-xl border-x border-b border-border/40 -mx-4 px-4 shadow-lg"
             >
               <div className="flex flex-col space-y-2 pt-4 font-lato text-sm tracking-widest uppercase">
                 <MobileNavLink href="/" active={isActive("/")} onClick={closeMenu}>
@@ -145,7 +145,7 @@ function NavLink({ href, children, active }: NavLinkProps) {
     <a
       href={href}
       className={`tab-underline text-foreground hover:text-copper transition-colors duration-300 ${active ? "active-tab opacity-100" : "opacity-80 hover:opacity-100"
-        }`}
+        } whitespace-nowrap`}
       onClick={handleClick}
     >
       {children}

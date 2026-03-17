@@ -50,10 +50,15 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           <a
             href="/"
-            className={`${scrolled ? "text-gold" : "text-cloth"} tracking-[0.2em] font-playfair text-lg md:text-xl lg:text-2xl uppercase flex items-center gap-2 transition-all duration-300 hover:text-copper whitespace-nowrap shrink-0`}
+            className={`${scrolled ? "text-gold" : "text-cloth"} tracking-[0.2em] font-playfair text-lg md:text-xl lg:text-2xl uppercase flex items-center gap-3 transition-all duration-300 whitespace-nowrap shrink-0 group`}
             onClick={(e) => handleNav(e, "/")}
           >
-            <span className={`${scrolled ? "text-gold" : "text-cloth"} text-sm md:text-xl transition-colors duration-300`}>✧</span> OMFLOR WELLNESS
+            <img
+              src="/images/ofw_logo.png"
+              alt="OmFlor Wellness Symbol"
+              className={`h-6 md:h-8 w-auto object-contain transition-all duration-300 ${scrolled ? "opacity-100" : "opacity-10 group-hover:opacity-100"}`}
+            />
+            <span className="transition-colors duration-300 group-hover:text-dune">OMFLOR WELLNESS</span>
           </a>
 
           <div className="hidden lg:flex space-x-6 xl:space-x-10 items-center font-lato text-sm tracking-widest uppercase">
@@ -79,7 +84,7 @@ export default function Navbar() {
 
           <div className="flex items-center space-x-4">
             <button
-              className={`lg:hidden ${scrolled ? "text-gold" : "text-cloth"} hover:text-copper transition-colors`}
+              className={`lg:hidden ${scrolled ? "text-gold" : "text-cloth"} hover:text-dune transition-colors`}
               onClick={toggleMenu}
               aria-label="Toggle menu"
             >
@@ -98,7 +103,7 @@ export default function Navbar() {
               transition={{ duration: 0.3 }}
               className="lg:hidden mt-4 pb-4 overflow-hidden bg-background/95 backdrop-blur-sm rounded-b-xl border-x border-b border-border/40 -mx-4 px-4 shadow-lg"
             >
-              <div className="flex flex-col space-y-2 pt-4 font-lato text-sm tracking-widest uppercase">
+              <div className="flex flex-col space-y-2 pt-4 font-lato text-sm tracking-widest uppercase hover:text-dune transition-colors">
                 <MobileNavLink href="/" active={isActive("/")} onClick={closeMenu}>
                   Home
                 </MobileNavLink>

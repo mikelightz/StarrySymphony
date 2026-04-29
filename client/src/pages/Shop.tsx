@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { fadeIn } from "@/lib/animations";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
@@ -54,6 +54,22 @@ export default function Shop() {
         "The complete lunar wellness package: Print journal, Moon Masterclass, and a 1:1 session to get personalized guidance for your journey.",
       imageUrl:
         "https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80",
+    },
+    {
+      id: 7,
+      name: "Her Moon: Lunar Self-Care Journal",
+      price: 18.0,
+      type: "PRINT",
+      description: "This journal was created as a simple invitation to return to the body.\n\nIn a world that constantly pulls us outward, it offers a sacred space to slow down, soften, and reconnect with the subtle language that lives within you. Each page becomes a reflection guiding you back into presence and true embodiment.\n\nCharged by the magic of the moon and inspired by the wisdom of the feminine cycle, this journal gently supports you in attuning to your natural rhythms. It becomes a place where you can learn your patterns, honor your emotions, and rediscover the divine intelligence of your body.",
+      imageUrl: "/images/lunar_journal_banner.png",
+    },
+    {
+      id: 8,
+      name: "Her Moon: Sacred Scents Candle",
+      price: 15.0,
+      type: "PRODUCT",
+      description: "Light this candle and allow the rhythm of your breath slow.\n\nSea salt and orchid mingle softly, carrying the freshness of the ocean and the delicate sweetness of blooming petals. Each flicker becomes a quiet invitation to return to your body, to pause, and to feel the subtle currents of your own inner landscape.\n\nThis candle is more than fragrance—it is a small ritual, a luminous companion for reflection, journaling, or simply calling in more presence. Its scent guides you gently to attune with the natural rhythms of your body and the subtle magic of the moonlit cycles.",
+      imageUrl: "/images/candle_banner.png",
     },
     {
       id: 5,
@@ -114,7 +130,21 @@ export default function Shop() {
                               "_blank",
                               "noopener,noreferrer"
                             )
-                          : undefined
+                          : product.id === 7
+                            ? () =>
+                              window.open(
+                                "https://omflorwellness.printful.me/product/her-moon-journal-sacred-rhythm-keeper",
+                                "_blank",
+                                "noopener,noreferrer"
+                              )
+                            : product.id === 8
+                              ? () =>
+                                window.open(
+                                  "https://omflorwellness.printful.me/product/scented-soy-candle",
+                                  "_blank",
+                                  "noopener,noreferrer"
+                                )
+                              : undefined
                     }
                   />
                 ))}
@@ -149,85 +179,131 @@ function ProductCard({
   onBuyClick,
 }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <motion.div
-      className="bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300"
-      style={{
-        transform: isHovered ? "scale(1.03)" : "scale(1)",
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
-    >
-      <img
-        src={product.imageUrl}
-        alt={product.name}
-        className="w-full h-64 object-cover"
-      />
+    <>
+      <motion.div
+        className="bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 flex flex-col"
+        style={{
+          transform: isHovered ? "scale(1.03)" : "scale(1)",
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+      >
+        <img
+          src={product.imageUrl}
+          alt={product.name}
+          className="w-full h-64 object-cover"
+        />
 
-      <div className="p-6">
-        <div className="flex justify-between items-start mb-4">
-          <h2 className="font-playfair tracking-widest uppercase font-light text-2xl text-foreground">
-            {product.name}
-          </h2>
-          <span
-            className={`
-            px-4 py-1 rounded-full text-sm text-white
-            ${product.type === "DIGITAL"
-                ? "bg-foreground"
-                : product.type === "PRINT"
-                  ? "bg-cloth"
-                  : product.type === "COURSE"
-                    ? "bg-gold"
-                    : "bg-foreground"
-              }
-          `}
-          >
-            {product.type}
-          </span>
-        </div>
+        <div className="p-6 flex flex-col flex-grow">
+          <div className="flex justify-between items-start mb-4">
+            <h2 className="font-playfair tracking-widest uppercase font-light text-2xl text-foreground">
+              {product.name}
+            </h2>
+            <span
+              className={`
+              px-4 py-1 rounded-full text-sm text-white
+              ${product.type === "DIGITAL"
+                  ? "bg-foreground"
+                  : product.type === "PRINT"
+                    ? "bg-cloth"
+                    : product.type === "COURSE"
+                      ? "bg-gold"
+                      : product.type === "PRODUCT"
+                        ? "bg-dune"
+                        : "bg-foreground"
+                }
+            `}
+            >
+              {product.type}
+            </span>
+          </div>
 
-        <div className="mb-4">
-          {product.originalPrice ? (
-            <div className="flex items-center">
+          <div className="mb-6 flex-grow">
+            {product.originalPrice ? (
+              <div className="flex items-center">
+                <span className="text-xl font-medium text-copper">
+                  ${product.price.toFixed(2)}
+                </span>
+                <span className="ml-3 line-through text-gray-500">
+                  ${product.originalPrice.toFixed(2)}
+                </span>
+                <span className="ml-3 bg-copper text-white text-xs px-2 py-1 rounded">
+                  SAVE{" "}
+                  {Math.round(
+                    100 - (product.price / product.originalPrice) * 100
+                  )}
+                  %
+                </span>
+              </div>
+            ) : (
               <span className="text-xl font-medium text-copper">
                 ${product.price.toFixed(2)}
               </span>
-              <span className="ml-3 line-through text-gray-500">
-                ${product.originalPrice.toFixed(2)}
-              </span>
-              <span className="ml-3 bg-copper text-white text-xs px-2 py-1 rounded">
-                SAVE{" "}
-                {Math.round(
-                  100 - (product.price / product.originalPrice) * 100
-                )}
-                %
-              </span>
-            </div>
-          ) : (
-            <span className="text-xl font-medium text-copper">
-              ${product.price.toFixed(2)}
-            </span>
-          )}
+            )}
+          </div>
+
+          <div className="flex justify-between items-center mt-auto">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="text-foreground underline bg-transparent border-none cursor-pointer p-0"
+            >
+              View Details
+            </button>
+            <button
+              className="bg-verde hover:bg-opacity-90 text-white px-6 py-3 rounded-lg transition duration-300"
+              onClick={onBuyClick}
+            >
+              Buy Now
+            </button>
+          </div>
         </div>
+      </motion.div>
 
-        <p className="text-gray-700 mb-6">{product.description}</p>
-
-        <div className="flex justify-between items-center">
-          <a href="#" className="text-foreground underline">
-            View Details
-          </a>
-          <button
-            className="bg-verde hover:bg-opacity-90 text-white px-6 py-3 rounded-lg transition duration-300"
-            onClick={onBuyClick}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"
+            onClick={() => setIsModalOpen(false)}
           >
-            Buy Now
-          </button>
-        </div>
-      </div>
-    </motion.div>
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-white rounded-xl max-w-lg w-full p-8 relative max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
+                onClick={() => setIsModalOpen(false)}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <h3 className="font-playfair tracking-widest uppercase font-light text-2xl text-foreground mb-4 pr-8">
+                {product.name}
+              </h3>
+              {product.description ? (
+                <div className="text-gray-700 whitespace-pre-wrap leading-relaxed">
+                  {product.description}
+                </div>
+              ) : (
+                <p className="text-gray-500 italic">No additional details available.</p>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

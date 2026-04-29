@@ -220,11 +220,11 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <TestimonialCard
               quote="The embodiment practices have completely transformed how I handle stress. I finally feel connected to my body again after years of living entirely in my head."
-              author="Sarah"
+              author="Michael"
             />
             <TestimonialCard
-              quote="Understanding my natural rhythms through the lunar cycles has brought so much peace and productivity to my life. OmFlor's guidance is truly invaluable."
-              author="Michael"
+              quote="Understanding my natural rhythms through the lunar cycles has brought so much peace and productivity to my life. Sierra's guidance is truly invaluable."
+              author="Sarah"
             />
           </div>
         </div>

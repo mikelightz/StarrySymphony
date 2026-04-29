@@ -69,6 +69,14 @@ export const handler: Handler = async (event) => {
         <div style="background-color: #fff; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #e2d9cd;">
           <h2 style="color: #8c6b45; margin-top: 0;">Detailed Placements</h2>
           <table style="width: 100%; border-collapse: collapse; font-size: 16px;">
+            <thead>
+              <tr style="border-bottom: 2px solid #e2d9cd; color: #8c6b45; font-size: 14px; text-transform: uppercase;">
+                <th style="padding: 8px 0; text-align: left;" colspan="2">Planet</th>
+                <th style="padding: 8px 0; text-align: left;" colspan="3">Sign & Degree</th>
+                <th style="padding: 8px 10px; text-align: left;">House</th>
+                <th style="padding: 8px 10px; text-align: left;">Rx</th>
+              </tr>
+            </thead>
             <tbody>
               ${placements ? placements.map((p: any) => {
       const s = getSignStyle(p.sign);
@@ -80,10 +88,11 @@ export const handler: Handler = async (event) => {
                     <td style="padding: 6px 0; color: ${s.color}; font-size: 20px; width: 30px; text-align: center;">${s.icon}</td>
                     <td style="padding: 6px 10px; width: 80px;">${p.degree}&deg;${p.minutes.toString().padStart(2, '0')}'</td>
                     <td style="padding: 6px 10px; width: 50px;">${p.signAbbr}</td>
+                    <td style="padding: 6px 10px; width: 80px; color: #555;">${p.house}</td>
                     <td style="padding: 6px 10px; color: #777;">${p.isRetrograde ? 'R' : ''}</td>
                   </tr>
                 `;
-    }).join("") : '<tr><td>No placements generated.</td></tr>'}
+    }).join("") : '<tr><td colspan="7">No placements generated.</td></tr>'}
             </tbody>
           </table>
         </div>

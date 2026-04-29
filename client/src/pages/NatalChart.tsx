@@ -11,7 +11,7 @@ import {
   Check,
   ChevronsUpDown,
 } from "lucide-react";
-import { Equator, Body, Observer, SiderealTime } from "astronomy-engine";
+import { Equator, Body, Observer, SiderealTime, EclipticLongitude } from "astronomy-engine";
 import { fromZonedTime } from "date-fns-tz";
 import {
   Command,
@@ -356,13 +356,11 @@ export default function NatalChart() {
       const observer = new Observer(lat, lon, 0);
 
       // Sun calculation
-      const sunEq = Equator(Body.Sun, birthDateUTC, observer, true, true);
-      const sunLon = getEclipticLon(sunEq.ra, sunEq.dec);
+      const sunLon = EclipticLongitude(Body.Sun, birthDateUTC);
       const sun = getZodiacSign(sunLon);
 
       // Moon calculation
-      const moonEq = Equator(Body.Moon, birthDateUTC, observer, true, true);
-      const moonLon = getEclipticLon(moonEq.ra, moonEq.dec);
+      const moonLon = EclipticLongitude(Body.Moon, birthDateUTC);
       const moon = getZodiacSign(moonLon);
 
       // Ascendant calculation
@@ -392,14 +390,24 @@ export default function NatalChart() {
       const jd = dateToJD(birthDateUTC);
       const placements: Placement[] = [];
 
+      placements.push({
+        label: "Ascendant",
+        lon: ascDegrees,
+        sign: risingInfo.name,
+        signAbbr: risingInfo.abbr,
+        degree: risingInfo.degree,
+        minutes: risingInfo.minutes,
+        house: 1,
+        isRetrograde: false,
+        isPoint: true
+      });
+
       for (const p of PLANETS) {
         // Today's Longitude
-        const eq = Equator(p.body, birthDateUTC, observer, true, true);
-        const pLon = getEclipticLon(eq.ra, eq.dec);
+        const pLon = EclipticLongitude(p.body, birthDateUTC);
 
         // Tomorrow's Longitude (for Retrograde)
-        const eqFuture = Equator(p.body, futureDate, observer, true, true);
-        const pLonFuture = getEclipticLon(eqFuture.ra, eqFuture.dec);
+        const pLonFuture = EclipticLongitude(p.body, futureDate);
 
         // Handle 359 -> 0 degree wrap for Retrograde calculations
         let diff = pLonFuture - pLon;

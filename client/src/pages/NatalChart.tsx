@@ -11,7 +11,7 @@ import {
   Check,
   ChevronsUpDown,
 } from "lucide-react";
-import { Equator, Body, Observer, SiderealTime, EclipticLongitude } from "astronomy-engine";
+import { Equator, Body, Observer, SiderealTime, GeoVector, Ecliptic } from "astronomy-engine";
 import { fromZonedTime } from "date-fns-tz";
 import {
   Command,
@@ -356,11 +356,13 @@ export default function NatalChart() {
       const observer = new Observer(lat, lon, 0);
 
       // Sun calculation
-      const sunLon = EclipticLongitude(Body.Sun, birthDateUTC);
+      const sunVec = GeoVector(Body.Sun, birthDateUTC, true);
+      const sunLon = Ecliptic(sunVec).elon;
       const sun = getZodiacSign(sunLon);
 
       // Moon calculation
-      const moonLon = EclipticLongitude(Body.Moon, birthDateUTC);
+      const moonVec = GeoVector(Body.Moon, birthDateUTC, true);
+      const moonLon = Ecliptic(moonVec).elon;
       const moon = getZodiacSign(moonLon);
 
       // Ascendant calculation
@@ -404,10 +406,12 @@ export default function NatalChart() {
 
       for (const p of PLANETS) {
         // Today's Longitude
-        const pLon = EclipticLongitude(p.body, birthDateUTC);
+        const vec = GeoVector(p.body, birthDateUTC, true);
+        const pLon = Ecliptic(vec).elon;
 
         // Tomorrow's Longitude (for Retrograde)
-        const pLonFuture = EclipticLongitude(p.body, futureDate);
+        const vecFuture = GeoVector(p.body, futureDate, true);
+        const pLonFuture = Ecliptic(vecFuture).elon;
 
         // Handle 359 -> 0 degree wrap for Retrograde calculations
         let diff = pLonFuture - pLon;

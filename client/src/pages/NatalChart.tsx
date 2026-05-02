@@ -208,7 +208,9 @@ function calculateMeanNode(jd: number) {
 
 function calculateMeanLilith(jd: number) {
   const T = (jd - 2451545.0) / 36525;
-  let apogee = 83.35324 + 4069.013728 * T - 0.01032 * T * T;
+  // 83.35324 is the mean longitude of the lunar perigee at J2000.
+  // Black Moon Lilith is the apogee, which is exactly 180 degrees opposite.
+  let apogee = 83.35324 + 180.0 + 4069.013728 * T - 0.01032 * T * T;
   apogee = apogee % 360;
   if (apogee < 0) apogee += 360;
   return apogee;
@@ -255,6 +257,78 @@ function calculateChiron(jd: number, sunVec: any) {
   let geo_lon = Math.atan2(gy, gx) * 180 / Math.PI;
   if (geo_lon < 0) geo_lon += 360;
   return geo_lon;
+}
+
+function getPlacidusCusps(ramc: number, lat: number, e: number): (number | null)[] {
+  const DEG2RAD = Math.PI / 180;
+  const RAD2DEG = 180 / Math.PI;
+  const ramcRad = ramc * DEG2RAD;
+  const latRad = lat * DEG2RAD;
+  const eRad = e * DEG2RAD;
+
+  const cusps: (number | null)[] = new Array(13).fill(null);
+
+  let mc = Math.atan2(Math.tan(ramcRad), Math.cos(eRad));
+  if (mc < 0) mc += Math.PI;
+  if (Math.sin(ramcRad) < 0) mc += Math.PI;
+  cusps[10] = mc * RAD2DEG;
+
+  let asc = Math.atan2(Math.cos(ramcRad), -(Math.sin(ramcRad)*Math.cos(eRad) + Math.tan(latRad)*Math.sin(eRad)));
+  if (asc < 0) asc += Math.PI;
+  if (Math.cos(ramcRad) < 0) asc += Math.PI;
+  cusps[1] = asc * RAD2DEG;
+
+  function solveCusp(RA: number, factor: number, isEastern: boolean) {
+    let L = RA;
+    for (let i = 0; i < 100; i++) {
+      let D = Math.asin(Math.sin(eRad) * Math.sin(L));
+      let A = Math.asin(Math.tan(latRad) * Math.tan(D));
+      if (isNaN(A)) return null; 
+      let newRA = RA + (isEastern ? -A * factor : A * factor);
+      let newL = Math.atan2(Math.tan(newRA), Math.cos(eRad));
+      if (newL < 0) newL += Math.PI;
+      if (Math.sin(newRA) < 0) newL += Math.PI;
+      if (Math.abs(newL - L) < 0.00001) {
+        L = newL;
+        break;
+      }
+      L = newL;
+    }
+    return L * RAD2DEG;
+  }
+
+  cusps[11] = solveCusp(ramcRad + 30 * DEG2RAD, 1/3, true);
+  cusps[12] = solveCusp(ramcRad + 60 * DEG2RAD, 2/3, true);
+  cusps[2] = solveCusp(ramcRad + 120 * DEG2RAD, 2/3, false);
+  cusps[3] = solveCusp(ramcRad + 150 * DEG2RAD, 1/3, false);
+
+  if (cusps[11] !== null) cusps[5] = (cusps[11] + 180) % 360;
+  if (cusps[12] !== null) cusps[6] = (cusps[12] + 180) % 360;
+  if (cusps[2] !== null) cusps[8] = (cusps[2] + 180) % 360;
+  if (cusps[3] !== null) cusps[9] = (cusps[3] + 180) % 360;
+  
+  if (cusps[10] !== null) cusps[4] = (cusps[10] + 180) % 360;
+  if (cusps[1] !== null) cusps[7] = (cusps[1] + 180) % 360;
+
+  return cusps;
+}
+
+function getHouse(longitude: number, cusps: (number | null)[], risingIndex: number): number {
+  if (cusps.some((c, i) => i > 0 && c === null)) {
+    // Fallback to Whole Sign if Placidus fails
+    const zInfo = getZodiacInfo(longitude);
+    return ((zInfo.index - risingIndex + 12) % 12) + 1;
+  }
+  for (let i = 1; i <= 12; i++) {
+    const cuspStart = cusps[i] as number;
+    const cuspEnd = i === 12 ? cusps[1] as number : cusps[i + 1] as number;
+    if (cuspStart < cuspEnd) {
+      if (longitude >= cuspStart && longitude < cuspEnd) return i;
+    } else {
+      if (longitude >= cuspStart || longitude < cuspEnd) return i;
+    }
+  }
+  return 1;
 }
 
 const ASPECTS = [
@@ -398,8 +472,10 @@ export default function NatalChart() {
       if (lstDegrees < 0) lstDegrees += 360;
       const lstRadians = lstDegrees * (Math.PI / 180);
 
-      const eps = 23.4392911 * (Math.PI / 180);
+      const epsDegrees = 23.4392911;
+      const eps = epsDegrees * (Math.PI / 180);
       const latRadians = lat * (Math.PI / 180);
+      const placidusCusps = getPlacidusCusps(lstDegrees, lat, epsDegrees);
 
       const y = Math.cos(lstRadians);
       const x = -(Math.sin(lstRadians) * Math.cos(eps) + Math.tan(latRadians) * Math.sin(eps));
@@ -446,8 +522,7 @@ export default function NatalChart() {
         const isRetrograde = diff < 0 && p.label !== "Sun" && p.label !== "Moon";
 
         const zInfo = getZodiacInfo(pLon);
-        // Whole Sign House System calculation
-        let house = ((zInfo.index - risingIndex + 12) % 12) + 1;
+        let house = getHouse(pLon, placidusCusps, risingIndex);
 
         placements.push({
           label: p.label,
@@ -478,7 +553,7 @@ export default function NatalChart() {
 
       for (const xp of extraPoints) {
         const zInfo = getZodiacInfo(xp.lon);
-        let house = ((zInfo.index - risingIndex + 12) % 12) + 1;
+        let house = getHouse(xp.lon, placidusCusps, risingIndex);
         // Nodes are generally always "retrograding" backwards
         const isRetrograde = xp.label.includes("Node");
 

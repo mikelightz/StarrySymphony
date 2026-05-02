@@ -76,7 +76,7 @@ export default function Shop() {
       name: "AstroSomatics Guidebook",
       price: 22.0,
       type: "DIGITAL",
-      description: "",
+      description: "The AstroSomatic guidebook bridges astrology and embodiment, helping you reconnect with your body’s natural intelligence through the cosmic blueprint of the zodiac.\n\nWhether you’re navigating tension, burnout, emotional waves, or simply seeking deeper alignment—this guidebook offers a compassionate, somatic path home to yourself.\n\nWhat’s Inside:\n    •    12 in-depth sections on each zodiac sign and its associated body parts + emotional themes\n    •    Somatic practices for breath, touch, movement, and voice—customized to each sign\n    •    Herbal allies + embodiment tools for nervous system support\n    •    Journal prompts + reflections to uncover the deeper story living in your soma\n    •    Quick-reference zodiac body chart for daily awareness or symptom mapping\n    •    A lovingly written overview of medical astrology to connect body and cosmos\n    •    Encouragement to follow your intuition over perfection",
       imageUrl: "/images/Guidebook_Banner.png",
     },
     {
@@ -84,7 +84,7 @@ export default function Shop() {
       name: "Astro Self Study Journal",
       price: 44.0,
       type: "PRINT",
-      description: "",
+      description: "The Astro Self-Study Journal is more than a journal, it’s a portal to your inner universe. Created as a fully customizable, heart-led guide, this 246-page journey invites you to gently unravel the story written in your stars and anchor it into embodied, earthly wisdom.\n\nFrom the emotional tides of your Moon sign to the soul-aligned calling of your North Node, this journal offers a beautifully organized space to explore your personal astrology—Sun through Chiron, and all the luminaries in between. Whether you're a seasoned stargazer or just beginning your astrological path, this tool helps you connect the celestial dots of your birth chart with deep intention.",
       imageUrl: "/images/Journal_Banner.png",
     },
   ].filter((product) => !productsToHide.includes(product.id)); // Filter hardcoded products

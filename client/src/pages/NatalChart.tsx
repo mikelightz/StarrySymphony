@@ -214,21 +214,47 @@ function calculateMeanLilith(jd: number) {
   return apogee;
 }
 
-function calculateChiron(jd: number) {
+function calculateChiron(jd: number, sunVec: any) {
   const d = jd - 2451545.0;
-  const n = 0.019553;
-  let M = (113.3 + n * d) % 360;
+  let M = (27.98 + 0.01964 * d) % 360;
   if (M < 0) M += 360;
-  const e = 0.381;
+  const e = 0.3793;
   let M_rad = M * Math.PI / 180;
   let E = M_rad;
   for (let i = 0; i < 5; i++) {
     E = E - (E - e * Math.sin(E) - M_rad) / (1 - e * Math.cos(E));
   }
   const v = 2 * Math.atan(Math.sqrt((1 + e) / (1 - e)) * Math.tan(E / 2));
-  let v_deg = v * 180 / Math.PI;
-  if (v_deg < 0) v_deg += 360;
-  return (v_deg + 339.9) % 360;
+
+  const w = 339.14 * Math.PI / 180;
+  const node = 209.39 * Math.PI / 180;
+  const i_inc = 6.94 * Math.PI / 180;
+
+  const a = 13.67;
+  const r = a * (1 - e * Math.cos(E));
+
+  const x_prime = r * Math.cos(v);
+  const y_prime = r * Math.sin(v);
+
+  const cx = x_prime * (Math.cos(w) * Math.cos(node) - Math.sin(w) * Math.sin(node) * Math.cos(i_inc))
+    - y_prime * (Math.sin(w) * Math.cos(node) + Math.cos(w) * Math.sin(node) * Math.cos(i_inc));
+  const cy = x_prime * (Math.cos(w) * Math.sin(node) + Math.sin(w) * Math.cos(node) * Math.cos(i_inc))
+    + y_prime * (Math.cos(w) * Math.cos(node) * Math.cos(i_inc) - Math.sin(w) * Math.sin(node));
+  const cz = x_prime * (Math.sin(w) * Math.sin(i_inc))
+    + y_prime * (Math.cos(w) * Math.sin(i_inc));
+
+  const sunEcl = Ecliptic(sunVec);
+  const ex = -sunEcl.vec.x;
+  const ey = -sunEcl.vec.y;
+  const ez = -sunEcl.vec.z;
+
+  const gx = cx - ex;
+  const gy = cy - ey;
+  const gz = cz - ez;
+
+  let geo_lon = Math.atan2(gy, gx) * 180 / Math.PI;
+  if (geo_lon < 0) geo_lon += 360;
+  return geo_lon;
 }
 
 const ASPECTS = [
@@ -441,7 +467,7 @@ export default function NatalChart() {
       // Rough approximation for True Node (oscillates around Mean Node)
       const trueNodeLon = (meanNodeLon - 1.5 * Math.sin((134.9 + 477198.867 * ((jd - 2451545.0) / 36525)) * Math.PI / 180)) % 360;
       const lilithLon = calculateMeanLilith(jd);
-      const chironLon = calculateChiron(jd);
+      const chironLon = calculateChiron(jd, sunVec);
 
       const extraPoints = [
         { label: "Node (M)", lon: meanNodeLon },
@@ -907,11 +933,10 @@ export default function NatalChart() {
                       <button
                         onClick={handleSendEmail}
                         disabled={isSendingEmail || !emailInput}
-                        className={`py-3 px-6 rounded-lg font-semibold transition duration-300 whitespace-nowrap ${
-                          isSendingEmail || !emailInput
+                        className={`py-3 px-6 rounded-lg font-semibold transition duration-300 whitespace-nowrap ${isSendingEmail || !emailInput
                             ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                             : "bg-dune text-white hover:bg-dune/90 transform hover:scale-105"
-                        }`}
+                          }`}
                       >
                         {isSendingEmail ? "Sending..." : "Send to Email"}
                       </button>

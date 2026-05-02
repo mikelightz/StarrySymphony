@@ -68,7 +68,7 @@ export default function Shop() {
       name: "Her Moon: Sacred Scents Candle",
       price: 15.0,
       type: "PRODUCT",
-      description: "Light this candle and allow the rhythm of your breath slow.\n\nSea salt and orchid mingle softly, carrying the freshness of the ocean and the delicate sweetness of blooming petals. Each flicker becomes a quiet invitation to return to your body, to pause, and to feel the subtle currents of your own inner landscape.\n\nThis candle is more than fragrance—it is a small ritual, a luminous companion for reflection, journaling, or simply calling in more presence. Its scent guides you gently to attune with the natural rhythms of your body and the subtle magic of the moonlit cycles.",
+      description: "Her Moon: Sea Salt & Orchid Sacred Scents Candle.\n\nSea salt and orchid mingle softly, carrying the freshness of the ocean and the delicate sweetness of blooming petals. Each flicker becomes a quiet invitation to return to your body, to pause, and to feel the subtle currents of your own inner landscape.\n\nThis candle is more than fragrance—it is a small ritual, a luminous companion for reflection, journaling, or simply calling in more presence. Its scent guides you gently to attune with the natural rhythms of your body and the subtle magic of the moonlit cycles.",
       imageUrl: "/images/candle_banner.png",
     },
     {

@@ -99,7 +99,7 @@ export const handler: Handler = async (event) => {
 
         <div style="background-color: #f8f1e9; padding: 25px 20px; border-radius: 8px; margin: 25px 0; text-align: center; border: 1px dashed #dcb994;">
           <h3 style="color: #8c6b45; margin-top: 0; font-size: 20px;">1:1 Alignment Sessions</h3>
-          <p style="font-size: 16px; margin-bottom: 0; color: #555;">Want to deeply understand how these placements uniquely weave together to shape your life? Book your 1:1 Alignment Session to explore the full story of your chart.</p>
+          <p style="font-size: 16px; margin-bottom: 0; color: #555;">Want to deeply understand how these placements uniquely weave together to shape your life? Book your 1:1 Alignment Session to explore the full story of your chart <strong><a href="${baseUrl}/offerings" style="color: #8c6b45; text-decoration: underline;">here</a></strong>.</p>
         </div>
 
         <div style="background-color: #fff; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #e2d9cd;">

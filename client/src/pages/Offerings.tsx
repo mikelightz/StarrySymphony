@@ -42,7 +42,7 @@ export default function Offerings() {
               {/* An image showing a coaching or counseling session */}
               <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
-                  src="/images/offerings_1.png"
+                  src="/images/offerings_1.JPG"
                   alt="One-on-one counseling session"
                   className="w-full object-cover"
                 />
@@ -141,7 +141,7 @@ export default function Offerings() {
               {/* An image showing a coaching or counseling session */}
               <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
-                  src="/images/offerings_2.png"
+                  src="/images/offerings_2.JPG"
                   alt="black and blue butterfly in close up"
                   className="w-full aspect-[3/4] object-cover"
                 />
@@ -253,7 +253,7 @@ export default function Offerings() {
               {/* An image showing a coaching or counseling session */}
               <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
-                  src="/images/offerings_3.png"
+                  src="/images/offerings_3.JPG"
                   alt="sunlight passing through green leaf tree"
                   className="w-full h-auto"
                 />

@@ -28,27 +28,45 @@ export default function Home() {
         {/* Hero Section */}
         <div className="pt-24 pb-16 md:pt-40 md:pb-32 px-4 relative z-10">
           <div className="container-custom max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-
             <motion.div
-              initial="hidden" animate="visible" variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+              variants={fadeIn}
               className="flex-1 text-center lg:text-left z-20"
             >
               <h1 className="font-playfair text-5xl md:text-7xl lg:text-[6rem] text-cloth mb-6 md:mb-8 capitalize tracking-normal leading-[1.1]">
-                OMFLOR<br />WELLNESS
+                OMFLOR
+                <br />
+                WELLNESS
               </h1>
 
               <motion.p
                 className="text-cloth/90 md:text-espresso font-lato text-base md:text-xl font-light mb-8 md:mb-12 max-w-lg mx-auto lg:mx-0 leading-relaxed drop-shadow-md"
-                initial="hidden" animate="visible" variants={slideUp}
+                initial="hidden"
+                animate="visible"
+                variants={slideUp}
               >
-                Your Roadmap Home to Wholeness in <br className="hidden md:block" />Psyche, Soma, and Stars
+                Your Roadmap Home to Wholeness in{" "}
+                <br className="hidden md:block" />
+                Psyche, Soma, and Stars
               </motion.p>
 
-              <motion.div initial="hidden" animate="visible" variants={slideUp} custom={0.3}>
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={slideUp}
+                custom={0.3}
+              >
                 <button
                   className="bg-black/10 backdrop-blur-md text-terracota border border-terracota/30 hover:bg-terracota/80 hover:text-white hover:border-transparent px-8 py-4 rounded-full transition-all duration-300 font-lato tracking-widest text-sm uppercase shadow-lg shadow-terracota/10"
-                  style={{ backgroundColor: 'hsl(var(--terracota) / 0.15)' }}
-                  onClick={() => { window.open("https://payhip.com/b/isUBL", "_blank", "noopener,noreferrer"); }}
+                  style={{ backgroundColor: "hsl(var(--terracota) / 0.15)" }}
+                  onClick={() => {
+                    window.open(
+                      "https://payhip.com/b/isUBL",
+                      "_blank",
+                      "noopener,noreferrer",
+                    );
+                  }}
                 >
                   Discover Astrosomatics
                 </button>
@@ -72,8 +90,10 @@ export default function Home() {
                   playsInline
                 >
                   {/* Moved the source here and added the type attribute */}
-                  <source src="/videos/v2/Cosmic_Wellness_Journey_2.mp4" type="video/mp4" />
-
+                  <source
+                    src="/videos/v2/Cosmic_Wellness_Journey_2.mp4"
+                    type="video/mp4"
+                  />
                   {/* Fallback text just in case the browser utterly fails */}
                   Your browser does not support the video tag.
                 </video>
@@ -82,7 +102,7 @@ export default function Home() {
               {/* Background offset shape/texture placeholder */}
               <div
                 className="absolute top-[8%] left-[10%] lg:-left-[10%] w-[55%] sm:w-[45%] md:w-[55%] lg:w-[70%] h-[90%] backdrop-blur-md rounded-tl-3xl -z-10 shadow-2xl"
-                style={{ backgroundColor: 'hsl(var(--terracota) / 0.35)' }}
+                style={{ backgroundColor: "hsl(var(--terracota) / 0.35)" }}
               ></div>
 
               {/* Planet Badge replacing the "NEW" circle */}
@@ -90,7 +110,6 @@ export default function Home() {
                 <PlanetBadge />
               </div>
             </motion.div>
-
           </div>
         </div>
 
@@ -106,9 +125,7 @@ export default function Home() {
         {/* Mission Section */}
         <div className="py-20 md:py-32 px-4 relative z-10">
           <div className="container-custom max-w-6xl mx-auto">
-
             <div className="flex flex-col sm:flex-row items-center gap-0 max-w-5xl mx-auto relative px-4 md:px-0">
-
               <motion.div
                 className="relative order-2 sm:order-1 w-[85%] sm:w-[45%] md:w-5/12 flex justify-center sm:justify-end z-10 -mt-3 sm:mt-0"
                 initial={{ opacity: 0, x: -20 }}
@@ -140,42 +157,63 @@ export default function Home() {
                   </h2>
 
                   {/* Clean standard text block, rescaled to normal mobile sizes */}
-                  <div
-                    className="space-y-4 md:space-y-6 font-lato text-cloth text-sm md:text-lg leading-relaxed md:leading-relaxed font-light drop-shadow-md"
-                  >
+                  <div className="space-y-4 md:space-y-6 font-lato text-cloth text-sm md:text-lg leading-relaxed md:leading-relaxed font-light drop-shadow-md">
                     <p>
-                      At OmFlor Wellness, we believe that true transformation happens when we align with both our inner wisdom and the natural rhythms that surround us. Our approach combines somatic embodiment practices, astrological & earthly wisdom, and psycho-spiritual guidance to help you reconnect and reimagine yourself in a holistic way.
+                      At OmFlor Wellness, we believe that true transformation
+                      happens when we align with both our inner wisdom and the
+                      natural rhythms that surround us. Our approach combines
+                      somatic embodiment practices, astrological & ancestral
+                      wisdom, and psycho-spiritual guidance to help you
+                      reconnect and reimagine yourself in a holistic way.
                     </p>
                     <p>
-                      Through intentional practices and gentle awareness, we create a nurturing space for you to honor your body's wisdom and harness the power of celestial cycles for profound personal and creative expression.
+                      Through intentional practices and gentle awareness, we
+                      create a nurturing space for you to honor your body's
+                      wisdom and harness the power of celestial cycles for
+                      profound personal and creative expression.
                     </p>
                   </div>
 
                   <button
-                    onClick={() => navigate('/about')}
-                    className="bg-cloth text-dune hover:bg-white hover:text-black px-8 py-3 rounded-sm transition-all duration-300 font-lato tracking-widest text-xs uppercase mt-6">
+                    onClick={() => navigate("/about")}
+                    className="bg-cloth text-dune hover:bg-white hover:text-black px-8 py-3 rounded-sm transition-all duration-300 font-lato tracking-widest text-xs uppercase mt-6"
+                  >
                     Read More
                   </button>
                 </div>
               </motion.div>
-
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 mt-16 md:mt-24 border-t border-border/60 pt-12 md:pt-16">
               <FeatureCard
-                icon={<Moon className="h-8 w-8 md:h-10 md:w-10 text-dune" strokeWidth={1} />}
+                icon={
+                  <Moon
+                    className="h-8 w-8 md:h-10 md:w-10 text-dune"
+                    strokeWidth={1}
+                  />
+                }
                 title="Celestial Wisdom"
                 description="Harness the energy of planetary movements to align your self-nourishment practices with natural cycles."
               />
 
               <FeatureCard
-                icon={<Heart className="h-8 w-8 md:h-10 md:w-10 text-dune" strokeWidth={1} />}
+                icon={
+                  <Heart
+                    className="h-8 w-8 md:h-10 md:w-10 text-dune"
+                    strokeWidth={1}
+                  />
+                }
                 title="Embodiment"
                 description="Learn to listen to your body's innate wisdom through somatic awareness practices."
               />
 
               <FeatureCard
-                icon={<Star className="h-8 w-8 md:h-10 md:w-10 text-oliva" strokeWidth={1} />}
+                icon={
+                  <Star
+                    className="h-8 w-8 md:h-10 md:w-10 text-oliva"
+                    strokeWidth={1}
+                  />
+                }
                 title="Emotional Alchemy"
                 description="Develop emotional intelligence and resilience through psychosomatic techniques."
               />
@@ -204,7 +242,6 @@ export default function Home() {
         </div>
       </div>
 
-
       {/* Testimonials Section */}
       <div className="py-20 md:py-32 px-4 relative z-10 bg-dune/90">
         <div className="container-custom max-w-6xl mx-auto">
@@ -229,7 +266,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 
@@ -248,9 +285,15 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
       transition={{ duration: 0.7 }}
       viewport={{ once: true }}
     >
-      <div className="mb-4 md:mb-6 p-3 md:p-4 bg-background rounded-full">{icon}</div>
-      <h3 className="font-playfair text-xl md:text-2xl mb-3 md:mb-4 text-cloth tracking-wider uppercase">{title}</h3>
-      <p className="text-espresso font-lato font-light text-sm md:text-base leading-relaxed">{description}</p>
+      <div className="mb-4 md:mb-6 p-3 md:p-4 bg-background rounded-full">
+        {icon}
+      </div>
+      <h3 className="font-playfair text-xl md:text-2xl mb-3 md:mb-4 text-cloth tracking-wider uppercase">
+        {title}
+      </h3>
+      <p className="text-espresso font-lato font-light text-sm md:text-base leading-relaxed">
+        {description}
+      </p>
     </motion.div>
   );
 }
@@ -277,8 +320,12 @@ function ServiceCard({ image, title, description }: ServiceCardProps) {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
         />
       </div>
-      <h3 className="font-playfair text-2xl mb-3 text-cloth capitalize">{title}</h3>
-      <p className="text-cloth/90 font-lato font-light text-sm leading-relaxed mb-4 max-w-[250px]">{description}</p>
+      <h3 className="font-playfair text-2xl mb-3 text-cloth capitalize">
+        {title}
+      </h3>
+      <p className="text-cloth/90 font-lato font-light text-sm leading-relaxed mb-4 max-w-[250px]">
+        {description}
+      </p>
       <button className="bg-clay text-background hover:bg-dune px-6 py-2 rounded-sm text-xs tracking-widest uppercase font-lato transition-colors">
         More
       </button>
@@ -300,7 +347,9 @@ function TestimonialCard({ quote, author }: TestimonialCardProps) {
       transition={{ duration: 0.7 }}
       viewport={{ once: true }}
     >
-      <div className="absolute top-4 left-4 md:top-8 md:left-8 text-gold/20 text-4xl md:text-6xl font-prata tracking-widest uppercase font-light leading-none">&ldquo;</div>
+      <div className="absolute top-4 left-4 md:top-8 md:left-8 text-gold/20 text-4xl md:text-6xl font-prata tracking-widest uppercase font-light leading-none">
+        &ldquo;
+      </div>
       <div className="relative z-10">
         <div className="flex items-center mb-6 md:mb-8 gap-1">
           {[1, 2, 3, 4, 5].map((_, index) => (
@@ -314,7 +363,9 @@ function TestimonialCard({ quote, author }: TestimonialCardProps) {
         <p className="font-lato font-light text-espresso leading-relaxed md:leading-loose text-base md:text-lg mb-6 md:mb-8 italic">
           {quote}
         </p>
-        <p className="font-playfair text-espresso uppercase tracking-widest text-xs md:text-sm">— {author}</p>
+        <p className="font-playfair text-espresso uppercase tracking-widest text-xs md:text-sm">
+          — {author}
+        </p>
       </div>
     </motion.div>
   );
@@ -356,7 +407,15 @@ function PlanetBadge() {
           {/* Sun/Planet Core */}
           <circle cx="50" cy="50" r="7" fill="currentColor" opacity="0.95" />
           {/* Subtle outer ring */}
-          <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" strokeWidth="0.2" opacity="0.4" />
+          <circle
+            cx="50"
+            cy="50"
+            r="46"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="0.2"
+            opacity="0.4"
+          />
         </svg>
       </motion.div>
 

@@ -29,6 +29,69 @@ export default function Offerings() {
           Offerings
         </motion.h1>
 
+        {/* 20-minute Compass Call */}
+        <motion.div
+          className="mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <div className="bg-muted/40 p-8 rounded-xl shadow-md">
+            <div className="flex flex-col md:flex-row gap-8">
+              <div className="md:w-1/3 rounded-lg overflow-hidden">
+                <img
+                  src="/images/offerings_4_1.jpg"
+                  alt="black and blue butterfly in close up"
+                  className="w-full aspect-[3/4] object-cover"
+                />
+              </div>
+              <div className="md:w-2/3">
+                <h2 className="font-playfair tracking-widest uppercase font-light text-2xl mb-4 text-copper">
+                  20-Minute Compass Call
+                </h2>
+                <p className="text-espresso mb-4">Not sure where to begin?</p>
+                <p className="text-espresso mb-4">
+                  Sometimes the most valuable step isn’t choosing a service.
+                  It’s understanding where you are and what support will serve
+                  you best.
+                </p>
+
+                <div className="mb-6 mt-8">
+                  <h3 className="font-medium text-foreground mb-2">
+                    During this 20-minute Compass Call, we’ll explore:
+                  </h3>
+
+                  <ReadMore collapsedHeight="20px">
+                    <p>
+                      your intentions, clarify your next step, and determine
+                      which OmFlor Wellness offering is most aligned with your
+                      current season.
+                    </p>
+                    <b>
+                      <p className="text-espresso mt-4 mb-4">
+                        Investment: $25, credited toward any service booked
+                        within 30 days.
+                      </p>
+                    </b>
+                  </ReadMore>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  {/* BUTTON 1: Single Session */}
+                  <button
+                    data-cal-link="omflorwellness/compasscall?overlayCalendar=true" // Check this slug in Cal.com!
+                    data-cal-config='{"layout":"month_view"}'
+                    className="bg-ambar-rustico text-cloth px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto"
+                  >
+                    RESERVE YOUR SPOT
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* 1:1 Sessions */}
         <motion.div
           className="mb-20"
@@ -39,7 +102,6 @@ export default function Offerings() {
         >
           <div className="bg-muted/40 p-8 rounded-xl shadow-md">
             <div className="flex flex-col md:flex-row gap-8">
-              {/* An image showing a coaching or counseling session */}
               <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
                   src="/images/offerings_1.JPG"
@@ -50,12 +112,12 @@ export default function Offerings() {
 
               <div className="md:w-2/3">
                 <h2 className="font-playfair tracking-widest uppercase font-light text-2xl mb-4 text-copper">
-                  1:1 Alignment Sessions
+                  The Blueprint Session
                 </h2>
                 <p className="text-espresso mb-4">
-                  These private sessions are a sanctuary for coming back into
-                  relationship with your body, your emotions, and the grander
-                  rhythms guiding your life.
+                  These one hour private sessions are a sanctuary for coming
+                  back into relationship with your body, your emotions, and the
+                  grander rhythms guiding your life.
                 </p>
                 <p className="text-espresso mb-4">
                   Blending somatic awareness, astrology, and emotional
@@ -119,7 +181,7 @@ export default function Offerings() {
                     data-cal-config='{"layout":"month_view"}'
                     className="bg-ambar-rustico text-cloth px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto"
                   >
-                    BOOK NOW
+                    RESERVE YOUR SPOT
                   </button>
                 </div>
                 {/* </div> */}
@@ -128,7 +190,7 @@ export default function Offerings() {
           </div>
         </motion.div>
 
-        {/* AstroSomatic Rebirth Intensive */}
+        {/* AstroSomatic Rebirth */}
         <motion.div
           className="mb-20"
           initial={{ opacity: 0, y: 20 }}
@@ -138,7 +200,6 @@ export default function Offerings() {
         >
           <div className="bg-muted/40 p-8 rounded-xl shadow-md">
             <div className="flex flex-col md:flex-row gap-8">
-              {/* An image showing a coaching or counseling session */}
               <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
                   src="/images/offerings_2.JPG"
@@ -148,8 +209,7 @@ export default function Offerings() {
               </div>
               <div className="md:w-2/3">
                 <h2 className="font-playfair tracking-widest uppercase font-light text-2xl mb-4 text-copper">
-                  AstroSomatic Rebirth Intensive: A 10-Day Transformative
-                  Immersion
+                  The AstroSomatic Rebirth
                 </h2>
                 <p className="text-espresso mb-4">
                   This 10-day immersion is a call to transform into your highest
@@ -157,12 +217,12 @@ export default function Offerings() {
                   profound recalibration in body, psyche, and soul.
                 </p>
                 <p className="text-espresso mb-4">
-                  The AstroSomatic Rebirth Intensive weaves somatic practice,
-                  astrological insight, and emotional integration into a
-                  cohesive journey of release, remembrance, and re-embodiment.
-                  Over ten days, we work slowly and intentionally, allowing
-                  deeper layers of patterning to surface, soften, and reorganize
-                  in alignment with your natural rhythms.
+                  The AstroSomatic Rebirth weaves somatic practice, astrological
+                  insight, and emotional integration into a cohesive journey of
+                  release, remembrance, and re-embodiment. Over ten days, we
+                  work slowly and intentionally, allowing deeper layers of
+                  patterning to surface, soften, and reorganize in alignment
+                  with your natural rhythms.
                 </p>
                 <p className="text-espresso mb-4">
                   This is about creating the conditions for your nervous system
@@ -234,7 +294,7 @@ export default function Offerings() {
                   rel="noopener noreferrer"
                   className="inline-block bg-ambar-rustico text-cloth px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
                 >
-                  BOOK NOW
+                  RESERVE YOUR SPOT
                 </a>
               </div>
             </div>
@@ -260,7 +320,7 @@ export default function Offerings() {
               </div>
               <div className="md:w-2/3">
                 <h2 className="font-playfair tracking-widest uppercase font-light text-2xl mb-4 text-copper">
-                  The Visionaries’ Homecoming: A 12 Week Container
+                  The Visionary Homecoming
                 </h2>
                 <p className="text-espresso mb-4">
                   The Homecoming Journey is a 12 week immersion for creatives,
@@ -351,7 +411,7 @@ export default function Offerings() {
                   rel="noopener noreferrer"
                   className="inline-block bg-ambar-rustico text-cloth px-6 py-3 rounded-lg text-center hover:bg-opacity-90 active:scale-95 transform transition-transform duration-100 w-full sm:w-auto cursor-pointer"
                 >
-                  BOOK NOW
+                  RESERVE YOUR SPOT
                 </a>
               </div>
             </div>

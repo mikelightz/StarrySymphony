@@ -41,7 +41,7 @@ export default function Offerings() {
             <div className="flex flex-col md:flex-row gap-8">
               <div className="md:w-1/3 rounded-lg overflow-hidden">
                 <img
-                  src="/images/offerings_4_1.jpg"
+                  src="/images/offerings_5.jpg"
                   alt="black and blue butterfly in close up"
                   className="w-full aspect-[3/4] object-cover"
                 />
